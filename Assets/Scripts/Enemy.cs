@@ -21,7 +21,10 @@ public class Enemy : MonoBehaviour
     {
         
     }
-
+    /// <summary>
+    /// called to deal damage to this enemy. If it reaches 0 health, it will die
+    /// </summary>
+    /// <param name="damage">the amount of damage dealt to this enemy. set to 1 by default</param>
     public void Damage(int damage = 1)
     {
         health -= damage;
@@ -30,12 +33,18 @@ public class Enemy : MonoBehaviour
             Die();
         }
     }
-
+    /// <summary>
+    /// called when the enemy hits zero health and breaks. will destroy the enemy
+    /// </summary>
     public void Die()
     {
         Destroy(gameObject);
     }
 
+    /// <summary>
+    /// called to set whether the enemy is currently stuck with a pump nozzle or not. Will determine whether they can take damage from pumps or not
+    /// </summary>
+    /// <param name="stuck">if the enemy has been stuck</param>
     public void SetStuck(bool stuck)
     {
         stuckWithPump = stuck;

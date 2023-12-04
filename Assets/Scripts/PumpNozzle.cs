@@ -53,12 +53,20 @@ public class PumpNozzle : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Called at startup to setup the pump this nozzle will be attached to
+    /// </summary>
+    /// <param name="pump">the pump to attach this nozzle to</param>
+    /// <param name="attach">the attach transform that defines where the nozzle should move to attach to the pump</param>
     public void SetPump(Pump pump, Transform attach)
     {
         pump = owningPump;
         pumpAttach = attach;
     }
 
+    /// <summary>
+    /// called when the nozzle has to reconnect to the pump. Will move back to its attach transform and set up a joint to connect it to the pump
+    /// </summary>
     public void ConnectToPump()
     {
         transform.position = pumpAttach.position;
@@ -67,6 +75,10 @@ public class PumpNozzle : MonoBehaviour
         owningPump.OnNozzleReattach();
     }
 
+    /// <summary>
+    /// called when the player shoots the nozzle out of the pump. Enables it to be stuck to enemies
+    /// </summary>
+    /// <param name="launchVelocity">the vector that defines the initial launch velocity of the nozzle</param>
     public void Shoot(Vector3 launchVelocity)
     {
         rb.velocity = launchVelocity;
@@ -103,6 +115,9 @@ public class PumpNozzle : MonoBehaviour
         joint.connectedBody = enemy.gameObject.GetComponent<Rigidbody>();
     }
 
+    /// <summary>
+    /// called when the player forces the nozzle to release itself from an enemy it is connected to
+    /// </summary>
     public void ForceRelease()
     {
         if (stuckToEnemy)
@@ -125,6 +140,9 @@ public class PumpNozzle : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// called when the player uses teh pump to damage the enemy it is attached to
+    /// </summary>
     public void Pump()
     {
         if (stuckToEnemy)

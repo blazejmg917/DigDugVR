@@ -28,16 +28,25 @@ public class Pump : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// gets the attach transform for the nozzle
+    /// </summary>
     public Transform getNozzleAttach()
     {
         return nozzleAttach;
     }
 
+    /// <summary>
+    /// called when the nozzle reattaches to the pump
+    /// </summary>
     public void OnNozzleReattach()
     {
         isPumpAttached = true;
     }
 
+    /// <summary>
+    /// fires the nozzle out from the pump if it is currently attached
+    /// </summary>
     public void FireNozzle()
     {
         if (isPumpAttached)
@@ -47,11 +56,17 @@ public class Pump : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// force the nozzle to release from an enemy it is currently stuck in
+    /// </summary>
     public void ForceReleaseNozzle()
     {
         pumpNozzle.ForceRelease();
     }
 
+    /// <summary>
+    /// called whenever the pump handle completes a pump action. used to deal damage to enemies
+    /// </summary>
     public void CompletePump()
     {
         pumpNozzle.Pump();
