@@ -27,6 +27,10 @@ public class DestructibleObject : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// called to deal damage to this object. If it reaches 0 durability, it will break
+    /// </summary>
+    /// <param name="damage">the amount of damage dealt to this object. set to 1 by default</param>
     public void TakeDamage(int damage = 1)
     {
         durabilty -= 1;
@@ -36,6 +40,9 @@ public class DestructibleObject : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// called when the object hits zero durability and breaks. will destroy the object
+    /// </summary>
     public void Break()
     {
         Destroy(gameObject);

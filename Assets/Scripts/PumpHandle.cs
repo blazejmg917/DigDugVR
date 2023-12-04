@@ -16,12 +16,20 @@ public class PumpHandle : MonoBehaviour
     private Pump pump;
     //true if the pump has been pulled back but not yet released
     private bool primed = false;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
+    [SerializeField, Tooltip("this handle's rigidbody")]private Rigidbody rb;
+    // [SerializeField, Tooltip("the standard rigidbodyconstraints for when the pump isn't held")]private RigidbodyConstraints standardConstraints = RigidbodyConstraints.FreezeAll;
+    [SerializeField, Tooltip("the  rigidbodyconstraints for when the pump is held")]private RigidbodyConstraints heldConstraints = RigidbodyConstraints.FreezeAll & ~RigidbodyConstraints.FreezePositionX;
+
+    void Start(){
+        if(!rb){
+            rb = GetComponent<Rigidbody>();
+            if(!rb){
+                rb = gameObject.AddComponent<Rigidbody>();
+            }
+        }
+
+    }
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -36,6 +44,10 @@ public class PumpHandle : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Called when the player lets go of the pump handle
+    /// </summary>
+    /// <param name="_"></param>
     public void OnRelease(SelectExitEventArgs _)
     {
         if (primed)
@@ -46,5 +58,14 @@ public class PumpHandle : MonoBehaviour
         {
             transform.position = restingPosition.position;
         }
+    }
+
+    /// <summary>
+    /// called when the player grabs the pump handle
+    /// </summary>
+    /// <param name="_"></param>
+    public void OnPickup(SelectEnterEventArgs _)
+    {
+        //make moveable
     }
 }

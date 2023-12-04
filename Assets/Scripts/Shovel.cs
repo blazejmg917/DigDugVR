@@ -18,11 +18,7 @@ public class Shovel : MonoBehaviour
     //used to prevent jiggling to break blocks
     private bool breakRefreshed = true;
     private Vector3 lastHitPositon;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+
 
     // Update is called once per frame
     void Update()
