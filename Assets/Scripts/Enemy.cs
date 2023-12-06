@@ -10,6 +10,9 @@ public class Enemy : MonoBehaviour
     private int health = 0;
     //if this enemy is currently stuck with a pump
     private bool stuckWithPump = false;
+    [Header("enemy visuals")]
+    [SerializeField, Tooltip("the default enemy appearance")]private GameObject normalEnemyAppearance;
+    [SerializeField, Tooltip("the enemy appearance when they're invisible")]private GameObject invisibleEnemyAppearance;
     // Start is called before the first frame update
     void Awake()
     {
