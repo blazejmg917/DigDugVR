@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class Pump : MonoBehaviour
 {
@@ -70,5 +71,22 @@ public class Pump : MonoBehaviour
     public void CompletePump()
     {
         pumpNozzle.Pump();
+    }
+
+    /// <summary>
+    /// Called when the pump is picked up.
+    /// </summary>
+    /// <param name="args"></param>
+    public void OnPickup(SelectEnterEventArgs args)
+    {
+        
+    }
+    /// <summary>
+    /// Called when the pump is picked up.
+    /// </summary>
+    /// <param name="args"></param>
+    public void OnRelease(SelectExitEventArgs args)
+    {
+        
     }
 }

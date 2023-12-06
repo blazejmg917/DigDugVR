@@ -1005,10 +1005,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b064f70671646e45b565375bed52467, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSwingSpeed: 5
-  destructibleLayer:
-    serializedVersion: 2
-    m_Bits: 64
+  minSwingSpeed: 0
   breakRefreshDist: 1
 --- !u!1 &1714349565
 GameObject:
@@ -1309,7 +1306,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   m_ThrowVelocityScale: 1.5
   m_ThrowAngularVelocityScale: 1
-  m_ForceGravityOnDetach: 0
+  m_ForceGravityOnDetach: 1
   m_RetainTransformParent: 1
   m_AttachPointCompatibilityMode: 0
   m_StartingSingleGrabTransformers: []
@@ -1330,7 +1327,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!4 &1829710553
 Transform:
   m_ObjectHideFlags: 0
@@ -1338,15 +1335,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1829710550}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.124719456, y: 0.20542155, z: 0.06841053}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
+  m_LocalPosition: {x: -5.04, y: 6.9, z: 0.06841053}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1484507922}
   m_Father: {fileID: 0}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!1 &2009957405
 GameObject:
   m_ObjectHideFlags: 0
@@ -1361,6 +1358,7 @@ GameObject:
   - component: {fileID: 2009957407}
   - component: {fileID: 2009957406}
   - component: {fileID: 2009957411}
+  - component: {fileID: 2009957412}
   m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
@@ -1381,8 +1379,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxDurability: 3
+  breakVelocity: 3
   damageParticles: {fileID: 0}
   destroyParticles: {fileID: 0}
+  hitHaptic: {fileID: 0}
+  breakHaptic: {fileID: 0}
 --- !u!65 &2009957407
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1477,6 +1478,22 @@ MonoBehaviour:
   m_Area: 1
   m_IgnoreFromBuild: 0
   m_AffectedAgents: 00000000
+--- !u!54 &2009957412
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2009957405}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 1
 --- !u!1 &2092924271
 GameObject:
   m_ObjectHideFlags: 0
