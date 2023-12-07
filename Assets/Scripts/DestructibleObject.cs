@@ -66,7 +66,7 @@ public class DestructibleObject : MonoBehaviour
 
     public void OnCollisionEnter(Collision col){
         Shovel shovel = col.collider.gameObject.GetComponent<Shovel>();
-        Debug.Log("object hit, " + (col.relativeVelocity.magnitude >= breakVelocity) + ", " + shovel);
+        //Debug.Log("object hit, " + (col.relativeVelocity.magnitude >= breakVelocity) + ", " + shovel);
         
         if(col.relativeVelocity.magnitude >= breakVelocity && shovel && shovel.CanBreak(gameObject, col.contacts[0].point)){
             TakeDamage();

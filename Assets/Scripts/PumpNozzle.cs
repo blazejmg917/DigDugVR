@@ -16,10 +16,12 @@ public class PumpNozzle : MonoBehaviour
 
     [SerializeField, Tooltip("the amount of time it takes for the nozzle to return after an unsuccesful launch")]
     private float nozzleReturnTime = 2f;
-    [SerializeField, Tooltip("the amount of time it takes for the nozzle to return after killing an enemy")]
-    private float nozzleKillReturnTime = .3f;
+    // [SerializeField, Tooltip("the amount of time it takes for the nozzle to return after killing an enemy")]
+    // private float nozzleKillReturnTime = .3f;
     private float nozzleReturnTimer = 0;
     private bool waitingForNozzleReturn = false;
+    [SerializeField, Tooltip("the amount of extra distance that the nozzle can pull after being connected before it detaches")]private float maxStuckPullDist = 5;
+    private float stuckDist = 0;
 
     [SerializeField, Tooltip("this object's Rigidbody")]
     private Rigidbody rb;
@@ -30,8 +32,9 @@ public class PumpNozzle : MonoBehaviour
     [SerializeField, Tooltip("the Pump this nozzle is attached to")]
     private Pump owningPump;
 
-    [SerializeField, Tooltip("The transform this nozzle attaches to the pump at")]
+    [SerializeField, Tooltip("The transform this nozzle attaches to the pump at.")]
     private Transform pumpAttach;
+    [SerializeField, Tooltip("the parent transform for this object")]private Transform parentTransform;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -62,6 +65,7 @@ public class PumpNozzle : MonoBehaviour
     {
         pump = owningPump;
         pumpAttach = attach;
+        ConnectToPump();
     }
 
     /// <summary>
@@ -69,8 +73,9 @@ public class PumpNozzle : MonoBehaviour
     /// </summary>
     public void ConnectToPump()
     {
-        transform.position = pumpAttach.position;
-        transform.rotation = pumpAttach.rotation;
+        parentTransform.position = pumpAttach.position;
+        Debug.Log("attached: " + parentTransform.position + ", " + pumpAttach.position);
+        parentTransform.rotation = pumpAttach.rotation;
         joint.connectedBody = owningPump.gameObject.GetComponent<Rigidbody>();
         owningPump.OnNozzleReattach();
     }
@@ -98,6 +103,7 @@ public class PumpNozzle : MonoBehaviour
                 waitingForNozzleReturn = true;
                 nozzleReturnTimer = nozzleReturnTime;
             }
+            canStick = false;
         }
         
     }
@@ -113,6 +119,7 @@ public class PumpNozzle : MonoBehaviour
         stuckToEnemy = true;
         enemy.SetStuck(true);
         joint.connectedBody = enemy.gameObject.GetComponent<Rigidbody>();
+        stuckDist = (transform.position - pumpAttach.position).magnitude;
     }
 
     /// <summary>
@@ -132,16 +139,23 @@ public class PumpNozzle : MonoBehaviour
 
     void FixedUpdate()
     {
-        nozzleReturnTimer -= Time.fixedDeltaTime;
-        if (nozzleReturnTimer < 0)
-        {
-            waitingForNozzleReturn = false;
-            ConnectToPump();
+        if(stuckToEnemy){
+            if((transform.position - pumpAttach.position).magnitude > stuckDist + maxStuckPullDist){
+                ForceRelease();
+            }
+        }
+        if(waitingForNozzleReturn){
+            nozzleReturnTimer -= Time.fixedDeltaTime;
+            if (nozzleReturnTimer < 0)
+            {
+                waitingForNozzleReturn = false;
+                ConnectToPump();
+            }
         }
     }
 
     /// <summary>
-    /// called when the player uses teh pump to damage the enemy it is attached to
+    /// called when the player uses the pump to damage the enemy it is attached to
     /// </summary>
     public void Pump()
     {
