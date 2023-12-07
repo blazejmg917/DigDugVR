@@ -17,9 +17,11 @@ public class PumpHandle : MonoBehaviour
     //true if the pump has been pulled back but not yet released
     private bool primed = false;
 
+    private bool held = false;
+
     [SerializeField, Tooltip("this handle's rigidbody")]private Rigidbody rb;
-    // [SerializeField, Tooltip("the standard rigidbodyconstraints for when the pump isn't held")]private RigidbodyConstraints standardConstraints = RigidbodyConstraints.FreezeAll;
-    [SerializeField, Tooltip("the  rigidbodyconstraints for when the pump is held")]private RigidbodyConstraints heldConstraints = RigidbodyConstraints.FreezeAll & ~RigidbodyConstraints.FreezePositionX;
+    [Tooltip("the standard rigidbodyconstraints for when the pump isn't held")]private RigidbodyConstraints standardConstraints = RigidbodyConstraints.FreezeAll;
+    [ Tooltip("the  rigidbodyconstraints for when the pump is held")]private RigidbodyConstraints heldConstraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
 
     void Start(){
         if(!rb){
@@ -28,16 +30,19 @@ public class PumpHandle : MonoBehaviour
                 rb = gameObject.AddComponent<Rigidbody>();
             }
         }
+        Debug.Log("handle start " + standardConstraints);
+        rb.constraints = standardConstraints;
 
     }
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (!primed && Vector3.Distance(handlePoint.position, pulledBackPosition.position) <= .001f)
+        
+        if (held && !primed && Vector3.Distance(handlePoint.position, pulledBackPosition.position) <= .001f)
         {
             primed = true;
         }
-        else if (primed && Vector3.Distance(handlePoint.position, restingPosition.position) <= .001f)
+        else if (held && primed && Vector3.Distance(handlePoint.position, restingPosition.position) <= .001f)
         {
             primed = false;
             pump.CompletePump();
@@ -50,14 +55,18 @@ public class PumpHandle : MonoBehaviour
     /// <param name="_"></param>
     public void OnRelease(SelectExitEventArgs _)
     {
+        held = false;
+        rb.constraints = standardConstraints;
+        transform.localRotation = Quaternion.identity;
         if (primed)
         {
-            transform.position = pulledBackPosition.position;
+            transform.position = pulledBackPosition.position + (transform.position - handlePoint.position);
         }
         else
         {
-            transform.position = restingPosition.position;
+            transform.position = restingPosition.position + (transform.position - handlePoint.position);
         }
+        
     }
 
     /// <summary>
@@ -66,6 +75,8 @@ public class PumpHandle : MonoBehaviour
     /// <param name="_"></param>
     public void OnPickup(SelectEnterEventArgs _)
     {
+        held = true;
+        rb.constraints = heldConstraints;
         //make moveable
     }
 }
