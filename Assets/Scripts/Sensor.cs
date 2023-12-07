@@ -8,6 +8,11 @@ public class Sensor : MonoBehaviour
     private Gemstone gemstone;
 
     [SerializeField]
+    private ExitZone exit;
+
+    private MonoBehaviour currentTarget;
+
+    [SerializeField]
     private UnityEngine.UI.Image readyGraphic;
     [SerializeField]
     private UnityEngine.UI.Image arrow;
@@ -30,7 +35,7 @@ public class Sensor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        currentTarget = gemstone;
     }
 
     // Update is called once per frame
@@ -57,7 +62,7 @@ public class Sensor : MonoBehaviour
                 status = Status.IN_USE; // prevent other calls from doing anything
 
                 // use the gemstone's location to rotate the arrow...
-                Vector3 dist = Vector3.ProjectOnPlane(gemstone.transform.position - transform.position, Vector3.up);
+                Vector3 dist = Vector3.ProjectOnPlane(currentTarget.transform.position - transform.position, Vector3.up);
                 float degreesToRotate = Vector3.SignedAngle(Vector3.ProjectOnPlane(-transform.forward, Vector3.up), dist, Vector3.up);
                 arrow.rectTransform.localEulerAngles = new Vector3(0f, 0f, degreesToRotate);
                 
@@ -91,7 +96,7 @@ public class Sensor : MonoBehaviour
         arrow.enabled = false; // hide the arrow
         chargeGraphic.enabled = true;
 
-        // set material texture of top bulb to red
+        // TODO set material texture of top bulb to red
     }
 
     private void EndCharge()
@@ -100,6 +105,6 @@ public class Sensor : MonoBehaviour
         chargeGraphic.enabled = false;
         readyGraphic.enabled = true;
 
-        // set material texture of top bulb to green
+        // TODO set material texture of top bulb to green
     }
 }
