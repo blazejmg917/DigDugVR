@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
@@ -10,6 +11,13 @@ public class Enemy : MonoBehaviour
     private int health = 0;
     //if this enemy is currently stuck with a pump
     private bool stuckWithPump = false;
+    [Header("Navmesh")]
+    [SerializeField, Tooltip("navmesh agent")]private NavMeshAgent agent;
+
+    [SerializeField, Tooltip("the default enemy type, cannot walk through walls in this form")]
+    private int defaultNavMeshAgentType = 0;
+    [SerializeField, Tooltip("the invisible enemy type, can walk through walls in this form")]
+    private int invisibleNavMeshAgentType = 1;
     [Header("enemy visuals")]
     [SerializeField, Tooltip("the default enemy appearance")]private GameObject normalEnemyAppearance;
     [SerializeField, Tooltip("the enemy appearance when they're invisible")]private GameObject invisibleEnemyAppearance;
@@ -51,5 +59,19 @@ public class Enemy : MonoBehaviour
     public void SetStuck(bool stuck)
     {
         stuckWithPump = stuck;
+    }
+
+    public void SwapToInvisible()
+    {
+        agent.agentTypeID = invisibleNavMeshAgentType;
+        normalEnemyAppearance.SetActive(false);
+        invisibleEnemyAppearance.SetActive(true);
+    }
+
+    public void SwapToVisible()
+    {
+        agent.agentTypeID = defaultNavMeshAgentType;
+        normalEnemyAppearance.SetActive(true);
+        invisibleEnemyAppearance.SetActive(false);
     }
 }
