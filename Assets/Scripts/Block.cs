@@ -47,10 +47,16 @@ public class Block : MonoBehaviour
     }
 
     public void OnBreak(){
-        leftBlock.setRight(null);
-        rightBlock.setLeft(null);
-        backBlock.setFront(null);
-        frontBlock.setBack(null);
+        Debug.Log("on block break");
+        if(leftBlock)
+            leftBlock.setRight(null); 
+        if (rightBlock)
+            rightBlock.setLeft(null);
+        if (backBlock)
+            backBlock.setFront(null);
+        if (frontBlock)
+            frontBlock.setBack(null);
+        GridSpawner.Instance.OnBlockBroken(this);
     }
 
     public Vector3 GetSize(){
