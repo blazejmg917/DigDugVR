@@ -38,11 +38,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Armature|TopGrab (1)
-      takeName: Armature|TopGrab
+      name: Armature|BottomGrab
+      takeName: Armature|BottomGrab
       internalID: 5063524218495085557
       firstFrame: 0
-      lastFrame: 3
+      lastFrame: 196
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
