@@ -21,8 +21,8 @@ TagManager:
   - PumpHandleBlocker
   - PumpHandleCore
   - OuterWall
-  - 
-  - 
+  - PumpGunWall
+  - PumpHandleShaft
   - 
   - 
   - 
