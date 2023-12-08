@@ -8,10 +8,12 @@ public class NavMeshSurfaceController : MonoBehaviour
 {
     [SerializeField, Tooltip("the default navmeshsurface that allows blocks to stop enemies")]
     private NavMeshSurface defaultSurface;
+    [SerializeField, Tooltip("the secondary navmeshsurface that doesn't allow blocks to stop enemies")]
+    private NavMeshSurface invisibleSurface;
     // Start is called before the first frame update
     void Start()
     {
-        RegenerateSurface();
+        RegenerateSurface(true);
     }
 
     // Update is called once per frame
@@ -20,10 +22,13 @@ public class NavMeshSurfaceController : MonoBehaviour
         
     }
 
-    public void RegenerateSurface()
+    public void RegenerateSurface(bool generateSecondary = false)
     {
         Debug.Log("attempt to rebuild surface");
         Invoke("BuildNavMesh", .5f);
+        if(generateSecondary){
+            invisibleSurface.BuildNavMesh();
+        }
     }
 
     public void BuildNavMesh()
