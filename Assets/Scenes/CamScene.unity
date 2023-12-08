@@ -559,6 +559,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 522866102351650574, guid: b03eb39f0bf44234b997246f0851a27f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 634ed19407932194ca1815519cc64c82, type: 3}
+    - target: {fileID: 522866102834043127, guid: b03eb39f0bf44234b997246f0851a27f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 522866102834043127, guid: b03eb39f0bf44234b997246f0851a27f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 522866102834043127, guid: b03eb39f0bf44234b997246f0851a27f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
     - target: {fileID: 522866103064858637, guid: b03eb39f0bf44234b997246f0851a27f, type: 3}
       propertyPath: exit
       value: 
