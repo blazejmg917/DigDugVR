@@ -33,14 +33,24 @@ public class GridSpawner : MonoBehaviour
         }
     }
 
-    [SerializeField, Tooltip("the prefab of the basic block to spawn")]private GameObject baseBlockPrefab;
-    [SerializeField, Tooltip("the prefab for the outer walls blocks to spawn")]private GameObject wallsPrefab;
-    [SerializeField, Tooltip("a list of the materials to assign to the blocks, should be listed in order from entry to deepest")]private List<Material> blockMaterials;
-    [SerializeField, Tooltip("the grid")]private List<ListWrapper<Block>> grid = new List<ListWrapper<Block>>();
+    [SerializeField, Tooltip("the prefab of the basic block to spawn")]
+    private GameObject baseBlockPrefab;
+    [SerializeField, Tooltip("the prefab for the outer walls blocks to spawn")]
+    private GameObject wallsPrefab;
+    [SerializeField, Tooltip("a list of the materials to assign to the blocks, should be listed in order from entry to deepest")]
+    private List<Material> blockMaterials;
+    [SerializeField, Tooltip("the grid")] 
+    private List<ListWrapper<Block>> grid = new List<ListWrapper<Block>>();
+    [SerializeField, Tooltip("the controller for the navmesh surface")]
+    private NavMeshSurfaceController surfaceController;
+    //[SerializeField, Tooltip("the parent transform to spawn objects under")]private Transform gridParent
     [Header("Spawning settings")]
-    [SerializeField, Tooltip("the starting point for blocks to spawn. should be placed right at the center tunnel entrance")]private Vector3 spawnStart;
-    [SerializeField, Tooltip("the width of block you want to spawn")]private int gridWidth = 13;
-    [SerializeField, Tooltip("the depth of the blocks to spawn")]private int gridDepth = 16;
+    [SerializeField, Tooltip("the starting point for blocks to spawn. should be placed right at the center tunnel entrance")]
+    private Vector3 spawnStart;
+    [SerializeField, Tooltip("the width of block you want to spawn")]
+    private int gridWidth = 13;
+    [SerializeField, Tooltip("the depth of the blocks to spawn")]
+    private int gridDepth = 16;
 
     private static GridSpawner _instance;
     public static GridSpawner Instance
@@ -160,6 +170,15 @@ public class GridSpawner : MonoBehaviour
             }
             grid.RemoveAt(i);
             
+        }
+    }
+
+    public void OnBlockBroken(Block block)
+    {
+        Debug.Log("on block broken");
+        if (surfaceController)
+        {
+            surfaceController.RegenerateSurface();
         }
     }
 }
