@@ -40,7 +40,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0.01, y: 0}
-  m_SizeDelta: {x: 0.07, y: 0.07}
+  m_SizeDelta: {x: 0.06, y: 0.06}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &522866102322543638
 Canvas:
@@ -238,14 +238,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.98206747, g: 1, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: ab753ec318a2af34fbecff2b5c533a89, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -265,10 +265,12 @@ GameObject:
   m_Component:
   - component: {fileID: 522866103064858638}
   - component: {fileID: 522866103064858637}
-  - component: {fileID: 522866103064858636}
   - component: {fileID: 522866103064858639}
+  - component: {fileID: 522866103064858636}
   - component: {fileID: 522866103064858627}
   - component: {fileID: 522866103064858626}
+  - component: {fileID: 3171906525992948629}
+  - component: {fileID: 7517525713112603064}
   m_Layer: 0
   m_Name: Sensor
   m_TagString: Untagged
@@ -306,13 +308,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gemstone: {fileID: 0}
   exit: {fileID: 0}
+  pingSfx: {fileID: 3171906525992948629}
+  buttonSfx: {fileID: 7517525713112603064}
   readyGraphic: {fileID: 522866103201987391}
   arrow: {fileID: 522866102351650574}
   chargeGraphic: {fileID: 522866102834043124}
+  bulbOn: {fileID: 2100000, guid: 83723183fcb7c1542a6d52ea57bb2ea2, type: 2}
+  bulbOff: {fileID: 2100000, guid: e734f556fd6dbe648acac9ca18cbfb5f, type: 2}
   status: 0
   arrowDisplayTime: 3
   chargeTime: 12
   bruh: 0
+--- !u!33 &522866103064858639
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522866103064858633}
+  m_Mesh: {fileID: -6733638604586257316, guid: d884a654122bb9c49a78168be4443ff1, type: 3}
 --- !u!23 &522866103064858636
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -333,7 +347,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e734f556fd6dbe648acac9ca18cbfb5f, type: 2}
+  - {fileID: 2100000, guid: 83723183fcb7c1542a6d52ea57bb2ea2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -355,14 +369,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &522866103064858639
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 522866103064858633}
-  m_Mesh: {fileID: -6733638604586257316, guid: d884a654122bb9c49a78168be4443ff1, type: 3}
 --- !u!54 &522866103064858627
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -531,6 +537,68 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+--- !u!114 &3171906525992948629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522866103064858633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -220824850
+      Data2: 1079270392
+      Data3: -67449702
+      Data4: 48300288
+    Path: event:/Sensor/Ping
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &7517525713112603064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522866103064858633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1857194115
+      Data2: 1104543097
+      Data3: -1609001344
+      Data4: -677496544
+    Path: event:/Sensor/Button
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &522866103201987384
 GameObject:
   m_ObjectHideFlags: 0
@@ -543,7 +611,7 @@ GameObject:
   - component: {fileID: 522866103201987390}
   - component: {fileID: 522866103201987391}
   m_Layer: 5
-  m_Name: ReadyScreen
+  m_Name: ReadyCheckmark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -556,14 +624,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 522866103201987384}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 522866102322543635}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -590,14 +658,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.069811285, g: 1, b: 0.19233757, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 676ac503b89d2f344ad7f0403dbe1987, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
