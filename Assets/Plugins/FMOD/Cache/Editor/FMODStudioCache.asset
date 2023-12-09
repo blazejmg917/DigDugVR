@@ -1,5 +1,52 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8674788343952015142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sensor/Ping
+  m_EditorClassIdentifier: 
+  Path: event:/Sensor/Ping
+  Guid:
+    Data1: -220824850
+    Data2: 1079270392
+    Data3: -67449702
+    Data4: 48300288
+  Banks:
+  - {fileID: 4783003333964965162}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 395
+--- !u!114 &-7939534717894706534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Pooka.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audio/Build/Desktop/Pooka.bank
+  Name: Pooka
+  StudioPath: bank:/Pooka
+  lastModified: 638376562035337141
+  FileSizes:
+  - Name: Desktop
+    Value: 10528
+  Exists: 1
 --- !u!114 &-7826514642489632983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15,11 +62,38 @@ MonoBehaviour:
   Path: Assets/Audio/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638376442225035532
+  lastModified: 638376562035326792
   FileSizes:
   - Name: Desktop
-    Value: 904
+    Value: 1134
   Exists: 1
+--- !u!114 &-5871270458954050525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sensor/Button
+  m_EditorClassIdentifier: 
+  Path: event:/Sensor/Button
+  Guid:
+    Data1: 1857194115
+    Data2: 1104543097
+    Data3: -1609001344
+    Data4: -677496544
+  Banks:
+  - {fileID: 4783003333964965162}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 354
 --- !u!114 &-5254177753371104152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35,7 +109,7 @@ MonoBehaviour:
   Path: Assets/Audio/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638376442224974849
+  lastModified: 638376562035311573
   FileSizes:
   - Name: Desktop
     Value: 1194
@@ -56,14 +130,19 @@ MonoBehaviour:
   - {fileID: -7826514642489632983}
   - {fileID: -5254177753371104152}
   - {fileID: 4756404779491834594}
+  - {fileID: -7939534717894706534}
+  - {fileID: 4783003333964965162}
   EditorEvents:
   - {fileID: 8099879652441779184}
+  - {fileID: 5009101396531738402}
+  - {fileID: -5871270458954050525}
+  - {fileID: -8674788343952015142}
   EditorParameters: []
   MasterBanks:
   - {fileID: -5254177753371104152}
   StringsBanks:
   - {fileID: -7826514642489632983}
-  cacheTime: 638376442225035532
+  cacheTime: 638376562035361067
   cacheVersion: 131609
 --- !u!114 &1379489957237994342
 MonoBehaviour:
@@ -109,6 +188,53 @@ MonoBehaviour:
   - Name: Desktop
     Value: 38048
   Exists: 1
+--- !u!114 &4783003333964965162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Sensor.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audio/Build/Desktop/Sensor.bank
+  Name: Sensor
+  StudioPath: bank:/Sensor
+  lastModified: 638376562035361067
+  FileSizes:
+  - Name: Desktop
+    Value: 11616
+  Exists: 1
+--- !u!114 &5009101396531738402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Pooka/Death
+  m_EditorClassIdentifier: 
+  Path: event:/Pooka/Death
+  Guid:
+    Data1: 184859232
+    Data2: 1202116255
+    Data3: -894233179
+    Data4: 927639093
+  Banks:
+  - {fileID: -7939534717894706534}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
 --- !u!114 &8099879652441779184
 MonoBehaviour:
   m_ObjectHideFlags: 0
