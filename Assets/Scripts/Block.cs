@@ -16,7 +16,12 @@ public class Block : MonoBehaviour
     [SerializeField, Tooltip("a reference to the block to the front of this one (when facing directly deeper)")]private Block frontBlock;
     [SerializeField, Tooltip("whether or not the enemies can move through this block")]private bool enemyWalkable = true;
     private Vector3 size;
+
+    [SerializeField, Tooltip("if this block has the goal gem. will always be set to false on game start before random assignment")]private bool hasGem = false;
     
+    public void Awake(){
+        hasGem = false;
+    }
 
     public bool CanMoveThrough(){
         return enemyWalkable;
@@ -27,6 +32,14 @@ public class Block : MonoBehaviour
         rightBlock = right;
         backBlock = back;
         frontBlock = front;
+    }
+
+    public bool AdjacentToTunnel(){
+        return leftBlock && rightBlock && backBlock && frontBlock;
+    }
+
+    public void AssignGem(){
+        hasGem = true;
     }
 
     public void SetMaterial(Material material){

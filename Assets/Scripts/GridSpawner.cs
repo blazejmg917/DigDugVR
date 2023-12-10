@@ -51,6 +51,9 @@ public class GridSpawner : MonoBehaviour
     private int gridWidth = 13;
     [SerializeField, Tooltip("the depth of the blocks to spawn")]
     private int gridDepth = 16;
+    [Header("Gem settings")]
+    [SerializeField, Tooltip("the minimum depth that a gem can spawn at")]private int minGemDepth = 9;
+    [SerializeField, Tooltip("if the gem can spawn in a space adjacent to a tunnel")]private bool allowGemNextToTunnel = true;
 
     private static GridSpawner _instance;
     public static GridSpawner Instance
@@ -80,6 +83,21 @@ public class GridSpawner : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void AssignGem(){
+        List<Block> randOptions = new List<Block>();
+        for(int i = minGemDepth; i < grid.Count - 1; i++){
+            for(int j = 1; j < grid[i].Count - 1;j++){
+                if(grid[i][j]){
+                    if(allowGemNextToTunnel || grid[i][j].AdjacentToTunnel()){
+                        randOptions.Add(grid[i][j]);
+                    }
+                }
+            }
+        }
+        int randSelection = Random.Range(0, randOptions.Count);
+        randOptions[randSelection].AssignGem();
     }
 
     public void SpawnGrid(){
@@ -142,7 +160,7 @@ public class GridSpawner : MonoBehaviour
     }
 
     public Vector3 GetBlockSpawnPos(int width, int depth, Vector3 offset){
-        return new Vector3((width - (gridWidth / 2)) * offset.x, 0, depth * offset.z);
+        return new Vector3((width - (gridWidth / 2)) * offset.x, spawnStart.y, depth * offset.z);
     }
 
     public void SetMaterial(Block block, int depth){
