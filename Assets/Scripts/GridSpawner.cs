@@ -33,14 +33,27 @@ public class GridSpawner : MonoBehaviour
         }
     }
 
-    [SerializeField, Tooltip("the prefab of the basic block to spawn")]private GameObject baseBlockPrefab;
-    [SerializeField, Tooltip("the prefab for the outer walls blocks to spawn")]private GameObject wallsPrefab;
-    [SerializeField, Tooltip("a list of the materials to assign to the blocks, should be listed in order from entry to deepest")]private List<Material> blockMaterials;
-    [SerializeField, Tooltip("the grid")]private List<ListWrapper<Block>> grid = new List<ListWrapper<Block>>();
+    [SerializeField, Tooltip("the prefab of the basic block to spawn")]
+    private GameObject baseBlockPrefab;
+    [SerializeField, Tooltip("the prefab for the outer walls blocks to spawn")]
+    private GameObject wallsPrefab;
+    [SerializeField, Tooltip("a list of the materials to assign to the blocks, should be listed in order from entry to deepest")]
+    private List<Material> blockMaterials;
+    [SerializeField, Tooltip("the grid")] 
+    private List<ListWrapper<Block>> grid = new List<ListWrapper<Block>>();
+    [SerializeField, Tooltip("the controller for the navmesh surface")]
+    private NavMeshSurfaceController surfaceController;
+    //[SerializeField, Tooltip("the parent transform to spawn objects under")]private Transform gridParent
     [Header("Spawning settings")]
-    [SerializeField, Tooltip("the starting point for blocks to spawn. should be placed right at the center tunnel entrance")]private Vector3 spawnStart;
-    [SerializeField, Tooltip("the width of block you want to spawn")]private int gridWidth = 13;
-    [SerializeField, Tooltip("the depth of the blocks to spawn")]private int gridDepth = 16;
+    [SerializeField, Tooltip("the starting point for blocks to spawn. should be placed right at the center tunnel entrance")]
+    private Vector3 spawnStart;
+    [SerializeField, Tooltip("the width of block you want to spawn")]
+    private int gridWidth = 13;
+    [SerializeField, Tooltip("the depth of the blocks to spawn")]
+    private int gridDepth = 16;
+    [Header("Gem settings")]
+    [SerializeField, Tooltip("the minimum depth that a gem can spawn at")]private int minGemDepth = 9;
+    [SerializeField, Tooltip("if the gem can spawn in a space adjacent to a tunnel")]private bool allowGemNextToTunnel = true;
 
     private static GridSpawner _instance;
     public static GridSpawner Instance
@@ -70,6 +83,22 @@ public class GridSpawner : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public Block AssignGem(){
+        List<Block> randOptions = new List<Block>();
+        for(int i = minGemDepth; i < grid.Count - 1; i++){
+            for(int j = 1; j < grid[i].Count - 1;j++){
+                if(grid[i][j]){
+                    if(allowGemNextToTunnel || grid[i][j].AdjacentToTunnel()){
+                        randOptions.Add(grid[i][j]);
+                    }
+                }
+            }
+        }
+        int randSelection = Random.Range(0, randOptions.Count);
+        randOptions[randSelection].AssignGem();
+        return randOptions[randSelection];
     }
 
     public void SpawnGrid(){
@@ -132,7 +161,7 @@ public class GridSpawner : MonoBehaviour
     }
 
     public Vector3 GetBlockSpawnPos(int width, int depth, Vector3 offset){
-        return new Vector3((width - (gridWidth / 2)) * offset.x, 0, depth * offset.z);
+        return new Vector3((width - (gridWidth / 2)) * offset.x, spawnStart.y, depth * offset.z);
     }
 
     public void SetMaterial(Block block, int depth){
@@ -160,6 +189,18 @@ public class GridSpawner : MonoBehaviour
             }
             grid.RemoveAt(i);
             
+        }
+    }
+
+    public void OnBlockBroken(Block block)
+    {
+        Debug.Log("on block broken");
+        if (surfaceController)
+        {
+            surfaceController.RegenerateSurface();
+        }
+        if(block.HasGem()){
+            GameManager.Instance.SpawnGem(block.transform);
         }
     }
 }

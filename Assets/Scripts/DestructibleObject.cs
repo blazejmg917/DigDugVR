@@ -1,24 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class DestructibleObject : MonoBehaviour
 {
+    [SerializeField, Tooltip("if this block can be broken")]private bool canBreak = true;
     [SerializeField, Tooltip("the maximum durability of this object. This will break once it reaches 0")]
     private int maxDurability = 3;
     //current durability
-    private int durabilty;
+    [ReadOnly]private int durabilty;
     [SerializeField, Tooltip("the velocity of swing needed to break this object")]
     private float breakVelocity = 3;
+
+    [SerializeField, Tooltip("the Block component for this object")]
+    private Block block;
     [Header("Particles")]
     [SerializeField, Tooltip("the particle system that will be played when this object is damaged")]
     private ParticleSystem damageParticles;
     [SerializeField, Tooltip("the particle system that will be played when this object is destroyed")]
     private ParticleSystem destroyParticles;
     [Header("Haptics")]
-    [SerializeField, Tooltip("the haptic for hitting this object")]private HapticSource hitHaptic;
-    [SerializeField, Tooltip("the haptic for breaking this object")]private HapticSource breakHaptic;
+    [SerializeField, Tooltip("the haptic for hitting this object")]
+    private HapticSource hitHaptic;
+    [SerializeField, Tooltip("the haptic for breaking this object")]
+    private HapticSource breakHaptic;
     //[Header("Audio")]
     //put audio for block break here
 
@@ -26,6 +34,14 @@ public class DestructibleObject : MonoBehaviour
     void Awake()
     {
         durabilty = maxDurability;
+    }
+
+    void Start()
+    {
+        if (!block)
+        {
+            block = GetComponent<Block>();
+        }
     }
 
     // Update is called once per frame
@@ -41,10 +57,17 @@ public class DestructibleObject : MonoBehaviour
     public void TakeDamage(int damage = 1, Shovel shovel = null)
     {
         Debug.Log("Taking Damage");
-        durabilty -= 1;
-        if (durabilty < 0)
-        {
-            Break(shovel);
+        if(canBreak){
+            durabilty -= 1;
+            if (durabilty <= 0)
+            {
+                Break(shovel);
+            }
+            else{
+                if(shovel && hitHaptic){
+                    shovel.ReceiveHaptic(hitHaptic);
+                }
+            }
         }
         else{
             if(shovel && hitHaptic){
@@ -60,6 +83,11 @@ public class DestructibleObject : MonoBehaviour
     {
         if(shovel && breakHaptic){
             shovel.ReceiveHaptic(breakHaptic);
+        }
+
+        if (block)
+        {
+            block.OnBreak();
         }
         Destroy(gameObject);
     }

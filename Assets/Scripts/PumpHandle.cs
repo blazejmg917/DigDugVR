@@ -30,7 +30,7 @@ public class PumpHandle : MonoBehaviour
                 rb = gameObject.AddComponent<Rigidbody>();
             }
         }
-        Debug.Log("handle start " + standardConstraints);
+        Debug.Log("handle start " + standardConstraints + ", max dist = " + Vector3.Distance(restingPosition.position, pulledBackPosition.position) + ", current dist = " + Vector3.Distance(restingPosition.position, handlePoint.position));
         rb.constraints = standardConstraints;
 
     }

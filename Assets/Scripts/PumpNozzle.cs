@@ -56,6 +56,7 @@ public class PumpNozzle : MonoBehaviour
         }
     }
 
+
     /// <summary>
     /// Called at startup to setup the pump this nozzle will be attached to
     /// </summary>
@@ -66,6 +67,7 @@ public class PumpNozzle : MonoBehaviour
         pump = owningPump;
         pumpAttach = attach;
         ConnectToPump();
+        transform.parent = null;
     }
 
     /// <summary>
