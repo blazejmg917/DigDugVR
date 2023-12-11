@@ -88,6 +88,8 @@ public class PumpNozzle : MonoBehaviour
     /// <param name="launchVelocity">the vector that defines the initial launch velocity of the nozzle</param>
     public void Shoot(Vector3 launchVelocity)
     {
+        joint.connectedBody = null;
+        //joint.enabled = false;
         rb.velocity = launchVelocity;
         canStick = true;
     }
