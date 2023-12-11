@@ -136,6 +136,11 @@ public class Enemy : MonoBehaviour
     [SerializeField, Tooltip("the enemy appearance when they're invisible")]
     private GameObject invisibleEnemyAppearance;
 
+    [Header("debug")]
+    [SerializeField, Tooltip("if the debug processes should run")]bool runDebug = false;
+    [SerializeField]private ParticleSystem stuckParticlesDebug;
+    [SerializeField]private ParticleSystem damagedParticlesDebug;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -168,6 +173,9 @@ public class Enemy : MonoBehaviour
                 regenTimer = 0;
             }
         }
+        if(stuckWithPump){
+            return;
+        }
         switch (state)
         {
             case AIState.WANDER:
@@ -192,6 +200,9 @@ public class Enemy : MonoBehaviour
     /// <param name="damage">the amount of damage dealt to this enemy. set to 1 by default</param>
     public void Damage(int damage = 1)
     {
+        if(runDebug && damagedParticlesDebug){
+            damagedParticlesDebug.Play();
+        }
         health -= damage;
         if (health <= 0)
         {
@@ -217,7 +228,11 @@ public class Enemy : MonoBehaviour
     /// <param name="stuck">if the enemy has been stuck</param>
     public void SetStuck(bool stuck)
     {
+        if(stuck && runDebug && stuckParticlesDebug){
+            stuckParticlesDebug.Play();
+        }
         stuckWithPump = stuck;
+        agent.isStopped = stuckWithPump;
     }
 
     public void SwapToInvisible()
