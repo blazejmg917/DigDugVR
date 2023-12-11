@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField, Tooltip("the gem prefab")]private GameObject GemPrefab;
     [SerializeField, Tooltip("A reference to the sensor")]private Sensor sensor;
+    [SerializeField, Tooltip("gem block for easy reference")]private Block gemBlock;
     private static GameManager _instance;
     public static GameManager Instance
     {
@@ -27,7 +28,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GridSpawner.Instance.AssignGem();
+        gemBlock = GridSpawner.Instance.AssignGem();
         if(!sensor){
             sensor = FindObjectOfType<Sensor>();
         }
@@ -40,6 +41,8 @@ public class GameManager : MonoBehaviour
     }
 
     public void SpawnGem(Transform gemSpawnPos){
-        
+        GameObject gemstone = Instantiate(GemPrefab,gemSpawnPos.position, Quaternion.identity);
+        //gemstone.transform.position = new Vector3(0,2,0);
+        Debug.Log("Gem spawned " + gemSpawnPos.position + gemstone);
     }
 }

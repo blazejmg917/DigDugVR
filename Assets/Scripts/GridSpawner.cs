@@ -85,7 +85,7 @@ public class GridSpawner : MonoBehaviour
         
     }
 
-    public void AssignGem(){
+    public Block AssignGem(){
         List<Block> randOptions = new List<Block>();
         for(int i = minGemDepth; i < grid.Count - 1; i++){
             for(int j = 1; j < grid[i].Count - 1;j++){
@@ -98,6 +98,7 @@ public class GridSpawner : MonoBehaviour
         }
         int randSelection = Random.Range(0, randOptions.Count);
         randOptions[randSelection].AssignGem();
+        return randOptions[randSelection];
     }
 
     public void SpawnGrid(){
@@ -197,6 +198,9 @@ public class GridSpawner : MonoBehaviour
         if (surfaceController)
         {
             surfaceController.RegenerateSurface();
+        }
+        if(block.HasGem()){
+            GameManager.Instance.SpawnGem(block.transform);
         }
     }
 }
