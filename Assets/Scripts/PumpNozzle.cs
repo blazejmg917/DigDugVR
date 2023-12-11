@@ -16,6 +16,9 @@ public class PumpNozzle : MonoBehaviour
 
     [SerializeField, Tooltip("the amount of time it takes for the nozzle to return after an unsuccesful launch")]
     private float nozzleReturnTime = 2f;
+    [SerializeField, Tooltip("the time for a nozzle to return even if it never hits anything")]private float lostNozzleReturnTime = 15f;
+    private float lostTimer;
+    private bool launched = false;
     // [SerializeField, Tooltip("the amount of time it takes for the nozzle to return after killing an enemy")]
     // private float nozzleKillReturnTime = .3f;
     private float nozzleReturnTimer = 0;
@@ -49,10 +52,16 @@ public class PumpNozzle : MonoBehaviour
         if (!joint)
         {
             joint = GetComponent<FixedJoint>();
-            if (!joint)
-            {
-                joint = gameObject.AddComponent<FixedJoint>();
-            }
+            // if (!joint)
+            // {
+            //     joint = gameObject.AddComponent<FixedJoint>();
+            // }
+        }
+    }
+
+    void Update(){
+        if(joint && joint.connectedBody == null){
+            Destroy(joint);
         }
     }
 
@@ -78,8 +87,12 @@ public class PumpNozzle : MonoBehaviour
         parentTransform.position = pumpAttach.position;
         Debug.Log("attached: " + parentTransform.position + ", " + pumpAttach.position);
         parentTransform.rotation = pumpAttach.rotation;
+        if(!joint){
+            joint = gameObject.AddComponent<FixedJoint>();
+        }
         joint.connectedBody = owningPump.gameObject.GetComponent<Rigidbody>();
         owningPump.OnNozzleReattach();
+        launched = false;
     }
 
     /// <summary>
@@ -88,17 +101,22 @@ public class PumpNozzle : MonoBehaviour
     /// <param name="launchVelocity">the vector that defines the initial launch velocity of the nozzle</param>
     public void Shoot(Vector3 launchVelocity)
     {
+        Destroy(joint);
+        //joint.enabled = false;
         rb.velocity = launchVelocity;
         canStick = true;
+        lostTimer =0;
+        launched =  true;
     }
 
     private void OnCollisionEnter(Collision col)
     {
         if (canStick)
         {
-            if (col.gameObject.layer == enemyLayer)
+            Enemy enemy;
+            if (enemy = col.collider.gameObject.GetComponent<Enemy>())
             {
-                StickToEnemy(col.gameObject.GetComponent<Enemy>());
+                StickToEnemy(enemy);
             }
             else
             {
@@ -120,6 +138,9 @@ public class PumpNozzle : MonoBehaviour
         currentAttachedEnemy = enemy;
         stuckToEnemy = true;
         enemy.SetStuck(true);
+        if(!joint){
+            joint = gameObject.AddComponent<FixedJoint>();
+        }
         joint.connectedBody = enemy.gameObject.GetComponent<Rigidbody>();
         stuckDist = (transform.position - pumpAttach.position).magnitude;
     }
@@ -134,6 +155,7 @@ public class PumpNozzle : MonoBehaviour
             currentAttachedEnemy.SetStuck(false);
             currentAttachedEnemy = null;
             stuckToEnemy = false;
+            Destroy(joint);
             ConnectToPump();
         }
 
@@ -144,6 +166,13 @@ public class PumpNozzle : MonoBehaviour
         if(stuckToEnemy){
             if((transform.position - pumpAttach.position).magnitude > stuckDist + maxStuckPullDist){
                 ForceRelease();
+            }
+        }
+        else if(launched){
+            lostTimer+= Time.fixedDeltaTime;
+            if(lostTimer > lostNozzleReturnTime){
+                waitingForNozzleReturn = false;
+                ConnectToPump();
             }
         }
         if(waitingForNozzleReturn){

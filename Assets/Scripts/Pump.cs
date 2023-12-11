@@ -16,15 +16,20 @@ public class Pump : MonoBehaviour
 
     [SerializeField, Tooltip("the speed at which the nozzle is launched")]
     private float nozzleLaunchSpeed = 10f;
+    [SerializeField, Tooltip("the rigidbody for the pump")]private Rigidbody rb;
     [Header("debug")]
     [SerializeField, Tooltip("if the debug processes should run")]bool runDebug = false;
     [SerializeField]private ParticleSystem fireParticlesDebug;
     [SerializeField]private ParticleSystem activateParticlesDebug;
+    [SerializeField]private ParticleSystem halfPumpParticlesDebug;
+    [SerializeField]private ParticleSystem fullPumpParticlesDebug;
     //[SerializeField, Tooltip("the ")]
     // Start is called before the first frame update
     void Start()
     {
         pumpNozzle.SetPump(this, nozzleAttach);
+        rb = GetComponent<Rigidbody>();
+        pumpHandle.setGrabbable(false);
     }
 
     // Update is called once per frame
@@ -63,7 +68,7 @@ public class Pump : MonoBehaviour
                 fireParticlesDebug.Play();
             }
 
-            pumpNozzle.Shoot(nozzleAttach.forward * nozzleLaunchSpeed);
+            pumpNozzle.Shoot(nozzleAttach.forward * -nozzleLaunchSpeed);
             isPumpAttached = false;
         }
     }
@@ -81,6 +86,9 @@ public class Pump : MonoBehaviour
     /// </summary>
     public void CompletePump()
     {
+        if(runDebug && fullPumpParticlesDebug){
+            fullPumpParticlesDebug.Play();
+        }
         pumpNozzle.Pump();
     }
 
@@ -90,7 +98,8 @@ public class Pump : MonoBehaviour
     /// <param name="args"></param>
     public void OnPickup(SelectEnterEventArgs args)
     {
-        
+        rb.constraints = RigidbodyConstraints.None;
+        pumpHandle.setGrabbable(true);
     }
     /// <summary>
     /// Called when the pump is picked up.
@@ -98,6 +107,6 @@ public class Pump : MonoBehaviour
     /// <param name="args"></param>
     public void OnRelease(SelectExitEventArgs args)
     {
-        
+        pumpHandle.setGrabbable(false);
     }
 }

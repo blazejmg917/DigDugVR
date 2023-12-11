@@ -14,10 +14,12 @@ public class PumpHandle : MonoBehaviour
 
     [SerializeField, Tooltip("the pump script")]
     private Pump pump;
+    [SerializeField, Tooltip("the join for this object")]private ConfigurableJoint joint;
+    [SerializeField, Tooltip("the grab interactable")]private XRGrabInteractable interactable;
     //true if the pump has been pulled back but not yet released
-    private bool primed = false;
+    [SerializeField]private bool primed = false;
 
-    private bool held = false;
+    [SerializeField]private bool held = false;
 
     [SerializeField, Tooltip("this handle's rigidbody")]private Rigidbody rb;
     [Tooltip("the standard rigidbodyconstraints for when the pump isn't held")]private RigidbodyConstraints standardConstraints = RigidbodyConstraints.FreezeAll;
@@ -30,20 +32,32 @@ public class PumpHandle : MonoBehaviour
                 rb = gameObject.AddComponent<Rigidbody>();
             }
         }
+        if(!joint){
+            joint = GetComponent<ConfigurableJoint>();
+            
+        }
+        // if(joint){
+        //     joint.xMotion = ConfigurableJointMotion.Locked;
+        // }
+        if(!interactable){
+            interactable = GetComponent<XRGrabInteractable>();
+        }
         Debug.Log("handle start " + standardConstraints + ", max dist = " + Vector3.Distance(restingPosition.position, pulledBackPosition.position) + ", current dist = " + Vector3.Distance(restingPosition.position, handlePoint.position));
-        rb.constraints = standardConstraints;
+        //rb.constraints = standardConstraints;
 
     }
     // Update is called once per frame
     void FixedUpdate()
     {
-        
-        if (held && !primed && Vector3.Distance(handlePoint.position, pulledBackPosition.position) <= .001f)
+        //Debug.Log(Vector3.Distance(handlePoint.position, pulledBackPosition.position));
+        if (held && !primed && Vector3.Distance(handlePoint.position, pulledBackPosition.position) <= .01f)
         {
+            Debug.Log("priming handle");
             primed = true;
         }
-        else if (held && primed && Vector3.Distance(handlePoint.position, restingPosition.position) <= .001f)
+        else if (held && primed && Vector3.Distance(handlePoint.position, restingPosition.position) <= .01f)
         {
+            Debug.Log("finishing pump");
             primed = false;
             pump.CompletePump();
         }
@@ -56,7 +70,7 @@ public class PumpHandle : MonoBehaviour
     public void OnRelease(SelectExitEventArgs _)
     {
         held = false;
-        rb.constraints = standardConstraints;
+        //rb.constraints = standardConstraints;
         transform.localRotation = Quaternion.identity;
         if (primed)
         {
@@ -66,6 +80,7 @@ public class PumpHandle : MonoBehaviour
         {
             transform.position = restingPosition.position + (transform.position - handlePoint.position);
         }
+        //joint.xMotion = ConfigurableJointMotion.Locked;
         
     }
 
@@ -76,7 +91,12 @@ public class PumpHandle : MonoBehaviour
     public void OnPickup(SelectEnterEventArgs _)
     {
         held = true;
-        rb.constraints = heldConstraints;
+        //rb.constraints = heldConstraints;
+        //joint.xMotion = ConfigurableJointMotion.Limited;
         //make moveable
+    }
+
+    public void setGrabbable(bool grabbable){
+        //interactable.enabled = grabbable;
     }
 }

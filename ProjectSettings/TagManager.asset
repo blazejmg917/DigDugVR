@@ -9,7 +9,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Floor
   - Water
   - UI
   - Destructible
@@ -24,8 +24,8 @@ TagManager:
   - PumpGunWall
   - PumpHandleShaft
   - Gem
-  - 
-  - 
+  - Nozzle
+  - Hands
   - 
   - 
   - 

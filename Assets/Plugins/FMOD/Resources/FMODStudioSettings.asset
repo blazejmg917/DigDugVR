@@ -311,6 +311,7 @@ MonoBehaviour:
   - Music
   - Pooka
   - Sensor
+  - Shovel
   BanksToLoad: []
   LiveUpdatePort: 9264
   EnableMemoryTracking: 0

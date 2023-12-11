@@ -29,6 +29,7 @@ public class NavMeshSurfaceController : MonoBehaviour
         if(generateSecondary){
             defaultSurface.BuildNavMesh();
             invisibleSurface.BuildNavMesh();
+            Debug.Log("default surface: " + defaultSurface.agentTypeID + ", invisible: " + invisibleSurface.agentTypeID);
 
         }
         else{
@@ -44,5 +45,14 @@ public class NavMeshSurfaceController : MonoBehaviour
             //Debug.Log(defaultSurface.UpdateNavMesh(defaultSurface.navMeshData).progress);
             defaultSurface.UpdateNavMesh(defaultSurface.navMeshData);
         }
+    }
+
+    public int GetDefaultID()
+    {
+        return defaultSurface.agentTypeID;
+    }
+    public int GetInvisID()
+    {
+        return invisibleSurface.agentTypeID;
     }
 }
