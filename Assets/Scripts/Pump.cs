@@ -68,7 +68,7 @@ public class Pump : MonoBehaviour
                 fireParticlesDebug.Play();
             }
 
-            pumpNozzle.Shoot(nozzleAttach.forward * nozzleLaunchSpeed);
+            pumpNozzle.Shoot(nozzleAttach.forward * -nozzleLaunchSpeed);
             isPumpAttached = false;
         }
     }

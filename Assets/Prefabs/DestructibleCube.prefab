@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 7186627300386999346}
   - component: {fileID: 7186627300386999344}
   - component: {fileID: 7186627300386999345}
+  - component: {fileID: 1229472792501075580}
   m_Layer: 6
   m_Name: DestructibleCube
   m_TagString: Untagged
@@ -338,3 +339,36 @@ ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 416861396, guid: 6ee7739e3320e4e468c55f5bc4470e20, type: 3}
   m_PrefabInstance: {fileID: 9003026601532545885}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1229472792501075580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7186627300386999306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -268762948
+      Data2: 1257082687
+      Data3: -1395124600
+      Data4: -1582643873
+    Path: event:/Shovel/DigDirt
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params:
+  - Name: Dirt Type
+    Value: 0
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20

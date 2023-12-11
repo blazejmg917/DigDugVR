@@ -28,10 +28,15 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gemBlock = GridSpawner.Instance.AssignGem();
-        if(!sensor){
+        if (!sensor)
+        {
             sensor = FindObjectOfType<Sensor>();
         }
+        if (sensor) {
+            GridSpawner.Instance.SetSensor(sensor);
+        }
+        
+        gemBlock = GridSpawner.Instance.AssignGem(); 
     }
 
     // Update is called once per frame

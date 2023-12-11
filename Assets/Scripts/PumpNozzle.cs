@@ -49,10 +49,16 @@ public class PumpNozzle : MonoBehaviour
         if (!joint)
         {
             joint = GetComponent<FixedJoint>();
-            if (!joint)
-            {
-                joint = gameObject.AddComponent<FixedJoint>();
-            }
+            // if (!joint)
+            // {
+            //     joint = gameObject.AddComponent<FixedJoint>();
+            // }
+        }
+    }
+
+    void Update(){
+        if(joint && joint.connectedBody == null){
+            Destroy(joint);
         }
     }
 
@@ -78,6 +84,9 @@ public class PumpNozzle : MonoBehaviour
         parentTransform.position = pumpAttach.position;
         Debug.Log("attached: " + parentTransform.position + ", " + pumpAttach.position);
         parentTransform.rotation = pumpAttach.rotation;
+        if(!joint){
+            joint = gameObject.AddComponent<FixedJoint>();
+        }
         joint.connectedBody = owningPump.gameObject.GetComponent<Rigidbody>();
         owningPump.OnNozzleReattach();
     }
@@ -88,7 +97,7 @@ public class PumpNozzle : MonoBehaviour
     /// <param name="launchVelocity">the vector that defines the initial launch velocity of the nozzle</param>
     public void Shoot(Vector3 launchVelocity)
     {
-        joint.connectedBody = null;
+        Destroy(joint);
         //joint.enabled = false;
         rb.velocity = launchVelocity;
         canStick = true;
@@ -98,9 +107,10 @@ public class PumpNozzle : MonoBehaviour
     {
         if (canStick)
         {
-            if (col.gameObject.layer == enemyLayer)
+            Enemy enemy;
+            if (enemy = col.collider.gameObject.GetComponent<Enemy>())
             {
-                StickToEnemy(col.gameObject.GetComponent<Enemy>());
+                StickToEnemy(enemy);
             }
             else
             {
@@ -122,6 +132,9 @@ public class PumpNozzle : MonoBehaviour
         currentAttachedEnemy = enemy;
         stuckToEnemy = true;
         enemy.SetStuck(true);
+        if(!joint){
+            joint = gameObject.AddComponent<FixedJoint>();
+        }
         joint.connectedBody = enemy.gameObject.GetComponent<Rigidbody>();
         stuckDist = (transform.position - pumpAttach.position).magnitude;
     }
@@ -136,6 +149,7 @@ public class PumpNozzle : MonoBehaviour
             currentAttachedEnemy.SetStuck(false);
             currentAttachedEnemy = null;
             stuckToEnemy = false;
+            Destroy(joint);
             ConnectToPump();
         }
 
