@@ -16,6 +16,10 @@ public class Pump : MonoBehaviour
 
     [SerializeField, Tooltip("the speed at which the nozzle is launched")]
     private float nozzleLaunchSpeed = 10f;
+    [Header("debug")]
+    [SerializeField, Tooltip("if the debug processes should run")]bool runDebug = false;
+    [SerializeField]private ParticleSystem fireParticlesDebug;
+    [SerializeField]private ParticleSystem activateParticlesDebug;
     //[SerializeField, Tooltip("the ")]
     // Start is called before the first frame update
     void Start()
@@ -50,8 +54,15 @@ public class Pump : MonoBehaviour
     /// </summary>
     public void FireNozzle()
     {
+        if(runDebug && activateParticlesDebug){
+            activateParticlesDebug.Play();
+        }
         if (isPumpAttached)
         {
+            if(runDebug && fireParticlesDebug){
+                fireParticlesDebug.Play();
+            }
+
             pumpNozzle.Shoot(nozzleAttach.forward * nozzleLaunchSpeed);
             isPumpAttached = false;
         }

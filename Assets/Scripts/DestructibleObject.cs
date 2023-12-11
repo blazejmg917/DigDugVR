@@ -7,6 +7,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class DestructibleObject : MonoBehaviour
 {
+    [SerializeField, Tooltip("if this block can be broken")]private bool canBreak = true;
     [SerializeField, Tooltip("the maximum durability of this object. This will break once it reaches 0")]
     private int maxDurability = 3;
     //current durability
@@ -56,10 +57,17 @@ public class DestructibleObject : MonoBehaviour
     public void TakeDamage(int damage = 1, Shovel shovel = null)
     {
         Debug.Log("Taking Damage");
-        durabilty -= 1;
-        if (durabilty <= 0)
-        {
-            Break(shovel);
+        if(canBreak){
+            durabilty -= 1;
+            if (durabilty <= 0)
+            {
+                Break(shovel);
+            }
+            else{
+                if(shovel && hitHaptic){
+                    shovel.ReceiveHaptic(hitHaptic);
+                }
+            }
         }
         else{
             if(shovel && hitHaptic){

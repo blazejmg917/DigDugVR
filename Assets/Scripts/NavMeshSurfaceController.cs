@@ -25,9 +25,14 @@ public class NavMeshSurfaceController : MonoBehaviour
     public void RegenerateSurface(bool generateSecondary = false)
     {
         Debug.Log("attempt to rebuild surface");
-        Invoke("BuildNavMesh", .5f);
+        
         if(generateSecondary){
+            defaultSurface.BuildNavMesh();
             invisibleSurface.BuildNavMesh();
+
+        }
+        else{
+            Invoke("BuildNavMesh", .5f);
         }
     }
 
@@ -37,7 +42,7 @@ public class NavMeshSurfaceController : MonoBehaviour
         {
             Debug.Log("pt 2");
             //Debug.Log(defaultSurface.UpdateNavMesh(defaultSurface.navMeshData).progress);
-            defaultSurface.BuildNavMesh();
+            defaultSurface.UpdateNavMesh(defaultSurface.navMeshData);
         }
     }
 }
