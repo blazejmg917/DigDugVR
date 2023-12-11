@@ -18,6 +18,7 @@ public class Block : MonoBehaviour
     private Vector3 size;
 
     [SerializeField, Tooltip("if this block has the goal gem. will always be set to false on game start before random assignment")]private bool hasGem = false;
+    [SerializeField, Tooltip("if this block is at the surface. If so, enemies will not be able to burrow through it while wandering")]private bool isSurface = false;
     
     public void Awake(){
         hasGem = false;
@@ -125,6 +126,10 @@ public class Block : MonoBehaviour
                 }
                 return backBlock.CanWalkThrough(maxBlocksToMoveThrough - 1, direction, out othersidePos);
             case Direction.BACK:
+                if (isSurface)
+                {
+                    return false;
+                }
                 if(frontBlock == null){
                     othersidePos = transform.position + new Vector3(0,0,-size.z);
                     return true;
