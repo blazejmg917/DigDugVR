@@ -109,19 +109,19 @@ public class GridSpawner : MonoBehaviour
         for(int i = 0; i < gridDepth; i++){
             ListWrapper<Block> thisList = new ListWrapper<Block>();
             //the starting side wall
-            GameObject wall = Instantiate(wallsPrefab, GetBlockSpawnPos(-1, i, offset), Quaternion.identity, transform);
+            GameObject wall = Instantiate(wallsPrefab, GetBlockSpawnPos(-1, i, offset), wallsPrefab.transform.rotation, transform);
             thisList.Add(wall.GetComponent<Block>());
             //grid[i].Add(wall.GetComponent<Block>());
             for(int j = 0; j < gridWidth; j++){
                 
-                GameObject thisBlock = Instantiate(baseBlockPrefab, GetBlockSpawnPos(j, i, offset), Quaternion.identity, transform);
+                GameObject thisBlock = Instantiate(baseBlockPrefab, GetBlockSpawnPos(j, i, offset), baseBlockPrefab.transform.rotation, transform);
                 Block block = thisBlock.GetComponent<Block>();
                 SetMaterial(block, i);
                 thisList.Add(block);
 
             }
             //the ending side wall
-            wall = Instantiate(wallsPrefab, GetBlockSpawnPos(gridWidth, i, offset), Quaternion.identity, transform);
+            wall = Instantiate(wallsPrefab, GetBlockSpawnPos(gridWidth, i, offset), wallsPrefab.transform.rotation, transform);
             thisList.Add(wall.GetComponent<Block>());
             grid.Add(thisList);
         }
@@ -129,7 +129,7 @@ public class GridSpawner : MonoBehaviour
         {
             ListWrapper<Block> thisList = new ListWrapper<Block>();
             for(int j = -1; j <= gridWidth; j++){
-                GameObject thisBlock = Instantiate(wallsPrefab, GetBlockSpawnPos(j, gridDepth, offset), Quaternion.identity, transform);
+                GameObject thisBlock = Instantiate(wallsPrefab, GetBlockSpawnPos(j, gridDepth, offset), wallsPrefab.transform.rotation, transform);
                 thisList.Add(thisBlock.GetComponent<Block>());
             }
             grid.Add(thisList);
