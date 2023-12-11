@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
@@ -21,6 +22,7 @@ public class Enemy : MonoBehaviour
     private int health = 0;
     //if this enemy is currently stuck with a pump
     private bool stuckWithPump = false;
+    private PumpNozzle nozzle;
 
     [SerializeField, Tooltip("the time it takes for this enemy to regenerate a point of health while stuck")]
     private float stuckRegenTime = 3f;
@@ -122,7 +124,6 @@ public class Enemy : MonoBehaviour
 
     [SerializeField, Tooltip("if the enemy will retain its target when the hunt state ends")]
     private bool retainTarget = false;
-
     //[SerializeField, Tooltip("the previous target before entering the hunt state (if there was one)")]
     //private Transform prevTarget;
 
@@ -214,6 +215,9 @@ public class Enemy : MonoBehaviour
     /// </summary>
     public void Die()
     {
+        if(nozzle){
+            nozzle.ForceRelease();
+        }
         Destroy(gameObject);
     }
 
@@ -226,13 +230,19 @@ public class Enemy : MonoBehaviour
     /// called to set whether the enemy is currently stuck with a pump nozzle or not. Will determine whether they can take damage from pumps or not
     /// </summary>
     /// <param name="stuck">if the enemy has been stuck</param>
-    public void SetStuck(bool stuck)
+    public void SetStuck(bool stuck, PumpNozzle nozzle = null)
     {
         if(stuck && runDebug && stuckParticlesDebug){
             stuckParticlesDebug.Play();
         }
         stuckWithPump = stuck;
         agent.isStopped = stuckWithPump;
+        if(stuck && nozzle){
+            this.nozzle = nozzle;
+        }
+        else{
+            this.nozzle = null;
+        }
     }
 
     public void SwapToInvisible()
