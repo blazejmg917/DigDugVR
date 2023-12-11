@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
+using FMOD.Studio;
 
 public class GridSpawner : MonoBehaviour
 {
@@ -134,6 +136,15 @@ public class GridSpawner : MonoBehaviour
             for(int j = -1; j <= gridWidth; j++){
                 GameObject thisBlock = Instantiate(wallsPrefab, GetBlockSpawnPos(j, gridDepth, offset), Quaternion.identity, transform);
                 thisList.Add(thisBlock.GetComponent<Block>());
+                if (j == gridWidth / 2) // cam code here, may be awful / not centered correctly
+                {
+                    StudioEventEmitter emitter = thisBlock.AddComponent<FMODUnity.StudioEventEmitter>();
+                    emitter.EventReference = EventReference.Find("event:/Ambience/Cavenoise");
+                    emitter.Play();
+                    EventInstance masterReverbSnapshot = FMODUnity.RuntimeManager.CreateInstance("snapshot:/MasterReverbControl");
+                    //masterReverbSnapshot.set3DAttributes(attributes);
+                    masterReverbSnapshot.start();
+                }
             }
             grid.Add(thisList);
         }
