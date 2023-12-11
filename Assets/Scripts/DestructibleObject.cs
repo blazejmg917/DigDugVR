@@ -109,8 +109,8 @@ public class DestructibleObject : MonoBehaviour
     public void setParticleMaterial(Material mat1, Material mat2) 
     {
         damageParticles.GetComponent<ParticleSystemRenderer>().material = mat1;
-        damageParticles.GetComponent<ParticleSystemRenderer>().GetComponent<ParticleSystemRenderer>().material = mat2;
+        damageParticles.GetComponentInChildren<ParticleSystemRenderer>().material = mat2;
         destroyParticles.GetComponent<ParticleSystemRenderer>().material = mat1;
-        destroyParticles.GetComponent<ParticleSystemRenderer>().GetComponent<ParticleSystemRenderer>().material = mat2;
+        destroyParticles.GetComponentInChildren<ParticleSystemRenderer>().material = mat2;
     }
 }
