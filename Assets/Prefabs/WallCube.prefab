@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 1650531517976846967}
   - component: {fileID: 1650531517976846960}
   - component: {fileID: 1650531517976846952}
+  - component: {fileID: 8424189094503185118}
   m_Layer: 14
   m_Name: WallCube
   m_TagString: Untagged
@@ -172,6 +173,7 @@ MonoBehaviour:
   frontBlock: {fileID: 0}
   enemyWalkable: 0
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1650531517976846952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,3 +188,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   intensity: 0.6
   duration: 0.4
+--- !u!114 &8424189094503185118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1650531517976846961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 146833403
+      Data2: 1085970877
+      Data3: 1204749497
+      Data4: -724956274
+    Path: event:/Shovel/DigRock
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20

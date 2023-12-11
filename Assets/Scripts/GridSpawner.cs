@@ -5,7 +5,7 @@ using UnityEngine;
 public class GridSpawner : MonoBehaviour
 {
     [System.Serializable]
-    public class ListWrapper<T>{
+    public class ListWrapper<T> {
         public List<T> list = new List<T>();
         public T this[int key]
         {
@@ -18,17 +18,17 @@ public class GridSpawner : MonoBehaviour
                 list[key] = value;
             }
         }
-        public int Count{
+        public int Count {
             get
             {
                 return list.Count;
             }
         }
-        public void Add(T val){
+        public void Add(T val) {
             list.Add(val);
         }
 
-        public void RemoveAt(int i){
+        public void RemoveAt(int i) {
             list.RemoveAt(i);
         }
     }
@@ -54,6 +54,8 @@ public class GridSpawner : MonoBehaviour
     [Header("Gem settings")]
     [SerializeField, Tooltip("the minimum depth that a gem can spawn at")]private int minGemDepth = 9;
     [SerializeField, Tooltip("if the gem can spawn in a space adjacent to a tunnel")]private bool allowGemNextToTunnel = true;
+
+    private Sensor sensor;
 
     private static GridSpawner _instance;
     public static GridSpawner Instance
@@ -98,6 +100,7 @@ public class GridSpawner : MonoBehaviour
         }
         int randSelection = Random.Range(0, randOptions.Count);
         randOptions[randSelection].AssignGem();
+        sensor.SetTarget(randOptions[randSelection].transform);
         return randOptions[randSelection];
     }
 
@@ -172,6 +175,10 @@ public class GridSpawner : MonoBehaviour
         int depthSize = gridDepth / blockMaterials.Count;
         int depthLevel = depth / depthSize;
         block.SetMaterial(blockMaterials[depthLevel]);
+
+        // then also set the block dig sounds correctly
+        block.GetComponent<FMODUnity.StudioEventEmitter>().EventInstance.setParameterByName("DirtType", depthLevel); // this is not working yet
+        
     }
 
 
@@ -212,5 +219,10 @@ public class GridSpawner : MonoBehaviour
     public int GetInvisibleSurfaceID()
     {
         return surfaceController.GetInvisID();
+    }
+
+    public void SetSensor(Sensor s)
+    {
+        sensor = s;
     }
 }
