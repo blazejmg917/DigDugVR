@@ -16,6 +16,9 @@ public class PumpNozzle : MonoBehaviour
 
     [SerializeField, Tooltip("the amount of time it takes for the nozzle to return after an unsuccesful launch")]
     private float nozzleReturnTime = 2f;
+    [SerializeField, Tooltip("the time for a nozzle to return even if it never hits anything")]private float lostNozzleReturnTime = 15f;
+    private float lostTimer;
+    private bool launched = false;
     // [SerializeField, Tooltip("the amount of time it takes for the nozzle to return after killing an enemy")]
     // private float nozzleKillReturnTime = .3f;
     private float nozzleReturnTimer = 0;
@@ -89,6 +92,7 @@ public class PumpNozzle : MonoBehaviour
         }
         joint.connectedBody = owningPump.gameObject.GetComponent<Rigidbody>();
         owningPump.OnNozzleReattach();
+        launched = false;
     }
 
     /// <summary>
@@ -101,6 +105,8 @@ public class PumpNozzle : MonoBehaviour
         //joint.enabled = false;
         rb.velocity = launchVelocity;
         canStick = true;
+        lostTimer =0;
+        launched =  true;
     }
 
     private void OnCollisionEnter(Collision col)
@@ -160,6 +166,13 @@ public class PumpNozzle : MonoBehaviour
         if(stuckToEnemy){
             if((transform.position - pumpAttach.position).magnitude > stuckDist + maxStuckPullDist){
                 ForceRelease();
+            }
+        }
+        else if(launched){
+            lostTimer+= Time.fixedDeltaTime;
+            if(lostTimer > lostNozzleReturnTime){
+                waitingForNozzleReturn = false;
+                ConnectToPump();
             }
         }
         if(waitingForNozzleReturn){
