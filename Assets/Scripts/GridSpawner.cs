@@ -203,4 +203,14 @@ public class GridSpawner : MonoBehaviour
             GameManager.Instance.SpawnGem(block.transform);
         }
     }
+
+    public int GetDefaultSurfaceID()
+    {
+        return surfaceController.GetDefaultID();
+    }
+
+    public int GetInvisibleSurfaceID()
+    {
+        return surfaceController.GetInvisID();
+    }
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18306595, g: 0.2287429, b: 0.3066922, a: 1}
+  m_IndirectSpecularColor: {r: 0.18306622, g: 0.2287434, b: 0.30669293, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -208,7 +208,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &7882076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,6 +227,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1291884364}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &7882077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -428,6 +429,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1025742149}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &11476688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -629,6 +631,7 @@ MonoBehaviour:
   frontBlock: {fileID: 682889753}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &13024824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -830,6 +833,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1972500618}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &17802834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1031,6 +1035,7 @@ MonoBehaviour:
   frontBlock: {fileID: 0}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &20094993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1232,6 +1237,7 @@ MonoBehaviour:
   frontBlock: {fileID: 686853497}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &22833462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1433,6 +1439,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1856148961}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &25107647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1634,6 +1641,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1502123054}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &28709584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1835,6 +1843,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1161705824}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &30550156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2035,6 +2044,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1716614225}
   enemyWalkable: 0
   hasGem: 0
+  isSurface: 0
 --- !u!114 &35864068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2222,6 +2232,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1556557916}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &41656703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2404,7 +2415,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &51146376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2423,6 +2434,7 @@ MonoBehaviour:
   frontBlock: {fileID: 20094992}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &51146377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2624,6 +2636,7 @@ MonoBehaviour:
   frontBlock: {fileID: 312725314}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &58227352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3383,6 +3396,52 @@ MonoBehaviour:
   GemPrefab: {fileID: 7602629332481661957, guid: 3f11b8357a42ed24f8dda852dafcb9ac, type: 3}
   sensor: {fileID: 0}
   gemBlock: {fileID: 0}
+--- !u!1 &60609260
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 60609262}
+  - component: {fileID: 60609261}
+  m_Layer: 8
+  m_Name: InvisibleEnemy
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!136 &60609261
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 60609260}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &60609262
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 60609260}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1714349570}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &63049712
 GameObject:
   m_ObjectHideFlags: 0
@@ -3426,6 +3485,7 @@ MonoBehaviour:
   frontBlock: {fileID: 756010513}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &63049714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3626,6 +3686,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1659814448}
   enemyWalkable: 0
   hasGem: 0
+  isSurface: 0
 --- !u!114 &65849771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3812,6 +3873,7 @@ MonoBehaviour:
   frontBlock: {fileID: 186105557}
   enemyWalkable: 0
   hasGem: 0
+  isSurface: 0
 --- !u!114 &68587392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4004,6 +4066,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1467821467}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &70755137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4306,7 +4369,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &97239879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4325,6 +4388,7 @@ MonoBehaviour:
   frontBlock: {fileID: 812316932}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &97239880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4526,6 +4590,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1413017301}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &107896066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4727,6 +4792,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1310507511}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &120714882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4928,6 +4994,7 @@ MonoBehaviour:
   frontBlock: {fileID: 25107646}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &134679202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5129,6 +5196,7 @@ MonoBehaviour:
   frontBlock: {fileID: 0}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &154235448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5330,6 +5398,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1020231952}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &165626983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5531,6 +5600,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1905430456}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &177590629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5765,6 +5835,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1919978652}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &186105558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5932,7 +6003,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 21db97e2db01ab14bb19aaa9cb2d10db, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 21db97e2db01ab14bb19aaa9cb2d10db, type: 3}
       propertyPath: m_LocalScale.x
@@ -6060,6 +6131,7 @@ MonoBehaviour:
   frontBlock: {fileID: 985151068}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &192822225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6261,6 +6333,7 @@ MonoBehaviour:
   frontBlock: {fileID: 423646293}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &197953555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6462,6 +6535,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1079019113}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &207300045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6663,6 +6737,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1001287714}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &221414676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7039,6 +7114,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1651378529}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &251516101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7214,7 +7290,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4257412417454173056, guid: d5615d616019430d9c2e8727e71c97fb, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4257412417454173056, guid: d5615d616019430d9c2e8727e71c97fb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7316,6 +7392,7 @@ MonoBehaviour:
   frontBlock: {fileID: 836401379}
   enemyWalkable: 0
   hasGem: 0
+  isSurface: 0
 --- !u!114 &272423713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7503,6 +7580,7 @@ MonoBehaviour:
   frontBlock: {fileID: 41656702}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &283634566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7703,6 +7781,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1222038559}
   enemyWalkable: 0
   hasGem: 0
+  isSurface: 0
 --- !u!114 &288806689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8005,6 +8084,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1042803093}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &299911732
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8206,6 +8286,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1483401352}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &302376199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8407,6 +8488,7 @@ MonoBehaviour:
   frontBlock: {fileID: 0}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &306649602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8608,6 +8690,7 @@ MonoBehaviour:
   frontBlock: {fileID: 7882076}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &310446349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8809,6 +8892,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1260638541}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &312725315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9107,6 +9191,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1728586697}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &327958222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9307,6 +9392,7 @@ MonoBehaviour:
   frontBlock: {fileID: 65849770}
   enemyWalkable: 0
   hasGem: 0
+  isSurface: 0
 --- !u!114 &330911761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9494,6 +9580,7 @@ MonoBehaviour:
   frontBlock: {fileID: 644261793}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &335573529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9695,6 +9782,7 @@ MonoBehaviour:
   frontBlock: {fileID: 768495372}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &344327609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9896,6 +9984,7 @@ MonoBehaviour:
   frontBlock: {fileID: 28709583}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &365520352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10096,6 +10185,7 @@ MonoBehaviour:
   frontBlock: {fileID: 327958221}
   enemyWalkable: 0
   hasGem: 0
+  isSurface: 0
 --- !u!114 &370641399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10283,6 +10373,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1534224354}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &380117961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10484,6 +10575,7 @@ MonoBehaviour:
   frontBlock: {fileID: 365520351}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &391009916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10666,7 +10758,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &399906980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10685,6 +10777,7 @@ MonoBehaviour:
   frontBlock: {fileID: 2116297875}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &399906981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10886,6 +10979,7 @@ MonoBehaviour:
   frontBlock: {fileID: 730052370}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &400318131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11086,6 +11180,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1031184739}
   enemyWalkable: 0
   hasGem: 0
+  isSurface: 0
 --- !u!114 &411871608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11273,6 +11368,7 @@ MonoBehaviour:
   frontBlock: {fileID: 2135191851}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &413078178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11474,6 +11570,7 @@ MonoBehaviour:
   frontBlock: {fileID: 731702885}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &421082382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11675,6 +11772,7 @@ MonoBehaviour:
   frontBlock: {fileID: 2017662480}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &421221010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11876,6 +11974,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1573965165}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &423646294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12076,6 +12175,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1516724356}
   enemyWalkable: 0
   hasGem: 0
+  isSurface: 0
 --- !u!114 &435234449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12263,6 +12363,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1755560443}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &441361988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12492,6 +12593,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1641460965}
   enemyWalkable: 0
   hasGem: 0
+  isSurface: 0
 --- !u!54 &441879510
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -12636,7 +12738,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &451325905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12655,6 +12757,7 @@ MonoBehaviour:
   frontBlock: {fileID: 2058488268}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &451325906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12878,7 +12981,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4134505312059479865, guid: 895f6f3c2d334633b5800312285058d2, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4134505312059479865, guid: 895f6f3c2d334633b5800312285058d2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13127,7 +13230,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &458782938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13146,6 +13249,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1153512536}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &458782939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13347,6 +13451,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1176880340}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &463908554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13548,6 +13653,7 @@ MonoBehaviour:
   frontBlock: {fileID: 380117960}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &473814751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13749,6 +13855,7 @@ MonoBehaviour:
   frontBlock: {fileID: 743008885}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &493240947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13949,6 +14056,7 @@ MonoBehaviour:
   frontBlock: {fileID: 330911760}
   enemyWalkable: 0
   hasGem: 0
+  isSurface: 0
 --- !u!114 &494787281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14136,6 +14244,7 @@ MonoBehaviour:
   frontBlock: {fileID: 421082381}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &507938192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14336,6 +14445,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1624791797}
   enemyWalkable: 0
   hasGem: 0
+  isSurface: 0
 --- !u!114 &508562182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14613,6 +14723,7 @@ MonoBehaviour:
   frontBlock: {fileID: 998533854}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &515323656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14814,6 +14925,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1525889590}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &517924692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15015,6 +15127,7 @@ MonoBehaviour:
   frontBlock: {fileID: 0}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &538610906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15216,6 +15329,7 @@ MonoBehaviour:
   frontBlock: {fileID: 22833461}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &551842160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15417,6 +15531,7 @@ MonoBehaviour:
   frontBlock: {fileID: 63049713}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &560777080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15618,6 +15733,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1379128849}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &562425158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15818,6 +15934,7 @@ MonoBehaviour:
   frontBlock: {fileID: 590300607}
   enemyWalkable: 0
   hasGem: 0
+  isSurface: 0
 --- !u!114 &576611268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16004,6 +16121,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1618814263}
   enemyWalkable: 0
   hasGem: 0
+  isSurface: 0
 --- !u!114 &590300608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16191,6 +16309,7 @@ MonoBehaviour:
   frontBlock: {fileID: 507938191}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &593712380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16373,7 +16492,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &611719390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16392,6 +16511,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1917871229}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &611719391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16993,6 +17113,7 @@ MonoBehaviour:
   frontBlock: {fileID: 272423712}
   enemyWalkable: 0
   hasGem: 0
+  isSurface: 0
 --- !u!114 &633356315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17180,6 +17301,7 @@ MonoBehaviour:
   frontBlock: {fileID: 197953554}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &635369714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17381,6 +17503,7 @@ MonoBehaviour:
   frontBlock: {fileID: 0}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &637981937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17582,6 +17705,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1233396289}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &641097078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17783,6 +17907,7 @@ MonoBehaviour:
   frontBlock: {fileID: 560777079}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &644261794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17965,7 +18090,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &651661336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17984,6 +18109,7 @@ MonoBehaviour:
   frontBlock: {fileID: 885325813}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &651661337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18184,6 +18310,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1195273884}
   enemyWalkable: 0
   hasGem: 0
+  isSurface: 0
 --- !u!114 &668855181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18371,6 +18498,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1705115859}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &669533474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18572,6 +18700,7 @@ MonoBehaviour:
   frontBlock: {fileID: 2064971038}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &671383451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18773,6 +18902,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1203715429}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &681683592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18974,6 +19104,7 @@ MonoBehaviour:
   frontBlock: {fileID: 251516100}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &682889754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19175,6 +19306,7 @@ MonoBehaviour:
   frontBlock: {fileID: 451325905}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &686853498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19376,6 +19508,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1892944969}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &697841833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19576,6 +19709,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1317534530}
   enemyWalkable: 0
   hasGem: 0
+  isSurface: 0
 --- !u!114 &698079761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19744,7 +19878,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &709221642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19763,6 +19897,7 @@ MonoBehaviour:
   frontBlock: {fileID: 97239879}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &709221643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19963,6 +20098,7 @@ MonoBehaviour:
   frontBlock: {fileID: 391009915}
   enemyWalkable: 0
   hasGem: 0
+  isSurface: 0
 --- !u!114 &722078374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20169,6 +20305,7 @@ MonoBehaviour:
   frontBlock: {fileID: 13024823}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &730052371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20370,6 +20507,7 @@ MonoBehaviour:
   frontBlock: {fileID: 2022796352}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &731702886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20571,6 +20709,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1227691180}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &743008886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20772,6 +20911,7 @@ MonoBehaviour:
   frontBlock: {fileID: 2055873101}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &750446623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20973,6 +21113,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1384729242}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &755131349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21155,7 +21296,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &756010513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21174,6 +21315,7 @@ MonoBehaviour:
   frontBlock: {fileID: 399906980}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &756010514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21375,6 +21517,7 @@ MonoBehaviour:
   frontBlock: {fileID: 2122564640}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &757237609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21575,6 +21718,7 @@ MonoBehaviour:
   frontBlock: {fileID: 698079760}
   enemyWalkable: 0
   hasGem: 0
+  isSurface: 0
 --- !u!114 &762021235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21761,6 +21905,7 @@ MonoBehaviour:
   frontBlock: {fileID: 972664076}
   enemyWalkable: 0
   hasGem: 0
+  isSurface: 0
 --- !u!114 &764607790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21948,6 +22093,7 @@ MonoBehaviour:
   frontBlock: {fileID: 515323655}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &768495373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22149,6 +22295,7 @@ MonoBehaviour:
   frontBlock: {fileID: 165626982}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &774219460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22331,7 +22478,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &785514439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22350,6 +22497,7 @@ MonoBehaviour:
   frontBlock: {fileID: 864738617}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &785514440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22550,6 +22698,7 @@ MonoBehaviour:
   frontBlock: {fileID: 0}
   enemyWalkable: 0
   hasGem: 0
+  isSurface: 0
 --- !u!114 &788324341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22737,6 +22886,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1457025616}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &800660570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22938,6 +23088,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1368387602}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &808142597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23139,6 +23290,7 @@ MonoBehaviour:
   frontBlock: {fileID: 0}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &812316933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23340,6 +23492,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1995108450}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &820976386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23541,6 +23694,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1641649473}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &829344291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23741,6 +23895,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1366597670}
   enemyWalkable: 0
   hasGem: 0
+  isSurface: 0
 --- !u!114 &836401380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23928,6 +24083,7 @@ MonoBehaviour:
   frontBlock: {fileID: 0}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &864738618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24129,6 +24285,7 @@ MonoBehaviour:
   frontBlock: {fileID: 70755136}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &875714791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24330,6 +24487,7 @@ MonoBehaviour:
   frontBlock: {fileID: 0}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &885325814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24627,6 +24785,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1452043393}
   enemyWalkable: 0
   hasGem: 0
+  isSurface: 0
 --- !u!114 &888461144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24814,6 +24973,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1925245041}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &893944696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24996,7 +25156,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &912694169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25015,6 +25175,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1582455205}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &912694170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25216,6 +25377,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1804593665}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &923150327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25416,6 +25578,7 @@ MonoBehaviour:
   frontBlock: {fileID: 936850365}
   enemyWalkable: 0
   hasGem: 0
+  isSurface: 0
 --- !u!114 &935201902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25602,6 +25765,7 @@ MonoBehaviour:
   frontBlock: {fileID: 435234448}
   enemyWalkable: 0
   hasGem: 0
+  isSurface: 0
 --- !u!114 &936850366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25770,7 +25934,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &959998912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25789,6 +25953,7 @@ MonoBehaviour:
   frontBlock: {fileID: 51146376}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &959998913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25989,6 +26154,7 @@ MonoBehaviour:
   frontBlock: {fileID: 508562181}
   enemyWalkable: 0
   hasGem: 0
+  isSurface: 0
 --- !u!114 &972664077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26175,6 +26341,7 @@ MonoBehaviour:
   frontBlock: {fileID: 668855180}
   enemyWalkable: 0
   hasGem: 0
+  isSurface: 0
 --- !u!114 &973285683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26362,6 +26529,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1693308765}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &985151069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26563,6 +26731,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1734183176}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &998533855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26863,6 +27032,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1758765199}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1001287715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27064,6 +27234,7 @@ MonoBehaviour:
   frontBlock: {fileID: 441361987}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1017501211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27265,6 +27436,7 @@ MonoBehaviour:
   frontBlock: {fileID: 2112694289}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1020231953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27447,7 +27619,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1025742149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27466,6 +27638,7 @@ MonoBehaviour:
   frontBlock: {fileID: 2066565447}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1025742150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27667,6 +27840,7 @@ MonoBehaviour:
   frontBlock: {fileID: 221414675}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1031184740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27868,6 +28042,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1353487558}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1042803094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28166,6 +28341,7 @@ MonoBehaviour:
   frontBlock: {fileID: 283634565}
   enemyWalkable: 0
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1048154604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28353,6 +28529,7 @@ MonoBehaviour:
   frontBlock: {fileID: 2146040083}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1048635693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28554,6 +28731,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1155111516}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1059767656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28809,6 +28987,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1130854299}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1076862283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29010,6 +29189,7 @@ MonoBehaviour:
   frontBlock: {fileID: 829344290}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1079019114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29211,6 +29391,7 @@ MonoBehaviour:
   frontBlock: {fileID: 0}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1082304012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29412,6 +29593,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1837168008}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1089833242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29644,6 +29826,7 @@ MonoBehaviour:
   frontBlock: {fileID: 562425157}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1108296448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29845,6 +30028,7 @@ MonoBehaviour:
   frontBlock: {fileID: 107896065}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1121123004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30046,6 +30230,7 @@ MonoBehaviour:
   frontBlock: {fileID: 750446622}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1130854300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30228,7 +30413,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1153512536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30247,6 +30432,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1981273206}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1153512537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30448,6 +30634,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1121123003}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1155111517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30649,6 +30836,7 @@ MonoBehaviour:
   frontBlock: {fileID: 669533473}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1161705825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30831,7 +31019,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1163018461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30850,6 +31038,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1082304011}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1163018462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31021,7 +31210,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4943412722579436017, guid: 2e16046ebcbcb6742a86569d82e56cce, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4943412722579436017, guid: 2e16046ebcbcb6742a86569d82e56cce, type: 3}
       propertyPath: m_LocalPosition.x
@@ -31124,6 +31313,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1744442711}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1176880341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31421,6 +31611,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1580431535}
   enemyWalkable: 0
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1195273885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31608,6 +31799,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1690118694}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1203715430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31808,6 +32000,7 @@ MonoBehaviour:
   frontBlock: {fileID: 935201901}
   enemyWalkable: 0
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1204846756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31994,6 +32187,7 @@ MonoBehaviour:
   frontBlock: {fileID: 764607789}
   enemyWalkable: 0
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1222038560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32212,6 +32406,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1685500002}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1227691181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32413,6 +32608,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1941121313}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1233396290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32684,7 +32880,7 @@ GameObject:
   - component: {fileID: 1249617923}
   - component: {fileID: 1249617924}
   - component: {fileID: 1249617925}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32770,7 +32966,7 @@ Transform:
   - {fileID: 1383535745}
   - {fileID: 58302786}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1249617922
 MonoBehaviour:
@@ -32901,7 +33097,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 16503
+    m_Bits: 16510
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
@@ -32909,9 +33105,9 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.033333335
+  m_VoxelSize: 0.14999999
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 4c4167f2890c0524f87b479f69e8428c, type: 2}
   m_BuildHeightMesh: 0
 --- !u!114 &1249617924
 MonoBehaviour:
@@ -32931,7 +33127,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 16439
+    m_Bits: 16446
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
@@ -32939,9 +33135,9 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.033333335
+  m_VoxelSize: 0.14999999
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 780b3a1c8c60728448959c45e7ee5d17, type: 2}
   m_BuildHeightMesh: 0
 --- !u!114 &1249617925
 MonoBehaviour:
@@ -33000,6 +33196,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1838050573}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1260638542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33201,6 +33398,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1876258804}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1267103467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33428,7 +33626,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1291884364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33447,6 +33645,7 @@ MonoBehaviour:
   frontBlock: {fileID: 306649601}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1291884365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33648,6 +33847,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1712205285}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1308251045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33849,6 +34049,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1996547615}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1310507512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34049,6 +34250,7 @@ MonoBehaviour:
   frontBlock: {fileID: 576611267}
   enemyWalkable: 0
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1317534531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34236,6 +34438,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1890107091}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1353487559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34437,6 +34640,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1788047631}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1363525990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34637,6 +34841,7 @@ MonoBehaviour:
   frontBlock: {fileID: 0}
   enemyWalkable: 0
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1366597671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34824,6 +35029,7 @@ MonoBehaviour:
   frontBlock: {fileID: 473814750}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1368387603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35025,6 +35231,7 @@ MonoBehaviour:
   frontBlock: {fileID: 593712379}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1379128850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35259,6 +35466,7 @@ MonoBehaviour:
   frontBlock: {fileID: 551842159}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1384729243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35460,6 +35668,7 @@ MonoBehaviour:
   frontBlock: {fileID: 893944695}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1393576054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35758,6 +35967,7 @@ MonoBehaviour:
   frontBlock: {fileID: 310446348}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1413017302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35959,6 +36169,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1852640670}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1421124678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36193,6 +36404,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1794696618}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1431543521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36394,6 +36606,7 @@ MonoBehaviour:
   frontBlock: {fileID: 207300044}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1451518141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36576,7 +36789,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1451611439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36595,6 +36808,7 @@ MonoBehaviour:
   frontBlock: {fileID: 154235447}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1451611440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36796,6 +37010,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1947025836}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1452043394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36997,6 +37212,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1451518140}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1457025617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37228,6 +37444,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1589866969}
   enemyWalkable: 0
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1467124075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37415,6 +37632,7 @@ MonoBehaviour:
   frontBlock: {fileID: 959998912}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1467821468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37677,6 +37895,7 @@ MonoBehaviour:
   frontBlock: {fileID: 641097077}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1483401353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37977,6 +38196,7 @@ MonoBehaviour:
   frontBlock: {fileID: 2139982490}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1502123055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38178,6 +38398,7 @@ MonoBehaviour:
   frontBlock: {fileID: 58227351}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1510831636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38424,6 +38645,7 @@ MonoBehaviour:
   frontBlock: {fileID: 494787280}
   enemyWalkable: 0
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1516724357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38611,6 +38833,7 @@ MonoBehaviour:
   frontBlock: {fileID: 697841832}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1519921924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38811,6 +39034,7 @@ MonoBehaviour:
   frontBlock: {fileID: 788324340}
   enemyWalkable: 0
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1520017504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38998,6 +39222,7 @@ MonoBehaviour:
   frontBlock: {fileID: 413078177}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1525889591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39199,6 +39424,7 @@ MonoBehaviour:
   frontBlock: {fileID: 709221642}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1534224355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39431,6 +39657,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1898882603}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1537315993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39632,6 +39859,7 @@ MonoBehaviour:
   frontBlock: {fileID: 2013980352}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1556557917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39832,7 +40060,7 @@ Transform:
   - {fileID: 1098612323}
   - {fileID: 1187295618}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1572401692
 Rigidbody:
@@ -40104,6 +40332,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1059767655}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1573965166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40304,6 +40533,7 @@ MonoBehaviour:
   frontBlock: {fileID: 633356314}
   enemyWalkable: 0
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1580431536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40491,6 +40721,7 @@ MonoBehaviour:
   frontBlock: {fileID: 0}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1582455206
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40692,6 +40923,7 @@ MonoBehaviour:
   frontBlock: {fileID: 757237608}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1589866970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40893,6 +41125,7 @@ MonoBehaviour:
   frontBlock: {fileID: 0}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1605028705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41093,6 +41326,7 @@ MonoBehaviour:
   frontBlock: {fileID: 973285682}
   enemyWalkable: 0
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1618814264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41279,6 +41513,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1520017503}
   enemyWalkable: 0
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1624791798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41466,6 +41701,7 @@ MonoBehaviour:
   frontBlock: {fileID: 681683591}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1624844819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41823,6 +42059,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1967605920}
   enemyWalkable: 0
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1641460966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42010,6 +42247,7 @@ MonoBehaviour:
   frontBlock: {fileID: 2041318380}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1641649474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42229,6 +42467,7 @@ MonoBehaviour:
   frontBlock: {fileID: 17802833}
   enemyWalkable: 0
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1646485344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42416,6 +42655,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1624844818}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1651378530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42616,6 +42856,7 @@ MonoBehaviour:
   frontBlock: {fileID: 288806688}
   enemyWalkable: 0
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1659814449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42834,6 +43075,7 @@ MonoBehaviour:
   frontBlock: {fileID: 820976385}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1685500003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43035,6 +43277,7 @@ MonoBehaviour:
   frontBlock: {fileID: 120714881}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1689154985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43217,7 +43460,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1690118694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43236,6 +43479,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1163018461}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1690118695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43437,6 +43681,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1089833241}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1693308766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43638,6 +43883,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1393576053}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1705115860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43839,6 +44085,7 @@ MonoBehaviour:
   frontBlock: {fileID: 192822224}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1712205286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44011,6 +44258,7 @@ GameObject:
   - component: {fileID: 1714349567}
   - component: {fileID: 1714349566}
   - component: {fileID: 1714349571}
+  - component: {fileID: 1714349572}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
@@ -44031,11 +44279,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 3
+  stuckRegenTime: 3
+  freeRegenTime: 0.5
+  invisible: 0
   agent: {fileID: 0}
   defaultNavMeshAgentType: 0
   invisibleNavMeshAgentType: 1
-  normalEnemyAppearance: {fileID: 0}
-  invisibleEnemyAppearance: {fileID: 0}
+  defaultMoveSpeed: 3
+  state: 0
+  maxWanderTime: 10
+  maxWaitTime: 2
+  maxWanderPointDist: 10
+  burrowAngle: 15
+  burrowDistance: 0.5
+  atDestination: 0
+  allowSubsequentBurrowing: 0
+  allowBurrowChance: 0.1
+  maxAntiBurrowAttempts: 20
+  wanderDestination: {x: 0, y: 0, z: 0}
+  invisibleMoveSpeed: 3
+  maxBurrowBlocks: 6
+  targetTransform: {fileID: 0}
+  maxFollowTime: 5
+  canSeeSearchTarget: 0
+  maxSearchTime: 20
+  targetUpdateTime: 0.25
+  huntMoveSpeed: 4
+  prevState: 0
+  retainTarget: 0
+  normalEnemyAppearance: {fileID: 1745882129}
+  invisibleEnemyAppearance: {fileID: 60609260}
 --- !u!136 &1714349567
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -44108,12 +44381,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1714349565}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 18.92, y: 1.0898082, z: 1.774}
+  m_LocalPosition: {x: 9.37, y: 1.0898082, z: 1.774}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 60609262}
+  - {fileID: 1745882130}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &1714349571
 NavMeshAgent:
@@ -44137,6 +44412,22 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!54 &1714349572
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1714349565}
+  serializedVersion: 2
+  m_Mass: 1000
+  m_Drag: 0.1
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 80
+  m_CollisionDetection: 1
 --- !u!1 &1716614224
 GameObject:
   m_ObjectHideFlags: 0
@@ -44180,6 +44471,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1866834439}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1716614226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44381,6 +44673,7 @@ MonoBehaviour:
   frontBlock: {fileID: 344327608}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1728586698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44582,6 +44875,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1967827049}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1734183177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44783,6 +45077,7 @@ MonoBehaviour:
   frontBlock: {fileID: 458782938}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1744442712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44941,6 +45236,37 @@ Transform:
   m_Father: {fileID: 58302786}
   m_RootOrder: 52
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1745882129
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1745882130}
+  m_Layer: 7
+  m_Name: VisibleEnemy
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1745882130
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1745882129}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1714349570}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1755560442
 GameObject:
   m_ObjectHideFlags: 0
@@ -44984,6 +45310,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1537315992}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1755560444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45185,6 +45512,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1267103466}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1758765200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45385,6 +45713,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1798133081}
   enemyWalkable: 0
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1784061899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45553,7 +45882,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1787064849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45572,6 +45901,7 @@ MonoBehaviour:
   frontBlock: {fileID: 912694169}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1787064850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45773,6 +46103,7 @@ MonoBehaviour:
   frontBlock: {fileID: 755131348}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1788047632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45974,6 +46305,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1363525989}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1790192945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46175,6 +46507,7 @@ MonoBehaviour:
   frontBlock: {fileID: 808142596}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1794696619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46376,6 +46709,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1308251044}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1798133082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46577,6 +46911,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1995158569}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1804593666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46959,7 +47294,7 @@ Transform:
   m_Children:
   - {fileID: 1484507922}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!1 &1837168007
 GameObject:
@@ -47004,6 +47339,7 @@ MonoBehaviour:
   frontBlock: {fileID: 421221009}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1837168009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47205,6 +47541,7 @@ MonoBehaviour:
   frontBlock: {fileID: 671383450}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1838050574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47405,6 +47742,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1048635692}
   enemyWalkable: 0
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1850876541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47592,6 +47930,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1689154984}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1852640671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47792,6 +48131,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1421124677}
   enemyWalkable: 0
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1854077727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47979,6 +48319,7 @@ MonoBehaviour:
   frontBlock: {fileID: 493240946}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1856148962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48180,6 +48521,7 @@ MonoBehaviour:
   frontBlock: {fileID: 923150326}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1866834440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48381,6 +48723,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1510831635}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1876258805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48582,6 +48925,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1431543520}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1890107092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48783,6 +49127,7 @@ MonoBehaviour:
   frontBlock: {fileID: 517924691}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1892944970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48984,6 +49329,7 @@ MonoBehaviour:
   frontBlock: {fileID: 11476687}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1898882604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49185,6 +49531,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1017501210}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1905430457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49464,7 +49811,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1917871229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49483,6 +49830,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1605028704}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1917871230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49684,6 +50032,7 @@ MonoBehaviour:
   frontBlock: {fileID: 774219459}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1919978653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49884,6 +50233,7 @@ MonoBehaviour:
   frontBlock: {fileID: 134679201}
   enemyWalkable: 0
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1920254465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50049,7 +50399,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7517549319329480229, guid: 521327bdbcb341f782d36f02cab76cb0, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7517549319329480229, guid: 521327bdbcb341f782d36f02cab76cb0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -50144,6 +50494,7 @@ MonoBehaviour:
   frontBlock: {fileID: 611719390}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1925245042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50326,7 +50677,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1940316113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50345,6 +50696,7 @@ MonoBehaviour:
   frontBlock: {fileID: 785514439}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1940316114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50546,6 +50898,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1940316113}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1941121314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50747,6 +51100,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1519921923}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1947025837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50947,6 +51301,7 @@ MonoBehaviour:
   frontBlock: {fileID: 762021234}
   enemyWalkable: 0
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1967605921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51134,6 +51489,7 @@ MonoBehaviour:
   frontBlock: {fileID: 302376198}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1967827050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51335,6 +51691,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1076862282}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1972500619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51536,6 +51893,7 @@ MonoBehaviour:
   frontBlock: {fileID: 0}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1981273207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51737,6 +52095,7 @@ MonoBehaviour:
   frontBlock: {fileID: 335573528}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1995108451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51938,6 +52297,7 @@ MonoBehaviour:
   frontBlock: {fileID: 177590628}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1995158570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52139,6 +52499,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1108296447}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &1996547616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52345,6 +52706,7 @@ MonoBehaviour:
   frontBlock: {fileID: 400318130}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &2013980353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52546,6 +52908,7 @@ MonoBehaviour:
   frontBlock: {fileID: 463908553}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &2017662481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52728,7 +53091,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2022796352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52747,6 +53110,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1451611439}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &2022796353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52968,7 +53332,7 @@ Transform:
   m_Children:
   - {fileID: 999144091}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2041318379
 GameObject:
@@ -52994,7 +53358,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2041318380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53013,6 +53377,7 @@ MonoBehaviour:
   frontBlock: {fileID: 651661336}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &2041318381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53214,6 +53579,7 @@ MonoBehaviour:
   frontBlock: {fileID: 875714790}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &2049224123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53415,6 +53781,7 @@ MonoBehaviour:
   frontBlock: {fileID: 800660569}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &2055873102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53597,7 +53964,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2058488268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53616,6 +53983,7 @@ MonoBehaviour:
   frontBlock: {fileID: 637981936}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &2058488269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53817,6 +54185,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1787064849}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &2064971039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53999,7 +54368,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2066565447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54018,6 +54387,7 @@ MonoBehaviour:
   frontBlock: {fileID: 538610905}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &2066565448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54363,6 +54733,7 @@ MonoBehaviour:
   frontBlock: {fileID: 30550155}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &2112694290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54564,6 +54935,7 @@ MonoBehaviour:
   frontBlock: {fileID: 0}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &2116297876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54765,6 +55137,7 @@ MonoBehaviour:
   frontBlock: {fileID: 635369713}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &2122564641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54923,6 +55296,63 @@ Transform:
   m_Father: {fileID: 58302786}
   m_RootOrder: 197
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2124317052
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 650fc4aef8503fd40abf0412d37a723f, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 650fc4aef8503fd40abf0412d37a723f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -15.638744
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 650fc4aef8503fd40abf0412d37a723f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.46766394
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 650fc4aef8503fd40abf0412d37a723f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -12.627156
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 650fc4aef8503fd40abf0412d37a723f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 650fc4aef8503fd40abf0412d37a723f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 650fc4aef8503fd40abf0412d37a723f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 650fc4aef8503fd40abf0412d37a723f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 650fc4aef8503fd40abf0412d37a723f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 650fc4aef8503fd40abf0412d37a723f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 650fc4aef8503fd40abf0412d37a723f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 650fc4aef8503fd40abf0412d37a723f, type: 3}
+      propertyPath: m_Name
+      value: Pooka
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 650fc4aef8503fd40abf0412d37a723f, type: 3}
 --- !u!1 &2125209522
 GameObject:
   m_ObjectHideFlags: 0
@@ -55011,6 +55441,7 @@ MonoBehaviour:
   frontBlock: {fileID: 2049224122}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &2135191852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55309,6 +55740,7 @@ MonoBehaviour:
   frontBlock: {fileID: 1790192944}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &2139982491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55510,6 +55942,7 @@ MonoBehaviour:
   frontBlock: {fileID: 299911731}
   enemyWalkable: 1
   hasGem: 0
+  isSurface: 0
 --- !u!114 &2146040084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55684,7 +56117,7 @@ Transform:
   - {fileID: 1853215234792696055}
   - {fileID: 6738450968017955340}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &919132149019936140
 GameObject:
