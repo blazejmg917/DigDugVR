@@ -39,6 +39,12 @@ public class GridSpawner : MonoBehaviour
     private GameObject wallsPrefab;
     [SerializeField, Tooltip("a list of the materials to assign to the blocks, should be listed in order from entry to deepest")]
     private List<Material> blockMaterials;
+
+    [SerializeField, Tooltip("a list of materials for the particle systems")]
+    private List<Material> particleMats1;
+    [SerializeField, Tooltip("a second list of materials for the particle systems")]
+    private List<Material> particleMats2;
+
     [SerializeField, Tooltip("the grid")] 
     private List<ListWrapper<Block>> grid = new List<ListWrapper<Block>>();
     [SerializeField, Tooltip("the controller for the navmesh surface")]
@@ -121,7 +127,6 @@ public class GridSpawner : MonoBehaviour
                 Block block = thisBlock.GetComponent<Block>();
                 SetMaterial(block, i);
                 thisList.Add(block);
-
             }
             //the ending side wall
             wall = Instantiate(wallsPrefab, GetBlockSpawnPos(gridWidth, i, offset), wallsPrefab.transform.rotation, transform);
@@ -175,6 +180,8 @@ public class GridSpawner : MonoBehaviour
         int depthSize = gridDepth / blockMaterials.Count;
         int depthLevel = depth / depthSize;
         block.SetMaterial(blockMaterials[depthLevel]);
+        DestructibleObject destruct = block.gameObject.GetComponent<DestructibleObject>();
+        destruct.setParticleMaterial(particleMats1[depthLevel], particleMats2[depthLevel]);
 
         // then also set the block dig sounds correctly
         block.GetComponent<FMODUnity.StudioEventEmitter>().EventInstance.setParameterByName("DirtType", depthLevel); // this is not working yet
@@ -209,6 +216,7 @@ public class GridSpawner : MonoBehaviour
         if(block.HasGem()){
             GameManager.Instance.SpawnGem(block.transform);
         }
+
     }
 
     public int GetDefaultSurfaceID()

@@ -57,7 +57,7 @@ public class DestructibleObject : MonoBehaviour
     public void TakeDamage(int damage = 1, Shovel shovel = null)
     {
         Debug.Log("Taking Damage");
-        GetComponent<FMODUnity.StudioEventEmitter>().Play();
+        // GetComponent<FMODUnity.StudioEventEmitter>().Play();
         if (canBreak){
             durabilty -= 1;
             if (durabilty <= 0)
@@ -90,6 +90,8 @@ public class DestructibleObject : MonoBehaviour
         {
             block.OnBreak();
         }
+        destroyParticles.Play(true);
+        destroyParticles.transform.parent = null;
         Destroy(gameObject);
     }
 
@@ -98,13 +100,17 @@ public class DestructibleObject : MonoBehaviour
         //Debug.Log("object hit, " + (col.relativeVelocity.magnitude >= breakVelocity) + ", " + shovel);
         
         if(col.relativeVelocity.magnitude >= breakVelocity && shovel && shovel.CanBreak(gameObject, col.contacts[0].point)){
+            damageParticles.transform.position = col.contacts[0].point;
+            damageParticles.Play(true);
             TakeDamage();
         }
     }
 
-    public void setParticleMaterial(Material daMat) 
+    public void setParticleMaterial(Material mat1, Material mat2) 
     {
-        damageParticles.GetComponent<ParticleSystemRenderer>().material = daMat;
-        destroyParticles.GetComponent<ParticleSystemRenderer>().material = daMat;
+        damageParticles.GetComponent<ParticleSystemRenderer>().material = mat1;
+        damageParticles.GetComponent<ParticleSystemRenderer>().GetComponent<ParticleSystemRenderer>().material = mat2;
+        destroyParticles.GetComponent<ParticleSystemRenderer>().material = mat1;
+        destroyParticles.GetComponent<ParticleSystemRenderer>().GetComponent<ParticleSystemRenderer>().material = mat2;
     }
 }

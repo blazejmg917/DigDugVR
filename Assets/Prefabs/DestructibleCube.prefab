@@ -38,7 +38,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 555290699267090004}
+  - {fileID: 1852679461204418236}
   - {fileID: 7948160460824626785}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -104,8 +104,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.3942299, y: 1.3942298, z: 1.4058025}
-  m_Center: {x: 0.0028934479, y: 0.0028932095, z: -0.002893269}
+  m_Size: {x: 1.4184351, y: 1.4074491, z: 1.4058025}
+  m_Center: {x: -0.00067949295, y: 0.0028932095, z: -0.002893269}
 --- !u!114 &7186627300386999305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,11 +119,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBreak: 1
-  maxDurability: 1
+  maxDurability: 2
   breakVelocity: 0
   block: {fileID: 0}
   damageParticles: {fileID: 1751257293380420833}
-  destroyParticles: {fileID: 9003026601392576393}
+  destroyParticles: {fileID: 7130305606983970657}
   hitHaptic: {fileID: 7186627300386999344}
   breakHaptic: {fileID: 7186627300386999345}
 --- !u!114 &7186627300386999348
@@ -205,6 +205,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   intensity: 0.5
   duration: 0.25
+--- !u!114 &1229472792501075580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7186627300386999306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -268762948
+      Data2: 1257082687
+      Data3: -1395124600
+      Data4: -1582643873
+    Path: event:/Shovel/DigDirt
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params:
+  - Name: Dirt Type
+    Value: 0
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1001 &1515580981490760552
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -272,7 +305,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8882757682366905609, guid: 6a7fe6c5ec471f5479b0a789b4e3e230, type: 3}
   m_PrefabInstance: {fileID: 1515580981490760552}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &9003026601532545885
+--- !u!1001 &7130305607123968949
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -281,11 +314,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8276025776642464342, guid: 6ee7739e3320e4e468c55f5bc4470e20, type: 3}
       propertyPath: m_Name
-      value: BreakBreakEffect
+      value: BreakBlockEffect
       objectReference: {fileID: 0}
     - target: {fileID: 8882757682366905609, guid: 6ee7739e3320e4e468c55f5bc4470e20, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882757682366905609, guid: 6ee7739e3320e4e468c55f5bc4470e20, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882757682366905609, guid: 6ee7739e3320e4e468c55f5bc4470e20, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882757682366905609, guid: 6ee7739e3320e4e468c55f5bc4470e20, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8882757682366905609, guid: 6ee7739e3320e4e468c55f5bc4470e20, type: 3}
       propertyPath: m_LocalPosition.x
@@ -329,46 +374,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ee7739e3320e4e468c55f5bc4470e20, type: 3}
---- !u!4 &555290699267090004 stripped
+--- !u!4 &1852679461204418236 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8882757682366905609, guid: 6ee7739e3320e4e468c55f5bc4470e20, type: 3}
-  m_PrefabInstance: {fileID: 9003026601532545885}
+  m_PrefabInstance: {fileID: 7130305607123968949}
   m_PrefabAsset: {fileID: 0}
---- !u!198 &9003026601392576393 stripped
+--- !u!198 &7130305606983970657 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 416861396, guid: 6ee7739e3320e4e468c55f5bc4470e20, type: 3}
-  m_PrefabInstance: {fileID: 9003026601532545885}
+  m_PrefabInstance: {fileID: 7130305607123968949}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1229472792501075580
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7186627300386999306}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: -268762948
-      Data2: 1257082687
-      Data3: -1395124600
-      Data4: -1582643873
-    Path: event:/Shovel/DigDirt
-  Event: 
-  PlayEvent: 0
-  StopEvent: 0
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  AllowNonRigidbodyDoppler: 0
-  Params:
-  - Name: Dirt Type
-    Value: 0
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
