@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BlockBreakParticle1Mat
+  m_Name: BlockBreakParticle1Yellow
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_ValidKeywords:
   - _EMISSION
@@ -110,9 +110,9 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.8470589, g: 0.10196079, b: 0.07058824, a: 1}
-    - _Color: {r: 0.84705883, g: 0.101960756, b: 0.07058821, a: 1}
-    - _EmissionColor: {r: 0.26635566, g: 0.008568125, b: 0.0060488326, a: 1}
+    - _BaseColor: {r: 1, g: 0.7803922, b: 0.07058824, a: 1}
+    - _Color: {r: 1, g: 0.7803922, b: 0.07058821, a: 1}
+    - _EmissionColor: {r: 0.89626956, g: 0.39157256, b: 0.028426038, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &290025452065496051

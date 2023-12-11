@@ -100,4 +100,10 @@ public class DestructibleObject : MonoBehaviour
             TakeDamage();
         }
     }
+
+    public void setParticleMaterial(Material daMat) 
+    {
+        damageParticles.GetComponent<ParticleSystemRenderer>().material = daMat;
+        destroyParticles.GetComponent<ParticleSystemRenderer>().material = daMat;
+    }
 }

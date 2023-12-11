@@ -4882,7 +4882,7 @@ GameObject:
   - component: {fileID: 956412275640024974}
   - component: {fileID: 416861396}
   m_Layer: 0
-  m_Name: BreakBreakEffect
+  m_Name: BreakBlockEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
