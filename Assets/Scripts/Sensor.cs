@@ -9,6 +9,7 @@ public class Sensor : MonoBehaviour
     [SerializeField]
     private ExitZone exit;
 
+    [SerializeField]
     private Transform currentTarget;
 
     private MeshRenderer meshRenderer;
