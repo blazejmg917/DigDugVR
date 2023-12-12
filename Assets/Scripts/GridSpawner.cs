@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using FMODUnity;
 
 public class GridSpawner : MonoBehaviour
 {
@@ -191,7 +192,7 @@ public class GridSpawner : MonoBehaviour
         destruct.setParticleMaterial(particleMats1[depthLevel], particleMats2[depthLevel]);
 
         // then also set the block dig sounds correctly
-        block.GetComponent<FMODUnity.StudioEventEmitter>().EventInstance.setParameterByName("DirtType", depthLevel); // this is not working yet
+        block.GetComponent<FMODUnity.StudioEventEmitter>().EventReference = EventReference.Find("event:/Shovel/DigDirt " + (depthLevel+1));
         
     }
 
