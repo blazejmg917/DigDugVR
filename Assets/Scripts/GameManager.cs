@@ -60,4 +60,29 @@ public class GameManager : MonoBehaviour
         //gemstone.transform.position = new Vector3(0,2,0);
         Debug.Log("Gem spawned " + gemSpawnPos.position + gemstone);
     }
+
+    public void WinAndReload()
+    {
+        // TODO: Jack's fade to black peekaboo ass transition
+
+        // Clear existing grid and enemies
+
+        // Generate Grid
+        GridSpawner.Instance.SpawnGrid(); // need to have this populate enemies as well eventually
+
+        if (!sensor)
+        {
+            sensor = FindObjectOfType<Sensor>(); // maybe auto make a new one if the sensor doesn't exist because they really need it honestly
+        }
+        if (sensor)
+        {
+            GridSpawner.Instance.SetSensor(sensor);
+        }
+        // Generate Tunnels
+        if (generateRandomLevel)
+        {
+            GridSpawner.Instance.GenerateTunnels();
+        }
+        gemBlock = GridSpawner.Instance.AssignGem();
+    }
 }

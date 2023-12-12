@@ -139,7 +139,7 @@ public class DestructibleObject : MonoBehaviour
         }
     }
 
-    public void setParticleMaterial(Material mat1, Material mat2) 
+    public void SetParticleMaterial(Material mat1, Material mat2) 
     {
         damageParticles.GetComponent<ParticleSystemRenderer>().material = mat1;
         damageParticles.GetComponentInChildren<ParticleSystemRenderer>().material = mat2;
@@ -147,7 +147,7 @@ public class DestructibleObject : MonoBehaviour
         destroyParticles.GetComponentInChildren<ParticleSystemRenderer>().material = mat2;
     }
 
-    public void setBlockType(int a )
+    public void SetBlockType(int a )
     {
         blockType = a;
     }

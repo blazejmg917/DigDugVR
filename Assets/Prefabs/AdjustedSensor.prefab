@@ -271,6 +271,7 @@ GameObject:
   - component: {fileID: 522866103064858626}
   - component: {fileID: 3171906525992948629}
   - component: {fileID: 7517525713112603064}
+  - component: {fileID: 1917651605824980502}
   - component: {fileID: 1968426513505878778}
   m_Layer: 9
   m_Name: Sensor
@@ -308,8 +309,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exit: {fileID: 0}
+  currentTarget: {fileID: 0}
   pingSfx: {fileID: 3171906525992948629}
   buttonSfx: {fileID: 7517525713112603064}
+  rechargeSfx: {fileID: 1917651605824980502}
   readyGraphic: {fileID: 522866103201987391}
   arrow: {fileID: 522866102351650574}
   chargeGraphic: {fileID: 522866102834043124}
@@ -601,6 +604,37 @@ MonoBehaviour:
       Data3: -1609001344
       Data4: -677496544
     Path: event:/Sensor/Button
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &1917651605824980502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522866103064858633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1562363442
+      Data2: 1191679390
+      Data3: 1094533563
+      Data4: -1071933517
+    Path: event:/Sensor/Recharged
   Event: 
   PlayEvent: 0
   StopEvent: 0

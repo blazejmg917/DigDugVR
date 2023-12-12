@@ -214,10 +214,10 @@ public class GridSpawner : MonoBehaviour
         int depthLevel = depth / depthSize;
         block.SetMaterial(blockMaterials[depthLevel]);
         DestructibleObject destruct = block.gameObject.GetComponent<DestructibleObject>();
-        destruct.setParticleMaterial(particleMats1[depthLevel], particleMats2[depthLevel]);
+        destruct.SetParticleMaterial(particleMats1[depthLevel], particleMats2[depthLevel]);
 
         // then also set the block dig sounds correctly
-        destruct.setBlockType(depthLevel + 1);
+        destruct.SetBlockType(depthLevel + 1);
         
     }
 

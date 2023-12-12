@@ -17,6 +17,8 @@ public class Sensor : MonoBehaviour
     private FMODUnity.StudioEventEmitter pingSfx;
     [SerializeField]
     private FMODUnity.StudioEventEmitter buttonSfx;
+    [SerializeField]
+    private FMODUnity.StudioEventEmitter rechargeSfx;
 
     [SerializeField]
     private UnityEngine.UI.Image readyGraphic;
@@ -129,6 +131,8 @@ public class Sensor : MonoBehaviour
         status = Status.READY;
         chargeGraphic.enabled = false;
         readyGraphic.enabled = true;
+
+        rechargeSfx.Play();
 
         // TODO set material texture of top bulb to green
         meshRenderer.material = bulbOn;
