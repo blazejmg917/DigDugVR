@@ -128,6 +128,9 @@ public class GridSpawner : MonoBehaviour
                 Block block = thisBlock.GetComponent<Block>();
                 SetMaterial(block, i);
                 thisList.Add(block);
+                if(i == 0){
+                    block.SetSurface(true);
+                }
             }
             //the ending side wall
             wall = Instantiate(wallsPrefab, GetBlockSpawnPos(gridWidth, i, offset), wallsPrefab.transform.rotation, transform);

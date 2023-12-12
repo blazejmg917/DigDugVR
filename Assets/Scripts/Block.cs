@@ -16,6 +16,7 @@ public class Block : MonoBehaviour
     [SerializeField, Tooltip("a reference to the block to the front of this one (when facing directly deeper)")]private Block frontBlock;
     [SerializeField, Tooltip("whether or not the enemies can move through this block")]private bool enemyWalkable = true;
     private Vector3 size;
+    [SerializeField, Tooltip("if this object is broken. If so it will be invisible and have no collisions")]private bool isBroken = false;
 
     [SerializeField, Tooltip("if this block has the goal gem. will always be set to false on game start before random assignment")]private bool hasGem = false;
     [SerializeField, Tooltip("if this block is at the surface. If so, enemies will not be able to burrow through it while wandering")]private bool isSurface = false;
@@ -70,7 +71,16 @@ public class Block : MonoBehaviour
             backBlock.setFront(null);
         if (frontBlock)
             frontBlock.setBack(null);
+        isBroken = true;
         GridSpawner.Instance.OnBlockBroken(this);
+    }
+
+    public void SetBroken(bool broken){
+        isBroken = broken;
+    }
+
+    public bool IsBroken(){
+        return isBroken;
     }
 
     public Vector3 GetSize(){
@@ -108,20 +118,35 @@ public class Block : MonoBehaviour
         
         switch(direction){
             case Direction.RIGHT:
-                if(leftBlock == null){
-                    othersidePos = transform.position + new Vector3(-size.x,0,0);
+                if(leftBlock == null || leftBlock.IsBroken()){
+                    if(leftBlock){
+                        othersidePos = leftBlock.transform.position;
+                    }
+                    else{
+                        othersidePos = transform.position + new Vector3(-GetSize().x,0,0);
+                    }
                     return true;
                 }
                 return leftBlock.CanWalkThrough(maxBlocksToMoveThrough - 1, direction, out othersidePos);
             case Direction.LEFT:
-                if(rightBlock == null){
-                    othersidePos = transform.position + new Vector3(size.x,0,0);
+                if(rightBlock == null || rightBlock.IsBroken()){
+                    if(rightBlock){
+                        othersidePos = rightBlock.transform.position;
+                    }
+                    else{
+                        othersidePos = transform.position + new Vector3(GetSize().x,0,0);
+                    }
                     return true;
                 }
                 return rightBlock.CanWalkThrough(maxBlocksToMoveThrough - 1, direction, out othersidePos);
             case Direction.FRONT:
-                if(backBlock == null){
-                    othersidePos = transform.position + new Vector3(0,0,size.z);
+                if(backBlock == null || backBlock.IsBroken()){
+                    if(backBlock){
+                        othersidePos = backBlock.transform.position;
+                    }
+                    else{
+                        othersidePos = transform.position + new Vector3(0,0,GetSize().z);
+                    }
                     return true;
                 }
                 return backBlock.CanWalkThrough(maxBlocksToMoveThrough - 1, direction, out othersidePos);
@@ -130,8 +155,13 @@ public class Block : MonoBehaviour
                 {
                     return false;
                 }
-                if(frontBlock == null){
-                    othersidePos = transform.position + new Vector3(0,0,-size.z);
+                if(frontBlock == null || frontBlock.IsBroken()){
+                    if(frontBlock){
+                        othersidePos = frontBlock.transform.position;
+                    }
+                    else{
+                        othersidePos = transform.position + new Vector3(0,0,-GetSize().z);
+                    }
                     return true;
                 }
                 return frontBlock.CanWalkThrough(maxBlocksToMoveThrough - 1, direction, out othersidePos);
@@ -139,6 +169,10 @@ public class Block : MonoBehaviour
                 return false;
                 
         }
+    }
+
+    public void SetSurface(bool surface){
+        isSurface = surface;
     }
 
     public bool HasGem(){
