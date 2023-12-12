@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField, Tooltip("A reference to the sensor")]private Sensor sensor;
     [SerializeField, Tooltip("gem block for easy reference")]private Block gemBlock;
+    [SerializeField, Tooltip("if you should run the random generation")]private bool generateRandomLevel = true;
     private static GameManager _instance;
     public static GameManager Instance
     {
@@ -30,7 +31,9 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         // Generate Grid
-        GridSpawner.Instance.SpawnGrid();
+        if(generateRandomLevel){
+            GridSpawner.Instance.SpawnGrid();
+        }
 
         if (!sensor)
         {
@@ -40,7 +43,9 @@ public class GameManager : MonoBehaviour
             GridSpawner.Instance.SetSensor(sensor);
         }
         // Generate Tunnels
-        GridSpawner.Instance.GenerateTunnels();
+        if(generateRandomLevel){
+            GridSpawner.Instance.GenerateTunnels();
+        }
         gemBlock = GridSpawner.Instance.AssignGem(); 
     }
 
