@@ -2,6 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using FMODUnity;
+
+struct tunnelLocation
+{
+    public string Type;
+    public int PosX;
+    public int PosY;
+    public int Width;
+
+    public tunnelLocation(string type, int posx, int posy, int width)
+    {
+        Type = type;
+        PosX = posx;
+        PosY = posy;
+        Width = width;
+    }
+}
 
 public class GridSpawner : MonoBehaviour
 {
@@ -62,6 +79,10 @@ public class GridSpawner : MonoBehaviour
     [SerializeField, Tooltip("the minimum depth that a gem can spawn at")]private int minGemDepth = 9;
     [SerializeField, Tooltip("if the gem can spawn in a space adjacent to a tunnel")]private bool allowGemNextToTunnel = true;
 
+    public bool bruh = false;
+
+    private List<tunnelLocation> tunnelLocations = new List<tunnelLocation>();
+
     private Sensor sensor;
 
     private static GridSpawner _instance;
@@ -91,7 +112,12 @@ public class GridSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        // bruh is just the ping button
+        if (bruh)
+        {
+            GenerateTunnels();
+            bruh = !bruh;
+        }
     }
 
     public Block AssignGem(){
@@ -191,8 +217,95 @@ public class GridSpawner : MonoBehaviour
         destruct.setParticleMaterial(particleMats1[depthLevel], particleMats2[depthLevel]);
 
         // then also set the block dig sounds correctly
-        block.GetComponent<FMODUnity.StudioEventEmitter>().EventInstance.setParameterByName("DirtType", depthLevel); // this is not working yet
+        block.GetComponent<FMODUnity.StudioEventEmitter>().EventReference = EventReference.Find("event:/Shovel/DigDirt " + (depthLevel+1));
         
+    }
+
+    public void GenerateTunnels() {
+
+        // First Populate the tunnelLocations
+        tunnelLocations.Clear();
+        tunnelLocations.Add(new tunnelLocation("H", -1, -1, 5));
+        tunnelLocations.Add(new tunnelLocation("V", -1, -1, 5));
+        tunnelLocations.Add(new tunnelLocation("H", -1, -1, 3));
+        tunnelLocations.Add(new tunnelLocation("H", -1, -1, 3));
+        tunnelLocations.Add(new tunnelLocation("V", -1, -1, 3));
+        tunnelLocations.Add(new tunnelLocation("V", -1, -1, 3));
+
+        // Now for each entry generate a random location for these tunnels to be located. We will be selecting the
+        // center positions for these tunnels
+        for(int i = 0; i < tunnelLocations.Count; i++) { 
+            // Get random x and y positions. These positions are based on the indices of the grid array
+            tunnelLocations[i] = new tunnelLocation(tunnelLocations[i].Type, Random.Range(1, gridDepth - 1), Random.Range(1, gridWidth - 1), tunnelLocations[i].Width);
+        }
+
+        // Now create the tunnels in the grid
+        foreach(tunnelLocation location in tunnelLocations)
+        {
+            int centerDepth = location.PosX;
+            int centerHorizontal = location.PosY;
+            int tunnelSize = (location.Width / 2) + 1;
+            Block blockReference = grid[centerDepth][centerHorizontal];
+
+            switch (location.Type)
+            {
+                case "H":
+                    if (!blockReference.IsBroken())
+                    {
+                        grid[centerDepth][centerHorizontal].GetComponent<DestructibleObject>().Break();
+                    }
+                    // Delete the Left Blocks
+                    for(int left = 1; left < tunnelSize; left++) {
+                        if ((blockReference = grid[centerDepth][centerHorizontal - left]).GetComponent<DestructibleObject>() == null)
+                            break;
+                        else if(!blockReference.IsBroken())
+                        {
+                            blockReference.GetComponent<DestructibleObject>().Break();
+                        }
+                    }
+                    // Delete the Right Blocks
+                    for (int right = 1; right < 3; right++) {
+                        if ((blockReference = grid[centerDepth][centerHorizontal + right]).GetComponent<DestructibleObject>() == null)
+                            break;
+                        else if (!blockReference.IsBroken())
+                        {
+                            blockReference.GetComponent<DestructibleObject>().Break();
+                        }
+                    }
+                    break;
+                case "V":
+                    if (!blockReference.IsBroken())
+                    {
+                        grid[centerDepth][centerHorizontal].GetComponent<DestructibleObject>().Break();
+                    }
+                    // Delete the Up Blocks
+                    for (int up = 1; up < tunnelSize; up++)
+                    {
+                        // Since there are no walls at entrance, make sure we can't go out of bounds there
+                        if (centerDepth - up < 0 || (blockReference = grid[centerDepth - up][centerHorizontal]).GetComponent<DestructibleObject>() == null)
+                            break;
+                        else if (!blockReference.IsBroken())
+                        {
+                            blockReference.GetComponent<DestructibleObject>().Break();
+                        }
+                    }
+                    // Delete the Down Blocks
+                    for (int down = 1; down < 3; down++)
+                    {
+                        if ((blockReference = grid[centerDepth + down][centerHorizontal]).GetComponent<DestructibleObject>() == null)
+                            break;
+                        else if (!blockReference.IsBroken())
+                        {
+                            blockReference.GetComponent<DestructibleObject>().Break();
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+        
+
     }
 
 
