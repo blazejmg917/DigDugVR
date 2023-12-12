@@ -23,6 +23,6 @@ public class Gemstone : MonoBehaviour
     /// <param name="args"></param>
     public void OnPickup(SelectEnterEventArgs args)
     {
-        FindObjectOfType<Sensor>().TargetExit();
+        //FindObjectOfType<Sensor>().TargetExit();
     }
 }

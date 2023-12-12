@@ -7,12 +7,9 @@ using FMODUnity;
 public class Sensor : MonoBehaviour
 {
     [SerializeField]
-    private Gemstone gemstone;
-
-    [SerializeField]
     private ExitZone exit;
 
-    private MonoBehaviour currentTarget;
+    private Transform currentTarget;
 
     private MeshRenderer meshRenderer;
     [SerializeField]
@@ -50,7 +47,7 @@ public class Sensor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentTarget = gemstone;
+        GridSpawner.Instance.SetSensor(this);
 
         meshRenderer = GetComponent<MeshRenderer>();
     }
@@ -136,15 +133,11 @@ public class Sensor : MonoBehaviour
         meshRenderer.material = bulbOn;
     }
 
-    public void TargetExit()
+    public void SetTarget(Transform target)
     {
-        currentTarget = exit;
+        currentTarget = target;
     }
 
-    public void TargetGemstone()
-    {
-        currentTarget = gemstone;
-    }
 
     /// <summary>
     /// Called when the shovel is picked up. Used to know if the shovel can dig blocks or not

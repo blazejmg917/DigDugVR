@@ -17,6 +17,8 @@ public class DestructibleObject : MonoBehaviour
 
     [SerializeField, Tooltip("the Block component for this object")]
     private Block block;
+    [SerializeField, Tooltip("the collider for this object")]private Collider col;
+    [SerializeField, Tooltip("the renderer for this object")]private Renderer render;
     [Header("Particles")]
     [SerializeField, Tooltip("the particle system that will be played when this object is damaged")]
     private ParticleSystem damageParticles;
@@ -42,6 +44,12 @@ public class DestructibleObject : MonoBehaviour
         {
             block = GetComponent<Block>();
         }
+        if(!col){
+            col = GetComponent<Collider>();
+        }
+        if(!render){
+            render = GetComponent<Renderer>();
+        }
     }
 
     // Update is called once per frame
@@ -57,7 +65,8 @@ public class DestructibleObject : MonoBehaviour
     public void TakeDamage(int damage = 1, Shovel shovel = null)
     {
         Debug.Log("Taking Damage");
-        if(canBreak){
+        // GetComponent<FMODUnity.StudioEventEmitter>().Play();
+        if (canBreak){
             durabilty -= 1;
             if (durabilty <= 0)
             {
@@ -89,7 +98,29 @@ public class DestructibleObject : MonoBehaviour
         {
             block.OnBreak();
         }
-        Destroy(gameObject);
+        destroyParticles.Play(true);
+        destroyParticles.transform.parent = null;
+        if(!render){
+            render = GetComponent<Renderer>();
+        }
+        if(render){
+            render.enabled = false;
+        }
+        if(!col){
+            col = GetComponent<Collider>();
+        }
+        if(col){
+            col.enabled = false;
+        }
+        //Destroy(gameObject);
+    }
+
+    public void Unbreak(){
+        render.enabled = true;
+        col.enabled = true;
+        if(block){
+            block.SetBroken(false);
+        }
     }
 
     public void OnCollisionEnter(Collision col){
@@ -97,7 +128,17 @@ public class DestructibleObject : MonoBehaviour
         //Debug.Log("object hit, " + (col.relativeVelocity.magnitude >= breakVelocity) + ", " + shovel);
         
         if(col.relativeVelocity.magnitude >= breakVelocity && shovel && shovel.CanBreak(gameObject, col.contacts[0].point)){
+            damageParticles.transform.position = col.contacts[0].point;
+            damageParticles.Play(true);
             TakeDamage();
         }
+    }
+
+    public void setParticleMaterial(Material mat1, Material mat2) 
+    {
+        damageParticles.GetComponent<ParticleSystemRenderer>().material = mat1;
+        damageParticles.GetComponentInChildren<ParticleSystemRenderer>().material = mat2;
+        destroyParticles.GetComponent<ParticleSystemRenderer>().material = mat1;
+        destroyParticles.GetComponentInChildren<ParticleSystemRenderer>().material = mat2;
     }
 }

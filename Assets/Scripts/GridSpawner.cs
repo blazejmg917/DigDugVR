@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class GridSpawner : MonoBehaviour
 {
     [System.Serializable]
-    public class ListWrapper<T>{
+    public class ListWrapper<T> {
         public List<T> list = new List<T>();
         public T this[int key]
         {
@@ -18,17 +19,17 @@ public class GridSpawner : MonoBehaviour
                 list[key] = value;
             }
         }
-        public int Count{
+        public int Count {
             get
             {
                 return list.Count;
             }
         }
-        public void Add(T val){
+        public void Add(T val) {
             list.Add(val);
         }
 
-        public void RemoveAt(int i){
+        public void RemoveAt(int i) {
             list.RemoveAt(i);
         }
     }
@@ -39,6 +40,12 @@ public class GridSpawner : MonoBehaviour
     private GameObject wallsPrefab;
     [SerializeField, Tooltip("a list of the materials to assign to the blocks, should be listed in order from entry to deepest")]
     private List<Material> blockMaterials;
+
+    [SerializeField, Tooltip("a list of materials for the particle systems")]
+    private List<Material> particleMats1;
+    [SerializeField, Tooltip("a second list of materials for the particle systems")]
+    private List<Material> particleMats2;
+
     [SerializeField, Tooltip("the grid")] 
     private List<ListWrapper<Block>> grid = new List<ListWrapper<Block>>();
     [SerializeField, Tooltip("the controller for the navmesh surface")]
@@ -54,6 +61,8 @@ public class GridSpawner : MonoBehaviour
     [Header("Gem settings")]
     [SerializeField, Tooltip("the minimum depth that a gem can spawn at")]private int minGemDepth = 9;
     [SerializeField, Tooltip("if the gem can spawn in a space adjacent to a tunnel")]private bool allowGemNextToTunnel = true;
+
+    private Sensor sensor;
 
     private static GridSpawner _instance;
     public static GridSpawner Instance
@@ -98,6 +107,7 @@ public class GridSpawner : MonoBehaviour
         }
         int randSelection = Random.Range(0, randOptions.Count);
         randOptions[randSelection].AssignGem();
+        sensor.SetTarget(randOptions[randSelection].transform);
         return randOptions[randSelection];
     }
 
@@ -109,19 +119,21 @@ public class GridSpawner : MonoBehaviour
         for(int i = 0; i < gridDepth; i++){
             ListWrapper<Block> thisList = new ListWrapper<Block>();
             //the starting side wall
-            GameObject wall = Instantiate(wallsPrefab, GetBlockSpawnPos(-1, i, offset), Quaternion.identity, transform);
+            GameObject wall = Instantiate(wallsPrefab, GetBlockSpawnPos(-1, i, offset), wallsPrefab.transform.rotation, transform);
             thisList.Add(wall.GetComponent<Block>());
             //grid[i].Add(wall.GetComponent<Block>());
             for(int j = 0; j < gridWidth; j++){
                 
-                GameObject thisBlock = Instantiate(baseBlockPrefab, GetBlockSpawnPos(j, i, offset), Quaternion.identity, transform);
+                GameObject thisBlock = Instantiate(baseBlockPrefab, GetBlockSpawnPos(j, i, offset), baseBlockPrefab.transform.rotation, transform);
                 Block block = thisBlock.GetComponent<Block>();
                 SetMaterial(block, i);
                 thisList.Add(block);
-
+                if(i == 0){
+                    block.SetSurface(true);
+                }
             }
             //the ending side wall
-            wall = Instantiate(wallsPrefab, GetBlockSpawnPos(gridWidth, i, offset), Quaternion.identity, transform);
+            wall = Instantiate(wallsPrefab, GetBlockSpawnPos(gridWidth, i, offset), wallsPrefab.transform.rotation, transform);
             thisList.Add(wall.GetComponent<Block>());
             grid.Add(thisList);
         }
@@ -129,12 +141,15 @@ public class GridSpawner : MonoBehaviour
         {
             ListWrapper<Block> thisList = new ListWrapper<Block>();
             for(int j = -1; j <= gridWidth; j++){
-                GameObject thisBlock = Instantiate(wallsPrefab, GetBlockSpawnPos(j, gridDepth, offset), Quaternion.identity, transform);
+                GameObject thisBlock = Instantiate(wallsPrefab, GetBlockSpawnPos(j, gridDepth, offset), wallsPrefab.transform.rotation, transform);
                 thisList.Add(thisBlock.GetComponent<Block>());
             }
             grid.Add(thisList);
         }
         ConnectGrid();
+        #if UNITY_EDITOR
+        EditorUtility.SetDirty(this);
+        #endif
     }
 
     public void ConnectGrid(){
@@ -172,6 +187,12 @@ public class GridSpawner : MonoBehaviour
         int depthSize = gridDepth / blockMaterials.Count;
         int depthLevel = depth / depthSize;
         block.SetMaterial(blockMaterials[depthLevel]);
+        DestructibleObject destruct = block.gameObject.GetComponent<DestructibleObject>();
+        destruct.setParticleMaterial(particleMats1[depthLevel], particleMats2[depthLevel]);
+
+        // then also set the block dig sounds correctly
+        block.GetComponent<FMODUnity.StudioEventEmitter>().EventInstance.setParameterByName("DirtType", depthLevel); // this is not working yet
+        
     }
 
 
@@ -202,6 +223,7 @@ public class GridSpawner : MonoBehaviour
         if(block.HasGem()){
             GameManager.Instance.SpawnGem(block.transform);
         }
+
     }
 
     public int GetDefaultSurfaceID()
@@ -212,5 +234,10 @@ public class GridSpawner : MonoBehaviour
     public int GetInvisibleSurfaceID()
     {
         return surfaceController.GetInvisID();
+    }
+
+    public void SetSensor(Sensor s)
+    {
+        sensor = s;
     }
 }
