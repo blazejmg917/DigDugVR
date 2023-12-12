@@ -123,85 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &113640225
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 113640227}
-  - component: {fileID: 113640226}
-  - component: {fileID: 113640228}
-  m_Layer: 0
-  m_Name: MusicTracker
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &113640226
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 113640225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 310898ee08d60fc4d8b38fc3b0daa5d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentFrameCount: 0
-  playCount: 10
-  midiStep: 0
---- !u!4 &113640227
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 113640225}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.73762584, y: 1.1247067, z: 3.314291}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &113640228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 113640225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: -1590221723
-      Data2: 1338210640
-      Data3: -37496404
-      Data4: 1070877760
-    Path: event:/Music/SequencedMusic
-  Event: 
-  PlayEvent: 1
-  StopEvent: 0
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  AllowNonRigidbodyDoppler: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
 --- !u!1 &299639867
 GameObject:
   m_ObjectHideFlags: 0
@@ -872,7 +793,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.13333334
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 3efbda16a5b95d3448cc19be12cb1934, type: 2}
   m_BuildHeightMesh: 0
@@ -902,7 +823,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.13333334
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 780b3a1c8c60728448959c45e7ee5d17, type: 2}
   m_BuildHeightMesh: 0
@@ -1269,8 +1190,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 3
+  stuckRegenTime: 3
+  freeRegenTime: 0.5
+  invisible: 0
+  agent: {fileID: 0}
+  defaultNavMeshAgentType: 0
+  invisibleNavMeshAgentType: 1
+  defaultMoveSpeed: 3
+  state: 0
+  maxWanderTime: 10
+  maxWaitTime: 2
+  maxWanderPointDist: 10
+  burrowAngle: 10
+  burrowDistance: 3
+  atDestination: 0
+  allowSubsequentBurrowing: 0
+  allowBurrowChance: 0.1
+  maxAntiBurrowAttempts: 20
+  wanderDestination: {x: 0, y: 0, z: 0}
+  invisibleMoveSpeed: 3
+  maxBurrowBlocks: 6
+  targetTransform: {fileID: 0}
+  maxFollowTime: 5
+  canSeeSearchTarget: 0
+  maxSearchTime: 20
+  targetUpdateTime: 0.25
+  huntMoveSpeed: 4
+  prevState: 0
+  retainTarget: 0
   normalEnemyAppearance: {fileID: 0}
   invisibleEnemyAppearance: {fileID: 0}
+  runDebug: 0
+  stuckParticlesDebug: {fileID: 0}
+  damagedParticlesDebug: {fileID: 0}
 --- !u!136 &1714349567
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1608,8 +1560,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe27629a662e0d64b9f0d59825d4579e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canBreak: 1
   maxDurability: 3
   breakVelocity: 3
+  block: {fileID: 0}
+  col: {fileID: 0}
+  render: {fileID: 0}
   damageParticles: {fileID: 0}
   destroyParticles: {fileID: 0}
   hitHaptic: {fileID: 0}
@@ -1890,3 +1846,60 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9605ec3e13b8d06449c6f2c3420f00eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &3135700600993488223
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3135700600972648060, guid: 4d4ca23f8c5984043aa0e96dd8183c4e, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3135700600972648060, guid: 4d4ca23f8c5984043aa0e96dd8183c4e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.73762584
+      objectReference: {fileID: 0}
+    - target: {fileID: 3135700600972648060, guid: 4d4ca23f8c5984043aa0e96dd8183c4e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.1247067
+      objectReference: {fileID: 0}
+    - target: {fileID: 3135700600972648060, guid: 4d4ca23f8c5984043aa0e96dd8183c4e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.314291
+      objectReference: {fileID: 0}
+    - target: {fileID: 3135700600972648060, guid: 4d4ca23f8c5984043aa0e96dd8183c4e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3135700600972648060, guid: 4d4ca23f8c5984043aa0e96dd8183c4e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3135700600972648060, guid: 4d4ca23f8c5984043aa0e96dd8183c4e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3135700600972648060, guid: 4d4ca23f8c5984043aa0e96dd8183c4e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3135700600972648060, guid: 4d4ca23f8c5984043aa0e96dd8183c4e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3135700600972648060, guid: 4d4ca23f8c5984043aa0e96dd8183c4e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3135700600972648060, guid: 4d4ca23f8c5984043aa0e96dd8183c4e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3135700600972648062, guid: 4d4ca23f8c5984043aa0e96dd8183c4e, type: 3}
+      propertyPath: m_Name
+      value: MusicTracker
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4d4ca23f8c5984043aa0e96dd8183c4e, type: 3}

@@ -122,6 +122,8 @@ MonoBehaviour:
   maxDurability: 2
   breakVelocity: 0
   block: {fileID: 0}
+  col: {fileID: 0}
+  render: {fileID: 0}
   damageParticles: {fileID: 1751257293380420833}
   destroyParticles: {fileID: 7130305606983970657}
   hitHaptic: {fileID: 7186627300386999344}
@@ -175,6 +177,7 @@ MonoBehaviour:
   backBlock: {fileID: 0}
   frontBlock: {fileID: 0}
   enemyWalkable: 1
+  isBroken: 0
   hasGem: 0
   isSurface: 0
 --- !u!114 &7186627300386999344
@@ -220,11 +223,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: -268762948
-      Data2: 1257082687
-      Data3: -1395124600
-      Data4: -1582643873
-    Path: event:/Shovel/DigDirt
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   Event: 
   PlayEvent: 0
   StopEvent: 0

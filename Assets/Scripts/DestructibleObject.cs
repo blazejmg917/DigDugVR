@@ -65,7 +65,7 @@ public class DestructibleObject : MonoBehaviour
     public void TakeDamage(int damage = 1, Shovel shovel = null)
     {
         Debug.Log("Taking Damage");
-        // GetComponent<FMODUnity.StudioEventEmitter>().Play();
+        GetComponent<FMODUnity.StudioEventEmitter>().Play();
         if (canBreak){
             durabilty -= 1;
             if (durabilty <= 0)
