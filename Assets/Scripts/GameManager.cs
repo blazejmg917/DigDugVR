@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField, Tooltip("the gem prefab")]private GameObject GemPrefab;
+
     [SerializeField, Tooltip("A reference to the sensor")]private Sensor sensor;
     [SerializeField, Tooltip("gem block for easy reference")]private Block gemBlock;
     private static GameManager _instance;
@@ -28,6 +29,9 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Generate Grid
+        GridSpawner.Instance.SpawnGrid();
+
         if (!sensor)
         {
             sensor = FindObjectOfType<Sensor>();
