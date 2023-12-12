@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class GridSpawner : MonoBehaviour
 {
@@ -143,6 +144,9 @@ public class GridSpawner : MonoBehaviour
             grid.Add(thisList);
         }
         ConnectGrid();
+        #if UNITY_EDITOR
+        EditorUtility.SetDirty(this);
+        #endif
     }
 
     public void ConnectGrid(){
