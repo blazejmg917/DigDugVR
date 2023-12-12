@@ -1,3 +1,4 @@
+using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,11 +6,25 @@ using UnityEngine;
 public class MusicTracker : MonoBehaviour
 {
     [SerializeField]
+    private StudioEventEmitter music;
+    [SerializeField]
+    private StudioEventEmitter cavenoise;
+
+    [SerializeField]
     private int currentFrameCount = 0;
     [SerializeField]
     private int playCount = 16; // like 12 ish for fast music
     [SerializeField]
     private int midiStep = 0;
+
+    //[SerializeField]
+    //private float timePassed = 0f;
+    //[SerializeField]
+    //private float eigthTime = .5f; // like 12 ish for fast music
+
+    [SerializeField]
+    private Transform currentPlayerLocation;
+
 
     // Start is called before the first frame update
     void Start()
@@ -20,16 +35,33 @@ public class MusicTracker : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        // music tracking stuff
         currentFrameCount++;
         if (currentFrameCount >= playCount)
         {
             currentFrameCount = 0;
             midiStep = (midiStep + 1) % 64;
-            GetComponent<FMODUnity.StudioEventEmitter>().SetParameter("eigth_note", midiStep);
+            music.SetParameter("eigth_note", midiStep);
+        } // have more methods that acts as signals to speed up/slow down the music
 
-        }
-
-        // maybe have more methods that acts as signals to speed up/slow down the music
+        // player tracking stuff
+        float depth = Mathf.Clamp(currentPlayerLocation.position.z + 10, 0, 40);
+        FMODUnity.RuntimeManager.StudioSystem.setParameterByName("CaveDepth", depth);
+        //cavenoise.SetParameter("CaveDepth", depth);
 
     }
+
+    // // this was a small attempt to use a coroutine instead, maybe worth it, maybe not
+    //IEnumerator CoroMusic()
+    //{
+    //    timePassed += Time.deltaTime;
+    //    if (currentFrameCount >= playCount)
+    //    {
+    //        currentFrameCount = 0;
+    //        midiStep = (midiStep + 1) % 64;
+    //        GetComponent<FMODUnity.StudioEventEmitter>().SetParameter("eigth_note", midiStep);
+
+    //    }
+    //    yield return new WaitForSeconds(.1f); 
+    //}
 }
