@@ -35,7 +35,8 @@ public class GameManager : MonoBehaviour
         if (sensor) {
             GridSpawner.Instance.SetSensor(sensor);
         }
-        
+        // Generate Tunnels
+        GridSpawner.Instance.GenerateTunnels();
         gemBlock = GridSpawner.Instance.AssignGem(); 
     }
 
