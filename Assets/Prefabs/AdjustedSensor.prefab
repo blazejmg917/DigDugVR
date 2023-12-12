@@ -169,7 +169,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b9533ba476a351f44835c7467f233e8b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 634ed19407932194ca1815519cc64c82, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -307,7 +307,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b0bfba7ab391b644bc1d7c799d82bd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gemstone: {fileID: 0}
   exit: {fileID: 0}
   pingSfx: {fileID: 3171906525992948629}
   buttonSfx: {fileID: 7517525713112603064}
@@ -455,7 +454,19 @@ MonoBehaviour:
       m_Calls: []
   m_Activated:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 522866103064858637}
+        m_TargetAssemblyTypeName: Sensor, Assembly-CSharp
+        m_MethodName: Ping
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_Deactivated:
     m_PersistentCalls:
       m_Calls: []
