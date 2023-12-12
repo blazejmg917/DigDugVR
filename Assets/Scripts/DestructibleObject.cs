@@ -17,6 +17,8 @@ public class DestructibleObject : MonoBehaviour
 
     [SerializeField, Tooltip("the Block component for this object")]
     private Block block;
+    [SerializeField, Tooltip("the collider for this object")]private Collider col;
+    [SerializeField, Tooltip("the renderer for this object")]private Renderer render;
     [Header("Particles")]
     [SerializeField, Tooltip("the particle system that will be played when this object is damaged")]
     private ParticleSystem damageParticles;
@@ -41,6 +43,12 @@ public class DestructibleObject : MonoBehaviour
         if (!block)
         {
             block = GetComponent<Block>();
+        }
+        if(!col){
+            col = GetComponent<Collider>();
+        }
+        if(!render){
+            render = GetComponent<Renderer>();
         }
     }
 
@@ -92,7 +100,27 @@ public class DestructibleObject : MonoBehaviour
         }
         destroyParticles.Play(true);
         destroyParticles.transform.parent = null;
-        Destroy(gameObject);
+        if(!render){
+            render = GetComponent<Renderer>();
+        }
+        if(render){
+            render.enabled = false;
+        }
+        if(!col){
+            col = GetComponent<Collider>();
+        }
+        if(col){
+            col.enabled = false;
+        }
+        //Destroy(gameObject);
+    }
+
+    public void Unbreak(){
+        render.enabled = true;
+        col.enabled = true;
+        if(block){
+            block.SetBroken(false);
+        }
     }
 
     public void OnCollisionEnter(Collision col){
