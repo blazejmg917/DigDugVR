@@ -136,15 +136,15 @@ public class GridSpawner : MonoBehaviour
             for(int j = -1; j <= gridWidth; j++){
                 GameObject thisBlock = Instantiate(wallsPrefab, GetBlockSpawnPos(j, gridDepth, offset), Quaternion.identity, transform);
                 thisList.Add(thisBlock.GetComponent<Block>());
-                if (j == gridWidth / 2) // cam code here, may be awful / not centered correctly
-                {
-                    StudioEventEmitter emitter = thisBlock.AddComponent<FMODUnity.StudioEventEmitter>();
-                    emitter.EventReference = EventReference.Find("event:/Ambience/Cavenoise");
-                    emitter.Play();
-                    EventInstance masterReverbSnapshot = FMODUnity.RuntimeManager.CreateInstance("snapshot:/MasterReverbControl");
-                    //masterReverbSnapshot.set3DAttributes(attributes);
-                    masterReverbSnapshot.start();
-                }
+                //if (j == gridWidth / 2) // cam code here, may be awful / not centered correctly
+                //{
+                //    StudioEventEmitter emitter = thisBlock.AddComponent<FMODUnity.StudioEventEmitter>();
+                //    emitter.EventReference = EventReference.Find("event:/Ambience/Cavenoise");
+                //    emitter.Play();
+                //    //EventInstance masterReverbSnapshot = FMODUnity.RuntimeManager.CreateInstance("snapshot:/MasterReverbControl");
+                //    //masterReverbSnapshot.set3DAttributes(attributes);
+                //    //masterReverbSnapshot.start();
+                //}
             }
             grid.Add(thisList);
         }
@@ -188,7 +188,7 @@ public class GridSpawner : MonoBehaviour
         block.SetMaterial(blockMaterials[depthLevel]);
 
         // then also set the block dig sounds correctly
-        block.GetComponent<FMODUnity.StudioEventEmitter>().EventInstance.setParameterByName("DirtType", depthLevel); // this is not working yet
+        block.GetComponent<FMODUnity.StudioEventEmitter>().SetParameter("DirtType", depthLevel); // this is not working yet
         
     }
 
