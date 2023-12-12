@@ -384,7 +384,7 @@ public class Enemy : MonoBehaviour
         for (int i = 0; i < maxAntiBurrowAttempts; i++)
         {
             Vector3 newDestination = Random.insideUnitCircle * maxWanderPointDist;
-            newDestination = new Vector3(newDestination.x, transform.position.y, newDestination.y);
+            newDestination = new Vector3(newDestination.x + transform.position.x, transform.position.y, newDestination.y + transform.position.z);
             NavMeshHit hit;
             float maxDist = maxWanderPointDist;
             if (allowWallPosition)
