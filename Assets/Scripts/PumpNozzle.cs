@@ -137,10 +137,12 @@ public class PumpNozzle : MonoBehaviour
     {
         currentAttachedEnemy = enemy;
         stuckToEnemy = true;
-        enemy.SetStuck(true);
+        enemy.SetStuck(true, this);
         if(!joint){
             joint = gameObject.AddComponent<FixedJoint>();
         }
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
         joint.connectedBody = enemy.gameObject.GetComponent<Rigidbody>();
         stuckDist = (transform.position - pumpAttach.position).magnitude;
     }
