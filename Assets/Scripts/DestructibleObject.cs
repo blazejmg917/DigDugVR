@@ -33,6 +33,7 @@ public class DestructibleObject : MonoBehaviour
     //[Header("Audio")]
     //put audio for block break here
 
+    [SerializeField]
     private int blockType;
 
     // Start is called before the first frame update
@@ -55,7 +56,7 @@ public class DestructibleObject : MonoBehaviour
         }
 
         // set the audio event for digging
-        GetComponent<FMODUnity.StudioEventEmitter>().EventReference = EventReference.Find("event:/Shovel/DigDirt " + blockType);
+        GetComponent<FMODUnity.StudioEventEmitter>().EventReference = FMODUnity.RuntimeManager.PathToEventReference("event:/Shovel/DigDirt " + blockType);
     }
 
     // Update is called once per frame
