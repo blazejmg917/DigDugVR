@@ -32,6 +32,9 @@ public class DestructibleObject : MonoBehaviour
     //[Header("Audio")]
     //put audio for block break here
 
+    [SerializeField]
+    private int blockType;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -50,6 +53,8 @@ public class DestructibleObject : MonoBehaviour
         if(!render){
             render = GetComponent<Renderer>();
         }
+
+        block.GetComponent<FMODUnity.StudioEventEmitter>().EventReference = FMODUnity.RuntimeManager.PathToEventReference("event:/Shovel/DigDirt " + blockType);
     }
 
     // Update is called once per frame
@@ -140,5 +145,10 @@ public class DestructibleObject : MonoBehaviour
         damageParticles.GetComponentInChildren<ParticleSystemRenderer>().material = mat2;
         destroyParticles.GetComponent<ParticleSystemRenderer>().material = mat1;
         destroyParticles.GetComponentInChildren<ParticleSystemRenderer>().material = mat2;
+    }
+
+    public void setBlockType(int a )
+    {
+        blockType = a;
     }
 }
