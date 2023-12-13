@@ -5017,7 +5017,7 @@ MonoBehaviour:
   normalEnemyAppearance: {fileID: 4129566301461816469}
   invisibleEnemyAppearance: {fileID: 4129566299674311272}
   groundChecker: {fileID: 2959808110765254773}
-  runDebug: 1
+  runDebug: 0
   stuckParticlesDebug: {fileID: 4129566301363424898}
   damagedParticlesDebug: {fileID: 4129566301075879334}
   enemyAnim: {fileID: 5645415876927688984}

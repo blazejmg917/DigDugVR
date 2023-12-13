@@ -815,7 +815,7 @@ MonoBehaviour:
   nozzleAttach: {fileID: 3314176825228836943}
   nozzleLaunchSpeed: 30
   rb: {fileID: 0}
-  runDebug: 1
+  runDebug: 0
   fireParticlesDebug: {fileID: 6618355837789602721}
   activateParticlesDebug: {fileID: 5624373583564821589}
   halfPumpParticlesDebug: {fileID: 0}
