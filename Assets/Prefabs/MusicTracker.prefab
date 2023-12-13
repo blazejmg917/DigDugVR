@@ -49,7 +49,7 @@ MonoBehaviour:
   music: {fileID: 3135700600972648059}
   cavenoise: {fileID: 1802975133508381772}
   currentFrameCount: 0
-  playCount: 16
+  playCount: 0
   midiStep: 0
   currentPlayerLocation: {fileID: 0}
 --- !u!114 &3135700600972648059

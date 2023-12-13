@@ -12,8 +12,8 @@ public class MusicTracker : MonoBehaviour
 
     [SerializeField]
     private int currentFrameCount = 0;
-    [SerializeField]
-    private int playCount = 16; // like 12 ish for fast music
+
+    private int playCount = 16; // like 16 ish default, but 22 max
     [SerializeField]
     private int midiStep = 0;
 
@@ -35,6 +35,39 @@ public class MusicTracker : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        // player tracking stuff
+        float depth = Mathf.Clamp(currentPlayerLocation.position.z + 10, 0, 40);
+        FMODUnity.RuntimeManager.StudioSystem.setParameterByName("CaveDepth", depth);
+
+        if (depth < 20)
+        {
+            playCount = 16;
+        } else if (depth < 25)
+        {
+            playCount = 17;
+        }
+        else if (depth < 30)
+        {
+            playCount = 18;
+        }
+        else if (depth < 33)
+        {
+            playCount = 19;
+        }
+        else if (depth < 35)
+        {
+            playCount = 20;
+        }
+        else if (depth < 38)
+        {
+            playCount = 21;
+        }
+        else if (depth < 40)
+        {
+            playCount = 22;
+        }
+     
+
         // music tracking stuff
         currentFrameCount++;
         if (currentFrameCount >= playCount)
@@ -43,11 +76,6 @@ public class MusicTracker : MonoBehaviour
             midiStep = (midiStep + 1) % 64;
             music.SetParameter("eigth_note", midiStep);
         } // have more methods that acts as signals to speed up/slow down the music
-
-        // player tracking stuff
-        float depth = Mathf.Clamp(currentPlayerLocation.position.z + 10, 0, 40);
-        FMODUnity.RuntimeManager.StudioSystem.setParameterByName("CaveDepth", depth);
-        //cavenoise.SetParameter("CaveDepth", depth);
 
     }
 
