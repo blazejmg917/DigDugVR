@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
         if(!fadeCamera){
             fadeCamera = FindObjectOfType<FadeCamera>();
         }
-        StartCoroutine(fadeCamera.FadeFromBlack());
+        StartCoroutine(StartLevel());
     }
 
     // Update is called once per frame
@@ -75,6 +75,12 @@ public class GameManager : MonoBehaviour
         GameObject gemstone = Instantiate(GemPrefab,gemSpawnPos.position, Quaternion.identity);
         //gemstone.transform.position = new Vector3(0,2,0);
         Debug.Log("Gem spawned " + gemSpawnPos.position + gemstone);
+    }
+
+    public IEnumerator StartLevel()
+    {
+        yield return StartCoroutine(fadeCamera.FadeFromBlack());
+        playerDeath.ActivatePlayer();
     }
 
     public void WinAndReload()
