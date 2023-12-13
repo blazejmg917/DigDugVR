@@ -103,8 +103,10 @@ public class DestructibleObject : MonoBehaviour
         {
             block.OnBreak();
         }
-        destroyParticles.Play(true);
-        destroyParticles.transform.parent = null;
+        if(shovel){
+            destroyParticles.Play(true);
+            destroyParticles.transform.parent = null;
+        }
         if(!render){
             render = GetComponent<Renderer>();
         }
