@@ -175,6 +175,8 @@ public class Enemy : MonoBehaviour
     void Awake()
     {
         health = maxHealth;
+        enemyAnim.SetInteger("PumpLevel", health);
+        enemyAnim.SetBool("Walking", false);
     }
 
     void Start()
@@ -249,7 +251,7 @@ public class Enemy : MonoBehaviour
             damagedParticlesDebug.Play();
         }
         health -= damage;
-        enemyAnim.SetFloat("PumpLevel", health);
+        enemyAnim.SetInteger("PumpLevel", health);
         if (health <= 0)
         {
             Die();
@@ -271,7 +273,7 @@ public class Enemy : MonoBehaviour
     public void RegenHealth()
     {
         health++;
-        enemyAnim.SetFloat("PumpLevel", health);
+        enemyAnim.SetInteger("PumpLevel", health);
     }
 
     public void SetPlayer(Transform player)
