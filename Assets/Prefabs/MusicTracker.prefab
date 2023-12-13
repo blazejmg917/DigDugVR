@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3135700600972648061}
   - component: {fileID: 3135700600972648059}
   - component: {fileID: 1802975133508381772}
+  - component: {fileID: 1846119370351370968}
   m_Layer: 0
   m_Name: MusicTracker
   m_TagString: Untagged
@@ -48,10 +49,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   music: {fileID: 3135700600972648059}
   cavenoise: {fileID: 1802975133508381772}
+  footsteps: {fileID: 1846119370351370968}
   currentFrameCount: 0
-  playCount: 0
   midiStep: 0
   currentPlayerLocation: {fileID: 0}
+  characterController: {fileID: 0}
 --- !u!114 &3135700600972648059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,6 +107,37 @@ MonoBehaviour:
     Path: event:/Ambience/Cavenoise
   Event: 
   PlayEvent: 1
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &1846119370351370968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3135700600972648062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1431235810
+      Data2: 1335765628
+      Data3: -910305346
+      Data4: -1694634525
+    Path: event:/Footsteps
+  Event: 
+  PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
   TriggerOnce: 0

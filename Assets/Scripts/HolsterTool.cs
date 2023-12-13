@@ -19,6 +19,10 @@ public class HolsterTool : MonoBehaviour
         held = true;
         interactable.interactionLayers = InteractionLayerMask.GetMask(new string[]{"Held Tool", "Default"});
     }
+    public void Grab(){
+        held = true;
+        interactable.interactionLayers = InteractionLayerMask.GetMask(new string[]{"Held Tool", "Default"});
+    }
     public void Release(SelectExitEventArgs args){
         held = false;
         if(!IsPrimed()){
