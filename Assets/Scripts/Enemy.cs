@@ -85,6 +85,7 @@ public class Enemy : MonoBehaviour
     private Vector3 wanderDestination;
 
     private Block lastBlock;
+    
 
     [Header("Burrow")]
 
@@ -117,10 +118,16 @@ public class Enemy : MonoBehaviour
     private float targetUpdateTime = .25f;
 
     private float targetUpdateTimer;
-    [SerializeField, Tooltip("if there is a max distance that the enemies can see the player")]private bool useMaxSeeDistance = false;
-    [SerializeField, Tooltip("the max see distance for a player")]private float maxSeeDistance = 10;
-    [SerializeField, Tooltip("max fov angle (this is on one side)")]private float fov = 25;
-    [SerializeField, Tooltip("player transform reference")]private Transform playerTransform;
+    [SerializeField, Tooltip("if there is a max distance that the enemies can see the player")]
+    private bool useMaxSeeDistance = false;
+    [SerializeField, Tooltip("the max see distance for a player")]
+    private float maxSeeDistance = 10;
+    [SerializeField, Tooltip("max fov angle (this is on one side)")]
+    private float fov = 25;
+    [SerializeField, Tooltip("distance at which enemy sees player regardless of angle")]
+    private float autoSeeDist = .5f;
+    [SerializeField, Tooltip("player transform reference")]
+    private Transform playerTransform;
 
     [Header("Hunt")] 
     
@@ -533,19 +540,23 @@ public class Enemy : MonoBehaviour
 
     public void SearchForPlayer(){
         Debug.DrawLine(transform.position, playerTransform.position, Color.magenta);
-        Debug.Log("player trasnform: " + playerTransform.position);
+        //Debug.Log("player trasnform: " + playerTransform.position);
         Debug.DrawRay(transform.position, transform.forward * 1, Color.cyan, .1f);
         RaycastHit hit;
         if(!Physics.Raycast(transform.position, (playerTransform.position - transform.position).normalized, out hit, (playerTransform.position - transform.position).magnitude, ~LayerMask.NameToLayer("Destructible"))){
+           //Debug.Log("player visible at some angle");
             Vector3 playerView = playerTransform.position - transform.position;
             playerView = new Vector3(playerView.x, transform.position.y, playerView.z);
-            if(Vector3.Angle(transform.forward, playerView) < fov){
+            if(playerView.magnitude < autoSeeDist || Vector3.Angle(transform.forward, playerView) < fov){
                 if(!useMaxSeeDistance || playerView.magnitude < maxSeeDistance)
-                TargetSpotted(playerTransform);
+                    TargetSpotted(playerTransform);
+            }
+            else{
+                //Debug.Log("player out of fov:  player at angle " + Vector3.Angle(transform.forward, playerView) + " with fov " + fov);
             }
         }
         else{
-            //Debug.DrawLine(transform.position, hit.point, Color.white, 2);
+            Debug.DrawLine(transform.position, hit.point, Color.white, 2);
         }
     }
 
@@ -573,7 +584,7 @@ public class Enemy : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("enemy collision");
+        //Debug.Log("enemy collision");
         if (invisible)
         {
             return;
@@ -592,10 +603,10 @@ public class Enemy : MonoBehaviour
         
         if (agent.CalculatePath(wanderDestination, path) && path.status == NavMeshPathStatus.PathComplete)
         {
-            Debug.Log("path found");
+            //Debug.Log("path found");
             return;
         }
-        Debug.Log("no path found");
+        //Debug.Log("no path found");
         if (state == AIState.HUNT)
         {
             SwapToInvisible();
@@ -607,11 +618,11 @@ public class Enemy : MonoBehaviour
             if (CheckMoveThroughBlock(block, collision.contacts[0].point, out newPos, out pathway))
             {
                 if(agent.CalculatePath(newPos, path) && path.status == NavMeshPathStatus.PathComplete){
-                    Debug.Log("enemy doesn't need to burrow cause it can walk there");
+                    //Debug.Log("enemy doesn't need to burrow cause it can walk there");
                     return;
                 }
                 EnterBurrowState(newPos);
-                Debug.Log("enemy deciding to burrow");
+                //Debug.Log("enemy deciding to burrow");
             }
             else
             {
@@ -619,7 +630,7 @@ public class Enemy : MonoBehaviour
                 //{
                     SetNewWanderLocation();
                     //Physics.OverlapCapsule(collision.)
-                    Debug.Log("enemy giving up on current in-wall position");
+                    //Debug.Log("enemy giving up on current in-wall position");
                 //}
                 //else{
                 //    Debug.Log("huh?");
@@ -632,40 +643,40 @@ public class Enemy : MonoBehaviour
 
     private bool CheckMoveThroughBlock(Block block, Vector3 collisionPos, out Vector3 newMovePos, out bool viablePathway)
     {
-        Debug.Log("checking for burrow");
+        //Debug.Log("checking for burrow");
         viablePathway = true;
         newMovePos = Vector3.zero;
         if(!block.CanMoveThrough()){
             viablePathway = false;
-            Debug.Log("trying to burrow through invalid block");
+            //Debug.Log("trying to burrow through invalid block");
             return false;
         }
         //experimental test version
         Vector3 pos = new Vector3(wanderDestination.x, transform.position.y, wanderDestination.z);
         
         //if(Vector3.Distance(pos, transform.position) > .1f){
-            Debug.Log("use raycast check");
+            //Debug.Log("use raycast check");
             if(Physics.Raycast(transform.position, (pos - transform.position).normalized, (pos - transform.position).magnitude, LayerMask.NameToLayer("OuterWall"))){
-                Debug.Log("goes through outermost wall. this is bad");
+                //Debug.Log("goes through outermost wall. this is bad");
                 viablePathway = false;
                 return false;
             }
             RaycastHit[] hits = Physics.RaycastAll(transform.position, (pos - transform.position).normalized, (pos - transform.position).magnitude, LayerMask.NameToLayer("Destructible") | LayerMask.NameToLayer("OuterWall"));
             Debug.DrawLine(transform.position, pos, Color.blue, 5);
             if(hits == null || hits.Length < 0){
-                Debug.Log("no path to burrow through with raycast " + LayerMask.NameToLayer("Destructible"));
+                //Debug.Log("no path to burrow through with raycast " + LayerMask.NameToLayer("Destructible"));
                 return false;
             }
             foreach(RaycastHit hit in hits){
                 Block thisBlock = hit.collider.gameObject.GetComponent<Block>();
                 viablePathway = false;
                 if(thisBlock.CanMoveThrough()){
-                    Debug.Log("trying to walk through game border");
+                    //Debug.Log("trying to walk through game border");
                     return false;
                 }
             }
             newMovePos = pos;
-            Debug.Log("raycast returned true");
+            //Debug.Log("raycast returned true");
             return true;
         //}
         
@@ -710,5 +721,9 @@ public class Enemy : MonoBehaviour
             }
         }
 
+    }
+
+    public bool IsVisible(){
+        return !invisible;
     }
 }

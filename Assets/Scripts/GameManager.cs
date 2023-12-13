@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +10,10 @@ public class GameManager : MonoBehaviour
     [SerializeField, Tooltip("A reference to the sensor")]private Sensor sensor;
     [SerializeField, Tooltip("gem block for easy reference")]private Block gemBlock;
     [SerializeField, Tooltip("if you should run the random generation")]private bool generateRandomLevel = true;
+    [SerializeField, Tooltip("the fade in/out camera script")]private FadeCamera fadeCamera;
+    [SerializeField, Tooltip("the script that handles player controllers on game end")]private PlayerDeath playerDeath;
+
+    private bool LeavingLevel = false;
     private static GameManager _instance;
     public static GameManager Instance
     {
@@ -48,6 +53,16 @@ public class GameManager : MonoBehaviour
             GridSpawner.Instance.GenerateEnemies();
         }
         gemBlock = GridSpawner.Instance.AssignGem(); 
+
+        if(!playerDeath){
+            playerDeath = FindObjectOfType<PlayerDeath>();
+        }
+        playerDeath.Deactivate();
+
+        if(!fadeCamera){
+            fadeCamera = FindObjectOfType<FadeCamera>();
+        }
+        StartCoroutine(fadeCamera.FadeFromBlack());
     }
 
     // Update is called once per frame
@@ -85,5 +100,18 @@ public class GameManager : MonoBehaviour
             GridSpawner.Instance.GenerateTunnels();
         }
         gemBlock = GridSpawner.Instance.AssignGem();
+    }
+
+
+    public void ReloadLevel(){
+        if(LeavingLevel){
+            return;
+        }
+        StartCoroutine(Reset());
+    }
+
+    public IEnumerator Reset(){
+        yield return StartCoroutine(fadeCamera.FadeToBlack());
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

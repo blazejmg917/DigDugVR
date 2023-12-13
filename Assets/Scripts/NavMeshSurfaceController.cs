@@ -27,8 +27,12 @@ public class NavMeshSurfaceController : MonoBehaviour
         Debug.Log("attempt to rebuild surface");
         
         if(generateSecondary){
-            defaultSurface.BuildNavMesh();
-            invisibleSurface.BuildNavMesh();
+            if(defaultSurface.navMeshData == null){
+                defaultSurface.BuildNavMesh();
+            }
+            if(invisibleSurface.navMeshData == null){
+                invisibleSurface.BuildNavMesh();
+            }
             Debug.Log("default surface: " + defaultSurface.agentTypeID + ", invisible: " + invisibleSurface.agentTypeID);
 
         }
