@@ -47,6 +47,7 @@ public class MusicTracker : MonoBehaviour
         { 
             if(characterController.velocity.magnitude > 0.1f)
             {
+                footsteps.enabled = true;
                 walking = true;
                 footsteps.SetParameter("end1", 0.0f);
                 footsteps.Play();

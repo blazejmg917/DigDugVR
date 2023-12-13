@@ -162,6 +162,8 @@ public class Enemy : MonoBehaviour
     [Header("Animation")]
     [SerializeField, Tooltip("the enemy we want to animate")]
     private Animator enemyAnim;
+    [SerializeField, Tooltip("the enemy we want to animate")]
+    private ParticleSystem deathParticle;
 
 
     [Header("Noises")]
@@ -213,6 +215,7 @@ public class Enemy : MonoBehaviour
                 regenTimer = 0;
             }
         }
+        Debug.Log(agent.velocity.magnitude);
         if(agent.velocity.magnitude > 0.05)
         {
             enemyAnim.SetBool("Walking", true);
@@ -267,6 +270,8 @@ public class Enemy : MonoBehaviour
         }
         dieSound.Play();
         dieSound.transform.parent = null;
+        deathParticle.Play();
+        deathParticle.transform.parent = null;
         Destroy(gameObject);
     }
 
