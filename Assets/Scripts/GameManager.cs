@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
         // Generate Tunnels
         if(generateRandomLevel){
             GridSpawner.Instance.GenerateTunnels();
+            GridSpawner.Instance.GenerateEnemies();
         }
         gemBlock = GridSpawner.Instance.AssignGem(); 
     }
