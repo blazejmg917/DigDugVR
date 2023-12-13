@@ -9,6 +9,10 @@ public class MusicTracker : MonoBehaviour
     private StudioEventEmitter music;
     [SerializeField]
     private StudioEventEmitter cavenoise;
+    [SerializeField]
+    private StudioEventEmitter footsteps;
+
+    private bool walking = false;
 
     [SerializeField]
     private int currentFrameCount = 0;
@@ -25,6 +29,9 @@ public class MusicTracker : MonoBehaviour
     [SerializeField]
     private Transform currentPlayerLocation;
 
+    [SerializeField]
+    private CharacterController characterController;
+
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +42,25 @@ public class MusicTracker : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        // velocity tracking stuff
+        if (!walking)
+        { 
+            if(characterController.velocity.magnitude > 0.1f)
+            {
+                walking = true;
+                footsteps.SetParameter("end1", 0.0f);
+                footsteps.Play();
+            }
+        }
+        else 
+        {
+            if (characterController.velocity.magnitude < 0.1f)
+            {
+                walking = false;
+                footsteps.SetParameter("end1", 1.0f);
+            }
+        }
+
         // player tracking stuff
         float depth = Mathf.Clamp(currentPlayerLocation.position.z + 10, 0, 40);
         FMODUnity.RuntimeManager.StudioSystem.setParameterByName("CaveDepth", depth);

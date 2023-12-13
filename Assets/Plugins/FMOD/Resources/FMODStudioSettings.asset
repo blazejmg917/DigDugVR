@@ -319,6 +319,7 @@ MonoBehaviour:
   Banks:
   - Ambience
   - Music
+  - PlayerFootsteps
   - Pooka
   - Pump
   - Sensor
