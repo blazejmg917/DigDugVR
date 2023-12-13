@@ -121,13 +121,14 @@ MonoBehaviour:
   canBreak: 1
   maxDurability: 2
   breakVelocity: 0
-  block: {fileID: 0}
+  block: {fileID: 7186627300386999346}
   col: {fileID: 0}
   render: {fileID: 0}
   damageParticles: {fileID: 1751257293380420833}
   destroyParticles: {fileID: 7130305606983970657}
   hitHaptic: {fileID: 7186627300386999344}
   breakHaptic: {fileID: 7186627300386999345}
+  blockType: 0
 --- !u!114 &7186627300386999348
 MonoBehaviour:
   m_ObjectHideFlags: 0

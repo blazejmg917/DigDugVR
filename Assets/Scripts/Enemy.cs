@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
@@ -152,6 +150,11 @@ public class Enemy : MonoBehaviour
     [SerializeField]private ParticleSystem stuckParticlesDebug;
     [SerializeField]private ParticleSystem damagedParticlesDebug;
 
+    // Animation Controller for Enemy
+    [Header("Animation")]
+    [SerializeField, Tooltip("the enemy we want to animate")]
+    private Animator enemyAnim;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -172,6 +175,11 @@ public class Enemy : MonoBehaviour
         invisibleEnemyAppearance.SetActive(false);
         normalEnemyAppearance.SetActive(true);
         agent.autoRepath = false;
+        // EnterWanderState();
+    }
+
+    public void StartWander()
+    {
         EnterWanderState();
     }
 
@@ -186,6 +194,13 @@ public class Enemy : MonoBehaviour
                 RegenHealth();
                 regenTimer = 0;
             }
+        }
+        if(agent.velocity.magnitude > 0.05)
+        {
+            enemyAnim.SetBool("Walking", true);
+        } else
+        {
+            enemyAnim.SetBool("Walking", false);
         }
         if(stuckWithPump){
             return;
@@ -218,6 +233,7 @@ public class Enemy : MonoBehaviour
             damagedParticlesDebug.Play();
         }
         health -= damage;
+        enemyAnim.SetFloat("PumpLevel", health);
         if (health <= 0)
         {
             Die();
@@ -237,6 +253,12 @@ public class Enemy : MonoBehaviour
     public void RegenHealth()
     {
         health++;
+        enemyAnim.SetFloat("PumpLevel", health);
+    }
+
+    public void SetPlayer(Transform player)
+    {
+        playerTransform = player;
     }
 
     /// <summary>

@@ -83,6 +83,9 @@ public class GridSpawner : MonoBehaviour
     [SerializeField, Tooltip("the minimum depth that a gem can spawn at")]private int minGemDepth = 9;
     [SerializeField, Tooltip("if the gem can spawn in a space adjacent to a tunnel")]private bool allowGemNextToTunnel = true;
 
+    [SerializeField, Tooltip("reference to player transform")]
+    private Transform playerTransform;
+
     public bool bruh = false;
 
     private List<tunnelLocation> tunnelLocations = new List<tunnelLocation>();
@@ -325,9 +328,11 @@ public class GridSpawner : MonoBehaviour
             // Randomize if Pooka or Fygar is selected
             if(pookaCount > 0) {
                 GameObject enemyPooka = Instantiate(pookaPrefab, grid[tunnelLocations[i].PosY][tunnelLocations[i].PosX].transform.position, pookaPrefab.transform.rotation, transform);
+                enemyPooka.GetComponent<Enemy>().SetPlayer(playerTransform);
                 pookaCount--;
             } else if (fygarCount > 0) {
                 GameObject enemyFygar = Instantiate(fygarPrefab, grid[tunnelLocations[i].PosY][tunnelLocations[i].PosX].transform.position, pookaPrefab.transform.rotation, transform);
+                enemyFygar.GetComponent<Enemy>().SetPlayer(playerTransform);
                 fygarCount--;
             }
         }
