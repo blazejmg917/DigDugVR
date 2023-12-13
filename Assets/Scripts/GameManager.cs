@@ -1,3 +1,4 @@
+using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,9 @@ public class GameManager : MonoBehaviour
     [SerializeField, Tooltip("if you should run the random generation")]private bool generateRandomLevel = true;
     [SerializeField, Tooltip("the fade in/out camera script")]private FadeCamera fadeCamera;
     [SerializeField, Tooltip("the script that handles player controllers on game end")]private PlayerDeath playerDeath;
+
+    [SerializeField]
+    private StudioEventEmitter playerFootsteps;
 
     private bool LeavingLevel = false;
     private static GameManager _instance;
@@ -110,7 +114,8 @@ public class GameManager : MonoBehaviour
 
 
     public void ReloadLevel(){
-        if(LeavingLevel){
+        playerFootsteps.enabled = false;
+        if (LeavingLevel){
             return;
         }
         StartCoroutine(Reset());
