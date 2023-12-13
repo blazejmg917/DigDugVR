@@ -1,3 +1,4 @@
+using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -38,6 +39,18 @@ public class PumpNozzle : MonoBehaviour
     [SerializeField, Tooltip("The transform this nozzle attaches to the pump at.")]
     private Transform pumpAttach;
     [SerializeField, Tooltip("the parent transform for this object")]private Transform parentTransform;
+
+    [SerializeField]
+    private StudioEventEmitter enemyHit;
+    [SerializeField]
+    private StudioEventEmitter dirtHit;
+    [SerializeField]
+    private StudioEventEmitter lockIn;
+    [SerializeField]
+    private StudioEventEmitter inflateEnemy;
+    [SerializeField]
+    private StudioEventEmitter pushAirEmpty;
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -91,6 +104,7 @@ public class PumpNozzle : MonoBehaviour
             joint = gameObject.AddComponent<FixedJoint>();
         }
         joint.connectedBody = owningPump.gameObject.GetComponent<Rigidbody>();
+        lockIn.Play(); // play sound effect of nozzle tighten
         owningPump.OnNozzleReattach();
         launched = false;
     }
@@ -117,11 +131,13 @@ public class PumpNozzle : MonoBehaviour
             if (enemy = col.collider.gameObject.GetComponent<Enemy>())
             {
                 StickToEnemy(enemy);
+                enemyHit.Play(); // play enemy stick sound
             }
             else
             {
                 waitingForNozzleReturn = true;
                 nozzleReturnTimer = nozzleReturnTime;
+                dirtHit.Play(); // play dirt hit sound
             }
             canStick = false;
         }
@@ -195,6 +211,10 @@ public class PumpNozzle : MonoBehaviour
         if (stuckToEnemy)
         {
             currentAttachedEnemy.Damage();
+            inflateEnemy.Play();// add sound effect for inflation
+        } else
+        {
+            pushAirEmpty.Play();//sound effect for push air no enemy
         }
     }
 }

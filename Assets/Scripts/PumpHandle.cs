@@ -1,3 +1,4 @@
+using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,6 +25,9 @@ public class PumpHandle : MonoBehaviour
     [SerializeField, Tooltip("this handle's rigidbody")]private Rigidbody rb;
     [Tooltip("the standard rigidbodyconstraints for when the pump isn't held")]private RigidbodyConstraints standardConstraints = RigidbodyConstraints.FreezeAll;
     [ Tooltip("the  rigidbodyconstraints for when the pump is held")]private RigidbodyConstraints heldConstraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
+
+    [SerializeField]
+    private StudioEventEmitter airIntake;
 
     void Start(){
         if(!rb){
@@ -54,6 +58,7 @@ public class PumpHandle : MonoBehaviour
         {
             Debug.Log("priming handle");
             primed = true;
+            // play sound of air intake (could add velocity later but who cares)
         }
         else if (held && primed && Vector3.Distance(handlePoint.position, restingPosition.position) <= .01f)
         {

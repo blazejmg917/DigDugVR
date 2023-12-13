@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 5911544545472331528}
   - component: {fileID: 5911544545472331531}
   - component: {fileID: 5911544545472331535}
+  - component: {fileID: 7695587403307972484}
   m_Layer: 9
   m_Name: Handle
   m_TagString: Untagged
@@ -111,6 +112,7 @@ MonoBehaviour:
   primed: 0
   held: 0
   rb: {fileID: 5911544545472331529}
+  airIntake: {fileID: 7695587403307972484}
 --- !u!54 &5911544545472331529
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -425,6 +427,37 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &7695587403307972484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 837069054103501954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1308466246
+      Data2: 1087151139
+      Data3: -760947045
+      Data4: 631537857
+    Path: event:/Pump/Air Out Nothing
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &2253904117817830543
 GameObject:
   m_ObjectHideFlags: 0
@@ -442,6 +475,7 @@ GameObject:
   - component: {fileID: 5624373583564821585}
   - component: {fileID: 5624373583564821589}
   - component: {fileID: 5624373583564821594}
+  - component: {fileID: 8188877928346976935}
   m_Layer: 9
   m_Name: Cylinder
   m_TagString: Untagged
@@ -761,6 +795,7 @@ MonoBehaviour:
   activateParticlesDebug: {fileID: 5624373583564821589}
   halfPumpParticlesDebug: {fileID: 0}
   fullPumpParticlesDebug: {fileID: 3314176825228836940}
+  shootSfx: {fileID: 8188877928346976935}
 --- !u!198 &5624373583564821589
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -5598,6 +5633,37 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &8188877928346976935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2253904117817830543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -13662606
+      Data2: 1325912142
+      Data3: -1260459356
+      Data4: -970827631
+    Path: event:/Pump/Nozzle Shoot
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &2395699028967055326
 GameObject:
   m_ObjectHideFlags: 0
@@ -11152,6 +11218,11 @@ GameObject:
   - component: {fileID: 6618355837789602721}
   - component: {fileID: 6618355837789602720}
   - component: {fileID: 6618355837789602726}
+  - component: {fileID: 5904643566876694707}
+  - component: {fileID: 4114663677352382918}
+  - component: {fileID: 5257948947514266119}
+  - component: {fileID: 4957842988505711144}
+  - component: {fileID: 8537220810808777343}
   m_Layer: 18
   m_Name: PumpNozzle
   m_TagString: Untagged
@@ -11248,6 +11319,11 @@ MonoBehaviour:
   owningPump: {fileID: 5624373583564821585}
   pumpAttach: {fileID: 3314176825228836943}
   parentTransform: {fileID: 8105805565612339294}
+  enemyHit: {fileID: 5904643566876694707}
+  dirtHit: {fileID: 4114663677352382918}
+  lockIn: {fileID: 5257948947514266119}
+  inflateEnemy: {fileID: 4957842988505711144}
+  pushAirEmpty: {fileID: 8537220810808777343}
 --- !u!54 &6618355837789602722
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -16130,3 +16206,158 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -7387706064836869012, guid: f181b7c245742a84399eb26d667731dd, type: 3}
+--- !u!114 &5904643566876694707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6618355837789602748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -453572458
+      Data2: 1341990367
+      Data3: -191428709
+      Data4: 263570132
+    Path: event:/Pump/Nozzle Stick Enemy
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &4114663677352382918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6618355837789602748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -957608536
+      Data2: 1182831557
+      Data3: -2027352136
+      Data4: 408321469
+    Path: event:/Pump/Nozzle Hit Dirt
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &5257948947514266119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6618355837789602748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1996423024
+      Data2: 1285872234
+      Data3: 2125321344
+      Data4: 791249196
+    Path: event:/Pump/Nozzle Tighten
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &4957842988505711144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6618355837789602748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 440098554
+      Data2: 1128857065
+      Data3: 317598626
+      Data4: -1077402959
+    Path: event:/Pump/Air Out Enemy
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &8537220810808777343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6618355837789602748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1308466246
+      Data2: 1087151139
+      Data3: -760947045
+      Data4: 631537857
+    Path: event:/Pump/Air Out Nothing
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20

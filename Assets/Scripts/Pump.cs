@@ -1,3 +1,4 @@
+using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,6 +25,12 @@ public class Pump : MonoBehaviour
     [SerializeField]private ParticleSystem halfPumpParticlesDebug;
     [SerializeField]private ParticleSystem fullPumpParticlesDebug;
     //[SerializeField, Tooltip("the ")]
+
+
+    [SerializeField]
+    private StudioEventEmitter shootSfx;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -69,6 +76,7 @@ public class Pump : MonoBehaviour
             }
 
             pumpNozzle.Shoot(nozzleAttach.forward * -nozzleLaunchSpeed);
+            shootSfx.Play();
             isPumpAttached = false;
         }
     }
