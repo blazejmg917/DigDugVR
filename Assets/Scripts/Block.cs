@@ -26,7 +26,7 @@ public class Block : MonoBehaviour
     }
 
     public bool CanMoveThrough(){
-        return enemyWalkable;
+        return enemyWalkable && !isSurface;
     }
 
     public void AssignBlocks(Block left, Block right, Block back, Block front){
@@ -63,14 +63,14 @@ public class Block : MonoBehaviour
 
     public void OnBreak(){
         Debug.Log("on block break");
-        if(leftBlock)
-            leftBlock.setRight(null); 
-        if (rightBlock)
-            rightBlock.setLeft(null);
-        if (backBlock)
-            backBlock.setFront(null);
-        if (frontBlock)
-            frontBlock.setBack(null);
+        // if(leftBlock)
+        //     leftBlock.setRight(null); 
+        // if (rightBlock)
+        //     rightBlock.setLeft(null);
+        // if (backBlock)
+        //     backBlock.setFront(null);
+        // if (frontBlock)
+        //     frontBlock.setBack(null);
         isBroken = true;
         GridSpawner.Instance.OnBlockBroken(this);
     }
@@ -173,6 +173,10 @@ public class Block : MonoBehaviour
 
     public void SetSurface(bool surface){
         isSurface = surface;
+    }
+
+    public bool IsSurface(){
+        return isSurface;
     }
 
     public bool HasGem(){
