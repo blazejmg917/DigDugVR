@@ -273,6 +273,7 @@ GameObject:
   - component: {fileID: 7517525713112603064}
   - component: {fileID: 1917651605824980502}
   - component: {fileID: 1968426513505878778}
+  - component: {fileID: 1646721924370339921}
   m_Layer: 9
   m_Name: Sensor
   m_TagString: Untagged
@@ -439,10 +440,34 @@ MonoBehaviour:
       m_Calls: []
   m_SelectEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1646721924370339921}
+        m_TargetAssemblyTypeName: HolsterTool, Assembly-CSharp
+        m_MethodName: Grab
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_SelectExited:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1646721924370339921}
+        m_TargetAssemblyTypeName: HolsterTool, Assembly-CSharp
+        m_MethodName: Release
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_FirstFocusEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -517,11 +542,11 @@ MonoBehaviour:
   m_AngularVelocityDamping: 1
   m_AngularVelocityScale: 1
   m_TrackPosition: 1
-  m_SmoothPosition: 1
+  m_SmoothPosition: 0
   m_SmoothPositionAmount: 1.34
   m_TightenPosition: 0.068
   m_TrackRotation: 1
-  m_SmoothRotation: 1
+  m_SmoothRotation: 0
   m_SmoothRotationAmount: 1.57
   m_TightenRotation: 0.077
   m_TrackScale: 1
@@ -659,6 +684,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.032088224, y: 0.11442565, z: 0.11787524}
   m_Center: {x: 0.002368752, y: -3.244712e-18, z: 0.0017247982}
+--- !u!114 &1646721924370339921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522866103064858633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4afc80c1dd317104cb50509abe3781ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  held: 0
+  primed: 0
+  interactable: {fileID: 522866103064858626}
 --- !u!1 &522866103201987384
 GameObject:
   m_ObjectHideFlags: 0
