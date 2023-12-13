@@ -133,8 +133,12 @@ public class DestructibleObject : MonoBehaviour
         //Debug.Log("object hit, " + (col.relativeVelocity.magnitude >= breakVelocity) + ", " + shovel);
         
         if(col.relativeVelocity.magnitude >= breakVelocity && shovel && shovel.CanBreak(gameObject, col.contacts[0].point)){
-            damageParticles.transform.position = col.contacts[0].point;
-            damageParticles.Play(true);
+            if (canBreak)
+            {
+                damageParticles.transform.position = col.contacts[0].point;
+                damageParticles.Play(true);
+            }
+            
             TakeDamage();
         }
     }
