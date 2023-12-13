@@ -168,6 +168,9 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private StudioEventEmitter burrowSound;
 
+    [SerializeField]
+    private StudioEventEmitter dieSound;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -260,6 +263,8 @@ public class Enemy : MonoBehaviour
         if(nozzle){
             nozzle.ForceRelease();
         }
+        dieSound.Play();
+        dieSound.transform.parent = null;
         Destroy(gameObject);
     }
 
