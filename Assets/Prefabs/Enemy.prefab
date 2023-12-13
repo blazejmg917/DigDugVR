@@ -5007,7 +5007,8 @@ MonoBehaviour:
   targetUpdateTime: 0.25
   useMaxSeeDistance: 0
   maxSeeDistance: 10
-  fov: 25
+  fov: 40
+  autoSeeDist: 0.5
   playerTransform: {fileID: 0}
   huntMoveSpeed: 4
   prevState: 0

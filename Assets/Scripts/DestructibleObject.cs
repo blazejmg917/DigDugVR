@@ -155,4 +155,8 @@ public class DestructibleObject : MonoBehaviour
     {
         blockType = a;
     }
+
+    public bool CanBreak(){
+        return canBreak;
+    }
 }

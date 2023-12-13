@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using FMODUnity;
+using Unity.VisualScripting;
 
 struct tunnelLocation
 {
@@ -253,57 +254,84 @@ public class GridSpawner : MonoBehaviour
             int centerHorizontal = location.PosY;
             int tunnelSize = (location.Width / 2) + 1;
             Block blockReference = grid[centerDepth][centerHorizontal];
+            if(!blockReference){
+                return;
+            }
+            DestructibleObject destructible = blockReference.GetComponent<DestructibleObject>();
+            if(!destructible){
+                return;
+            }
 
             switch (location.Type)
             {
                 case "H":
-                    if (!blockReference.IsBroken())
+                    if (!blockReference.IsBroken() && destructible.CanBreak())
                     {
                         grid[centerDepth][centerHorizontal].GetComponent<DestructibleObject>().Break();
                     }
                     // Delete the Left Blocks
                     for(int left = 1; left < tunnelSize; left++) {
-                        if ((blockReference = grid[centerDepth][centerHorizontal - left]).GetComponent<DestructibleObject>() == null)
+                        if(centerHorizontal - left <= 0){
                             break;
-                        else if(!blockReference.IsBroken())
+                        }
+                        blockReference = grid[centerDepth][centerHorizontal - left];
+                        destructible = blockReference.GetComponent<DestructibleObject>();
+                        if (!destructible)
+                            break;
+                        else if(!blockReference.IsBroken() && destructible.CanBreak())
                         {
-                            blockReference.GetComponent<DestructibleObject>().Break();
+                            destructible.Break();
                         }
                     }
                     // Delete the Right Blocks
                     for (int right = 1; right < 3; right++) {
-                        if ((blockReference = grid[centerDepth][centerHorizontal + right]).GetComponent<DestructibleObject>() == null)
+                        if(centerHorizontal + right >= grid[centerDepth].Count - 1){
                             break;
-                        else if (!blockReference.IsBroken())
+                        }
+                        blockReference = grid[centerDepth][centerHorizontal + right];
+                        destructible = blockReference.GetComponent<DestructibleObject>();
+                        if (!destructible)
+                            break;
+                        else if (!blockReference.IsBroken() && destructible.CanBreak())
                         {
-                            blockReference.GetComponent<DestructibleObject>().Break();
+                            destructible.Break();
                         }
                     }
                     break;
                 case "V":
-                    if (!blockReference.IsBroken())
+                    if (!blockReference.IsBroken() && destructible.CanBreak())
                     {
-                        grid[centerDepth][centerHorizontal].GetComponent<DestructibleObject>().Break();
+                        destructible.Break();
                     }
                     // Delete the Up Blocks
                     for (int up = 1; up < tunnelSize; up++)
                     {
-                        // Since there are no walls at entrance, make sure we can't go out of bounds there
-                        if (centerDepth - up < 0 || (blockReference = grid[centerDepth - up][centerHorizontal]).GetComponent<DestructibleObject>() == null)
+                        if (centerDepth - up < 0 )
                             break;
-                        else if (!blockReference.IsBroken())
+                        blockReference = grid[centerDepth - up][centerHorizontal];
+                        destructible = blockReference.GetComponent<DestructibleObject>();
+                        // Since there are no walls at entrance, make sure we can't go out of bounds there
+                        if(!destructible){
+                            return;
+                        }
+                        else if (!blockReference.IsBroken() && destructible.CanBreak())
                         {
-                            blockReference.GetComponent<DestructibleObject>().Break();
+                            destructible.Break();
                         }
                     }
                     // Delete the Down Blocks
                     for (int down = 1; down < 3; down++)
                     {
-                        if ((blockReference = grid[centerDepth + down][centerHorizontal]).GetComponent<DestructibleObject>() == null)
+                        if(centerDepth + down >= grid.Count - 1){
                             break;
-                        else if (!blockReference.IsBroken())
+                        }
+                        blockReference = grid[centerDepth + down][centerHorizontal];
+                        destructible = blockReference.GetComponent<DestructibleObject>();
+                        if (!destructible)
+                            break;
+                        else if (!blockReference.IsBroken() && destructible.CanBreak())
                         {
-                            blockReference.GetComponent<DestructibleObject>().Break();
+                            destructible.Break();
                         }
                     }
                     break;
