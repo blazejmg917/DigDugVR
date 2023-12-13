@@ -21,7 +21,8 @@ public class ExitZone : MonoBehaviour
         if(playerEnter && gemstoneEnter)
         {
             // call the game manager here
-            GameManager.Instance.WinAndReload();
+            //GameManager.Instance.WinAndReload();
+            GameManager.Instance.ReloadLevel();
         }
     }
 
