@@ -58,7 +58,7 @@ public class PumpHandle : MonoBehaviour
         {
             Debug.Log("priming handle");
             primed = true;
-            // play sound of air intake (could add velocity later but who cares)
+            airIntake.Play();// play sound of air intake (could add velocity later but who cares)
         }
         else if (held && primed && Vector3.Distance(handlePoint.position, restingPosition.position) <= .01f)
         {
