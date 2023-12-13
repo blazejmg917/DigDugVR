@@ -55,6 +55,10 @@ public class GridSpawner : MonoBehaviour
     private GameObject baseBlockPrefab;
     [SerializeField, Tooltip("the prefab for the outer walls blocks to spawn")]
     private GameObject wallsPrefab;
+    [SerializeField, Tooltip("the prefab for enemy: pooka")]
+    private GameObject pookaPrefab;
+    [SerializeField, Tooltip("the prefab for enemy: fygar")]
+    private GameObject fygarPrefab;
     [SerializeField, Tooltip("a list of the materials to assign to the blocks, should be listed in order from entry to deepest")]
     private List<Material> blockMaterials;
 
@@ -305,6 +309,29 @@ public class GridSpawner : MonoBehaviour
             }
         }
         
+
+    }
+
+    public void GenerateEnemies()
+    {
+        // Randomize the Number of Pookas and Fygars **THESE ARE HARDCODED FOR NOW BUT CAN HAVE INPUT FIELDS LATER
+        Vector3 offset = baseBlockPrefab.GetComponent<Block>().GetSize2D();
+        int pookaCount = Random.Range(1, 3);
+        int fygarCount = Random.Range(1, 2);
+
+        // Randomly Select locations for these guys to be spawned
+        for(int i = 0; i < tunnelLocations.Count; i++)
+        {
+            // Randomize if Pooka or Fygar is selected
+            if(pookaCount > 0) {
+                GameObject enemyPooka = Instantiate(pookaPrefab, grid[tunnelLocations[i].PosY][tunnelLocations[i].PosX].transform.position, pookaPrefab.transform.rotation, transform);
+                pookaCount--;
+            } else if (fygarCount > 0) {
+                GameObject enemyFygar = Instantiate(fygarPrefab, grid[tunnelLocations[i].PosY][tunnelLocations[i].PosX].transform.position, pookaPrefab.transform.rotation, transform);
+                fygarCount--;
+            }
+        }
+
 
     }
 
