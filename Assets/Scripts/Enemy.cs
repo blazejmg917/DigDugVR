@@ -1,3 +1,4 @@
+using FMODUnity;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -155,6 +156,11 @@ public class Enemy : MonoBehaviour
     [SerializeField, Tooltip("the enemy we want to animate")]
     private Animator enemyAnim;
 
+
+    [Header("Noises")]
+    [SerializeField]
+    private StudioEventEmitter burrowSound;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -291,6 +297,7 @@ public class Enemy : MonoBehaviour
         if(groundChecker){
             groundChecker.Reset();
         }
+        burrowSound.Play(); // sound stuff
     }
 
     public void SwapToVisible()
@@ -301,7 +308,7 @@ public class Enemy : MonoBehaviour
         invisibleEnemyAppearance.SetActive(false);
         agent.SetDestination(agent.destination);
         Debug.Log("enemy going visible");
-
+        burrowSound.SetParameter("end", 1.0f);
     }
 
     public void TargetSpotted(Transform target)
