@@ -12,7 +12,7 @@ public class MusicTracker : MonoBehaviour
     [SerializeField]
     private StudioEventEmitter footsteps;
 
-    private bool walking = false;
+    
 
     [SerializeField]
     private int currentFrameCount = 0;
@@ -26,46 +26,54 @@ public class MusicTracker : MonoBehaviour
     //[SerializeField]
     //private float eigthTime = .5f; // like 12 ish for fast music
 
-    [SerializeField]
-    private Transform currentPlayerLocation;
+
+    [SerializeField, Tooltip("the character controller to follow (within xr origin)")]
+    private CharacterController characterController;
+    private Vector3 currPosition;
+    private Vector3 prevPosition;
+
+
+    private bool walking = false;
 
     [SerializeField]
-    private CharacterController characterController;
+    private float distanceBetweenFootsteps;
+
+    private float distanceTravelled = 0;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        currPosition = characterController.center;
+        prevPosition = characterController.center;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        // velocity tracking stuff
-        if (!walking)
-        { 
-            if(characterController.velocity.magnitude > 0.1f)
-            {
-                footsteps.enabled = true;
-                walking = true;
-                footsteps.SetParameter("end1", 0.0f);
-                footsteps.Play();
-            }
-        }
-        else 
+        // calculate player footstep timing
+        if (characterController.velocity.magnitude > characterController.minMoveDistance) // only check when they are actually walking
         {
-            if (characterController.velocity.magnitude < 0.1f)
+            currPosition = transform.TransformPoint(characterController.center); // transform to world coordinates
+            distanceTravelled += Vector3.Distance(currPosition, prevPosition);
+
+            if (distanceTravelled >= distanceBetweenFootsteps) // check if they have gone far enough
             {
-                walking = false;
-                footsteps.SetParameter("end1", 1.0f);
+                distanceTravelled %= distanceBetweenFootsteps;
+                if (currPosition.z > -1.4) // check if they are actually in the cave (could be cleaner, just hoping 1.4 doesn't change for now)
+                {
+                    footsteps.Play();
+                }
+                
             }
+            prevPosition = new Vector3(currPosition.x, currPosition.y, currPosition.z);
         }
 
-        // player tracking stuff
-        float depth = Mathf.Clamp(currentPlayerLocation.position.z + 10, 0, 40);
+        // calculate cave depth
+        float depth = Mathf.Clamp(currPosition.z + 10, 0, 40);
         FMODUnity.RuntimeManager.StudioSystem.setParameterByName("CaveDepth", depth);
 
+        // determine song speed (yes this is ugly but it is fast and concise)
         if (depth < 20)
         {
             playCount = 16;
@@ -100,7 +108,7 @@ public class MusicTracker : MonoBehaviour
         if (currentFrameCount >= playCount)
         {
             currentFrameCount = 0;
-            midiStep = (midiStep + 1) % 64;
+            midiStep = midiStep >= 63 ? 0 : (midiStep + 1); // faster than mod
             music.SetParameter("eigth_note", midiStep);
         } // have more methods that acts as signals to speed up/slow down the music
 

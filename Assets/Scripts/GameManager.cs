@@ -114,7 +114,6 @@ public class GameManager : MonoBehaviour
 
 
     public void ReloadLevel(){
-        playerFootsteps.enabled = false;
         if (LeavingLevel){
             return;
         }

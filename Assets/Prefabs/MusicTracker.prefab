@@ -131,11 +131,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: 1431235810
-      Data2: 1335765628
-      Data3: -910305346
-      Data4: -1694634525
-    Path: event:/Footsteps
+      Data1: 1223035152
+      Data2: 1182623830
+      Data3: 777302457
+      Data4: 297600029
+    Path: event:/Footsteps/NewFootsteps
   Event: 
   PlayEvent: 0
   StopEvent: 0
